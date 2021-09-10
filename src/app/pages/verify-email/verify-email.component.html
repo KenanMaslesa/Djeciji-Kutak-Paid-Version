@@ -1,0 +1,35 @@
+<app-auth-nav></app-auth-nav>
+
+<div class="main-wrapper">
+
+  <video [playbackRate]="0.7" autoplay muted loop id="background-video">
+    <source src="/assets/hero.mov" type="video/mp4">
+  </video>
+  
+  <div class="content-wrapper">
+  
+    <ng-container *ngIf="authService.userData as user">
+      <div class="authBlock">
+        <h2>Uspješno ste se registrovali</h2>
+  
+        <div class="formGroup" >
+          <p class="text-center">Poslali smo Vam verifikacijski email na  <strong>{{user.email}}</strong>.</p>
+          <p class="text-center">Molimo Vas provjerite svoj email i verifikujte email adresu.</p>
+        </div>
+      
+        <!-- Calling SendVerificationMail() method using authService Api -->
+        <div class="formGroup">
+          <button type="button" class="resendBtn" (click)="authService.SendVerificationMail()">
+            Ponovo pošalji verifikacioni email
+          </button>
+        </div>
+        
+      </div>
+    </ng-container>
+  
+      <div class="redirectToLogin">
+        <span class="redirect" routerLink="/auth">Nazad na prijavu</span>
+      </div>
+  
+  </div>
+  </div>

@@ -1,0 +1,20 @@
+<nav class="kids-nav" #nav>
+  <div class="navicon" (click)="nav.classList.toggle('show')">
+    <div></div>
+  </div>
+  <span > 
+    <strong *ngIf="authService.getCurrentUser()">
+      {{authService.getCurrentUser().email.split('@')[0]}}
+    </strong>
+    <strong *ngIf="!authService.getCurrentUser()">
+      Dječiji kutak
+    </strong>
+  </span>
+  <a routerLink="/">Početna</a>
+  <a routerLink="/videos" [routerLinkActive]="['active']">Videa</a>
+  <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" [routerLinkActive]="['active']" routerLink="/omiljeno">Lista omiljenih</a>
+  <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" [routerLinkActive]="['active']" routerLink="/pretplata">Moja pretplata</a>
+  <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavi se</a>
+  <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
+
+</nav>

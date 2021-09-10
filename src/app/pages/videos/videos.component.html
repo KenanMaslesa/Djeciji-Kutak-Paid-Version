@@ -1,0 +1,108 @@
+<app-desktop-nav></app-desktop-nav>
+
+
+<div class="tm-hero d-flex justify-content-center align-items-center" id="tm-video-container">
+  <video [playbackRate]="0.7" autoplay loop muted playsinline id="tm-video">
+    <source src="assets/hero.mov" type="video/mp4">
+  </video>
+
+  <div class="categories">
+    <input class="form-control tm-search-input" #input (input)="searchVideos(input.value)" type="search"
+      placeholder="Pretraga" aria-label="Search">
+
+    <div class="language">
+      <label>Jezik:</label>
+      <select (change)="onChangeLanguage($event.target.value)">
+        <option value="all">Svi</option>
+        <option value="eng">Engleski</option>
+        <option value="bos">Bosanski</option>
+      </select>
+    </div>
+  </div>
+
+</div>
+
+<div class="container-fluid tm-container-content tm-mt-60">
+  <!--<p class="subscriptionMessage" *ngIf="authService.subscriptionMessage">{{authService.subscriptionMessage}} {{authService.subscriptionDetails.billing_info.next_billing_time | date: 'dd.MM.yyyy.'}}</p>-->
+  <div class="row tm-gallery">
+
+
+    <!--FREE-->
+    <ng-container *ngIf="videoService.showFreeVideos">
+      <ng-container *ngFor="let video of videoService.freeVideos">
+        <ng-container *ngIf="!authService.isPremiumUser">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" data-aos="fade-up" data-aos-duration="1200">
+            <figure class="effect-ming tm-video-item">
+              <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center">
+                <h2 class="video-title"> {{video.title}}</h2>
+                <a [routerLink]="['/video', video.firebaseId]" (click)="videoService.activeVideo = video">View more</a>
+              </figcaption>
+            </figure>
+            <div class="d-flex justify-content-between tm-text-gray">
+              <span> {{video.title}}</span>
+              <ng-container *ngIf="authService.isLoggedIn && authService.isPremiumUser">
+                <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih" *ngIf="!checkIsFavorite(video)"
+                  (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
+                <img height="40px" *ngIf="checkIsFavorite(video)" class="heart" src="assets/img/favorite-red.svg">
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  
+    <!--FREE-->
+
+
+    <ng-container *ngFor="let video of videoService.videos">
+
+      <ng-container *ngIf="authService.isPremiumUser">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" data-aos="fade-up" data-aos-duration="1200">
+
+          <figure class="effect-ming tm-video-item">
+            <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
+            <figcaption class="d-flex align-items-center justify-content-center">
+              <h2 class="video-title"> {{video.title}}</h2>
+              <a [routerLink]="['/video', video.firebaseId]" (click)="videoService.activeVideo = video">View more</a>
+            </figcaption>
+          </figure>
+          <div class="d-flex justify-content-between tm-text-gray">
+            <span> {{video.title}}</span>
+            <ng-container *ngIf="authService.isLoggedIn && authService.isPremiumUser">
+              <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih" *ngIf="!checkIsFavorite(video)"
+                (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
+              <img height="40px" *ngIf="checkIsFavorite(video)" class="heart" src="assets/img/favorite-red.svg">
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!authService.isPremiumUser">
+        <ng-container *ngIf="!video.free">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" (click)="authService.premium()"
+            data-aos="fade-up" data-aos-duration="1200">
+            <figure class="effect-ming tm-video-item premium">
+              <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
+              <figcaption class="d-flex align-items-center justify-content-center" (click)="authService.premium()">
+                <button class="btn btn-danger">Pretplati se</button>
+              </figcaption>
+            </figure>
+            <div class="d-flex justify-content-between tm-text-gray">
+              <span> {{video.title}}</span>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <div class="col-12" style="text-align: center; padding: 25px; cursor: pointer;" *ngIf="videoService.showLoadMoreButton">
+      <button class="btn btn-info" style="border-radius: 10px;" (click)="loadMore()">Učitaj više</button>
+    </div>
+  </div> <!-- row -->
+
+</div> <!-- container-fluid, tm-container-content -->
+
+<app-footer></app-footer>
+
+
+<app-loader *ngIf="videoService.showLoader"></app-loader>

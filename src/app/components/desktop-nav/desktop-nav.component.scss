@@ -1,0 +1,47 @@
+.nav-menu {
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.5s;
+    color: white !important;
+    filter: drop-shadow(1px 4px 6px rgba(128, 128, 128, 0.9));
+
+    &.active {
+      color: red !important;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      color: red !important;
+    }
+
+    &.signOut,
+    &.signIn {
+      color: white !important;
+      padding: 4px 10px;
+      border-radius: 5px;
+      box-sizing: border-box;
+      margin-top: -5px;
+    }
+
+    &.welcome {
+      margin-left: 50px;
+      text-decoration: none;
+      cursor: default;
+    }
+
+    &.signIn {
+      background-color: #339fcb;
+    }
+    &.signOut {
+      background-color: red;
+      margin-left: -15px;
+    }
+  }
+}
+
+.logo {
+  a {
+    filter: drop-shadow(1px 6px 6px gray);
+  }
+}

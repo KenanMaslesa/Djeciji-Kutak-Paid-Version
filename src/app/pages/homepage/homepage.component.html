@@ -1,0 +1,422 @@
+<div id="home"></div>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top" [class.white]="addHeaderClass">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 d-flex align-items-center">
+        <!-- <h1 class="logo mr-auto"><a href="index.html" style="color: white;">Dječiji kutak<span>.</span></a></h1>-->
+        <h1 class="logo mr-auto">
+
+          <a routerLink="/">Dječiji kutak<span>.</span></a>
+        </h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!--<a href="index.html" class="logo mr-auto"><img src="assets/img/logo-biggest.png" alt=""></a>-->
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="#home">Početna</a></li>
+            <li><a href="#about">O nama</a></li>
+            <li><a href="#pricing">Cijene</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+            <li *ngIf="!authService.isLoggedIn"><a routerLink="auth">Prijava/Registracija</a></li>
+          </ul>
+        </nav><!-- .nav-menu -->
+
+        <a routerLink="videos" class="get-started-btn scrollto">Pogledajte videa</a>
+        <nav class="kids-nav" #nav>
+          <div class="navicon" (click)="nav.classList.toggle('show')">
+            <div></div>
+          </div>
+          <span>
+            <strong *ngIf="authService.getCurrentUser()">
+              {{authService.getCurrentUser().email}}
+            </strong>
+            <strong *ngIf="!authService.getCurrentUser()">
+              Dječiji kutak
+            </strong>
+          </span>
+          <a href="#about">O nama</a>
+          <a href="#services">Zašto se pretplatiti?</a>
+          <a href="#pricing">Cijene</a>
+          <a href="#faq">Najčešća pitanja</a>
+          <a href="#contact">Kontakt</a>
+          <a routerLink="/videos">Pogledajte videa</a>
+          <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavi se</a>
+          <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
+
+        </nav>
+      </div>
+    </div>
+
+  </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+  <div class="video-wrapper">
+    <video [playbackRate]="0.6" autoplay loop muted playsinline id="tm-video">
+      <source src="assets/hero.mov" type="video/mp4">
+    </video>
+  </div>
+  <div class="container-fluid" style="position: absolute;">
+    <div class="row justify-content-center main-banner">
+      <div class="col-xl-10">
+        <div class="row">
+          <!--<div class="col-xl-5">
+            <h1  data-aos="fade-left"  data-aos-duration="1200">Najbolji crtani filmovi za vašu djecu</h1>
+            <h2  data-aos="fade-right"  data-aos-duration="1200">Odgoj vaše djece zavisi od onoga što gledaju, mi smo se
+              potrudili da im damo ono najbolje</h2>
+            <a  data-aos="flip-up"  data-aos-delay="900"  data-aos-duration="1600" routerLink="videos"
+              class="btn-get-started scrollto">Get Started</a>
+          </div>-->
+
+
+        </div>
+        <div class="col-lg-8 align-self-center">
+          <div class="header-text-wrapper">
+            <div class="item header-text">
+              <h6 data-aos="fade-left" data-aos-duration="1200">Dobrodošli u dječiji kutak</h6>
+              <h2 data-aos="fade-right" data-aos-duration="1200">Najbolji crtani filmovi i pjesmice <em>bez muzike, </em><span>nasilja, </span> <em>ružnih riječi </em>
+                <span>i reklama.</span></h2>
+
+              <div data-aos="fade-left" data-aos-duration="1200" class="down-buttons">
+                <div class="main-blue-button-hover"><a routerLink="/videos">Pogledajte videa</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+<main id="main">
+
+  <div id="about" class="about-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="left-image">
+            <img width="100%" data-aos="flip-left" data-aos-duration="1200" data-aos-delay="100"
+              src="/assets/img/characters.png">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
+            <h2>NAŠ FOKUS</h2>
+          </div>
+          <div class="section-heading">
+            <p data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+              Fokusirani smo na to da djeci dostavimo najkvalitetniji sadržaj u njihovom najbitnijem periodu. Uz naše
+              pažljivo odabrane pjesmice i crtane filmove bez muzike, nasilja, ružnih riječi i reklama
+              možete biti sigurni da će Vaši najmiliji dobiti najkvalitetniji sadržaj a maksimalno izbjeći loše stvari koje se
+              danas serviraju djeci.
+            </p>
+<!--
+            <div class="row">
+              <div class="col-lg-4 col-sm-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                <div class="fact-item">
+                  <div class="count-area-content">
+                    <div class="icon">
+                      <img src="assets/img/service-icon-01.png" alt="">
+                    </div>
+                    <div class="count-digit">320</div>
+                    <div class="count-title">Pjesmica</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+                <div class="fact-item">
+                  <div class="count-area-content">
+                    <div class="icon">
+                      <img src="assets/img/service-icon-02.png" alt="">
+                    </div>
+                    <div class="count-digit">640</div>
+                    <div class="count-title">Crtanih filmova</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-sm-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+                <div class="fact-item">
+                  <div class="count-area-content">
+                    <div class="icon">
+                      <img src="assets/img/service-icon-03.png" alt="">
+                    </div>
+                    <div class="count-digit">120</div>
+                    <div class="count-title">Satisfied Clients</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="services" class="our-services section">
+    <div class="services-right-dec">
+      <img src="assets/img/services-right-dec.png" alt="">
+    </div>
+    <div class="container">
+      <div class="services-left-dec">
+        <img src="assets/img/services-left-dec.png" alt="">
+      </div>
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3" data-aos="fade-down-left" data-aos-duration="1200" data-aos-delay="200">
+
+          <!-- <div class="section-heading">
+            <h2>Zašto se pretplatiti na platformu <span>Dječiji</span> <em> kutak</em>?</h2>
+            <h4 style="margin-top: 25px;"  data-aos="fade-left"  data-aos-duration="1200"  data-aos-delay="200">
+              U potrazi i potrebi ste za: 
+            </h4>
+          </div>-->
+
+          <div class="section-title">
+            <h2>Zašto se pretplatiti na Dječiji kutak?</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-services">
+            <div class="item  col-md-4" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
+              <h4>Sadržaj bez ŠIRKA, NASILJA i RUŽNIH RIJEČI</h4>
+              <div class="icon"> <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left"></div>
+              <p>Pažljivo biran i uređivan sadržaj da bude bez širka i psovkih kao što su npr. "Sto mu kukuruza,
+                tako mi kukuruza,
+                obožavam šetnje,
+                sto mu kukuruznih zrna", kojeg danas često možete čuti.
+                </p>
+            </div>
+            <div class="item  col-md-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+              <h4>Sadržaj bez MUZIKE</h4>
+              <div class="icon"><img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-left"></div>
+              <p>Ako ne želite da Vaši najmiliji slušaju muziku, a želite da se fokusiraju na razmišljanje, slušanje i
+                učenje raznih jezika i drugih korisnih stvari iz naših sadržaja onda je Dječiji kutak pravo mjesto za
+                Vas.</p>
+            </div>
+            <div class="item  col-md-4" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="600">
+              <h4>Uvijek dostupan i kvalitetan sadržaj</h4>
+              <div class="icon"><img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left"></div>
+              <p>Mogućnost pristupa sa bilo kojeg mjesta i u bilo koje vrijeme. Mogućnost dodavanja crtanih filmova i pjesmica u listu omiljenih. Skoro sve pjesmice i crtani filmovi su
+                HD kvalitete.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <section id="svg-counters" class="counters" style="background: #17a2b8; padding: 0;"><svg
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1428 94.61" class="svg-2">
+      <g id="Layer_3" data-name="Layer 3">
+        <path d="M-83,10" transform="translate(83 33)" class="cls-1"></path>
+        <path d="M986.33,46.5s132.5-37,318,0C1304.33,46.5,1200.83,80.5,986.33,46.5Z" transform="translate(83 33)"
+          class="cls-2" style="fill: #a7dff8;"></path>
+      </g>
+      <g id="Layer_4" data-name="Layer 4">
+        <path d="M-83,10S127,65.11,394,30.06,986.33,46.5,986.33,46.5,1218,83,1345,38V-33H-83Z"
+          transform="translate(83 33)" class="cls-2" style="fill: #a7dff8;"></path>
+      </g>
+    </svg>
+    <div class="container-fluid">
+      <div class="container">
+        <div class="media-container-row" style="display: flex;">
+          <h2 data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="200" style="
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 70px;    font-size: 36px;
+    font-family: 'Circular-Loom';
+">Uložite u odgoj i obrazovanje svoje djece! </h2>
+        </div>
+      </div>
+    </div><svg id="curve" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1428 130.87"
+      class="svg-1">
+      <path
+        d="M-83,345V288s158-27,262-22l104,5,138,8,300,21s245,4,281-5c0,0-9-39,33-45,0,0,8-51,58-25,0,0,48-36,61,23,0,0,27,2,28,24,0,0,163-22,163-17v90Z"
+        transform="translate(83 -214.13)" class="cls-1" style="fill: #b6e5f9;"></path>
+    </svg>
+  </section>
+
+
+
+  <!-- ======= Pricing Section ======= -->
+  <div id="pricing" class="pricing-tables">
+    <div class="tables-left-dec">
+      <img src="assets/img/tables-left-dec.png" alt="">
+    </div>
+    <div class="tables-right-dec">
+      <img src="assets/img/tables-right-dec.png" alt="">
+    </div>
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
+        <h2>Odaberite svoju pretplatu</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+          <div class="item first-item">
+            <h4>Mjesečna pretplata</h4>
+            <span>5KM</span>
+            <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left" data-aos-duration="1200"
+              data-aos-delay="200">
+
+            <div class="main-blue-button-hover">
+              <a routerLink="paypal"
+                (click)="paypalService.onSubscriptionPlanSelected(paypalService.monthlyPlanId)">Pretplati se</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+          <div class="item second-item">
+            <h4>Polugodišnja pretplata</h4>
+            <em>30 KM</em>
+            <span>25 KM</span>
+            <img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-up" data-aos-duration="1200"
+              data-aos-delay="600">
+            <div class="main-blue-button-hover">
+              <a routerLink="paypal"
+                (click)="paypalService.onSubscriptionPlanSelected(paypalService.halfyearlyPlanId)">Pretplati se</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
+          <div class="item third-item">
+            <h4>Godišnja pretplata</h4>
+            <em>60 KM</em>
+            <span>50 KM</span>
+            <img height="120px" src="/assets/img/omar.png" alt="" data-aos="flip-left" data-aos-duration="1200"
+              data-aos-delay="1200">
+
+            <div class="main-blue-button-hover">
+              <a routerLink="paypal"
+                (click)="paypalService.onSubscriptionPlanSelected(paypalService.yearlyPlanId)">Pretplati se</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--
+  <div id="subscribe" class="subscribe"  data-aos="zoom-in"  data-aos-duration="1200"  data-aos-delay="200">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="inner-content">
+            <div class="row">
+              <div class="col-lg-10 offset-lg-1">
+                <h2>Know Your Website SEO Score by Email</h2>
+                <form id="subscribe" action="" method="get">
+                  <input type="text" name="website" id="website" placeholder="Your Website URL" required="">
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email"
+                    required="">
+                  <button type="submit" id="form-submit" class="main-button ">Subscribe</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+  <section id="faq" class="faq" data-aos-delay="300" data-aos="fade-up" data-aos-duration="1200">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Najčešće postavljena pitanja</h2>
+
+      </div>
+
+      <ul class="faq-list">
+
+        <li *ngFor="let faq of faqs">
+          <a class="question" #question (click)="question.classList.toggle('active')">{{faq.question}}
+            <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+
+          <div class="answer" [class.show]="question.classList.contains('active')">
+            <p [innerHtml]="faq.answer">
+            </p>
+
+            <div *ngIf="faq.isPremium">
+              <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici ispod.
+                Tu ćete imati i opciju da jednim klikom otkažete pretplatu.
+              </p>
+              <button routerLink="/pretplata" class="btn btn-info">Idi na stranicu</button>
+            </div>
+
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+  </section><!-- End Frequently Asked Questions Section -->
+
+
+  <!-- ======= Contact Section ======= -->
+  <div id="contact" class="contact-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7" data-aos="zoom-in-left" data-aos-duration="1200" data-aos-delay="200">
+          <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
+            <h2>kontaktirajte nas</h2>
+            <p class="info">Imate neko pitanje ili nam želite uputiti kritiku ili savjet? Pošaljite poruku!</p>
+          </div>
+          <img width="100%" data-aos="flip-left" data-aos-duration="1200" data-aos-delay="100"
+            src="/assets/img/characters.png">
+        </div>
+        <div class="col-lg-5 align-self-center" data-aos="zoom-in-right" data-aos-duration="1200" data-aos-delay="600">
+
+          <form id="contact" #postForm="ngForm" (ngSubmit)="contactForm(postForm.value); postForm.reset()">
+            <p *ngIf="showContactUsMessage" class="success-message">Uspješno ste poslali poruku!</p>
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <input type="name" name="name" ngModel required id="name" placeholder="Vaše ime i prezime"
+                    autocomplete="on" required>
+                </fieldset>
+              </div>
+
+              <div class="col-lg-12">
+                <fieldset>
+                  <input type="email" name="email" ngModel required id="email" placeholder="Vaša email adresa"
+                    required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <textarea name="message" cols="47" rows="5" ngModel required placeholder="Vaša poruka"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" [disabled]="!postForm.valid" id="form-submit" class="main-button">Pošalji
+                    poruku</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-left-dec">
+      <img src="assets/img/contact-left-dec.png" alt="">
+    </div>
+  </div>
+
+</main><!-- End #main -->
+
+<app-footer></app-footer>
+
+
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>

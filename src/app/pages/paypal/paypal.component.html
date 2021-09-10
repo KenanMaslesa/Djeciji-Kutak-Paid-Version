@@ -1,0 +1,63 @@
+ <!-- ======= Pricing Section ======= -->
+ <div id="pricing" class="pricing-tables" *ngIf="!paypalService.showPaypalButtons">
+  <div class="tables-left-dec">
+    <img src="assets/img/tables-left-dec.png" alt="">
+  </div>
+  <div class="tables-right-dec">
+    <img src="assets/img/tables-right-dec.png" alt="">
+  </div>
+  <div class="container">
+
+    <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
+      <h2>Odaberite svoju pretplatu</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+        <div class="item first-item">
+          <h4>Mjesečna pretplata</h4>
+          <span>5KM</span>
+          <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left" data-aos-duration="1200"
+            data-aos-delay="200">
+
+          <div class="main-blue-button-hover">
+            <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.monthlyPlanId)">Pretplati se</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+        <div class="item second-item">
+          <h4>Polugodišnja pretplata</h4>
+          <em>30 KM</em>
+          <span>25 KM</span>
+          <img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-up" data-aos-duration="1200"
+            data-aos-delay="600">
+          <div class="main-blue-button-hover">
+            <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.halfyearlyPlanId)">Pretplati se</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
+        <div class="item third-item">
+          <h4>Godišnja pretplata</h4>
+          <em>60 KM</em>
+          <span>50 KM</span>
+          <img height="120px" src="/assets/img/omar.png" alt="" data-aos="flip-left" data-aos-duration="1200"
+            data-aos-delay="1200">
+
+          <div class="main-blue-button-hover">
+            <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.yearlyPlanId)">Pretplati se</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="paypal-buttons-wrapper" [class.show]="paypalService.showPaypalButtons">
+  <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
+    <h2>Odaberite način plaćanja</h2>
+  </div>
+
+  <div #paypal class="paypal-buttons"></div>
+</section>

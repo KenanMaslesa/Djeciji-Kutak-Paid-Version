@@ -1,0 +1,42 @@
+@media (max-width: 768px) {
+  #tm-video {
+    width: 140%;
+  }
+
+  .mp {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+}
+.categories {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+
+
+  .language {
+    margin-top: -35px;
+  }
+  select {
+    display: block;
+    margin: 0 auto;
+    text-align-last: center;
+    box-shadow: #0000001f 1px 5px 8px 1px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 10px 15px;
+    margin-left: 10px;
+    background: white;
+  }
+  label {
+    font-size: 17px;
+    color: #009999;
+  }
+}

@@ -1,0 +1,263 @@
+.tm-gallery-details {
+  /* width */
+  &::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #32b0e6;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #1a94c9;
+  }
+}
+
+.static-input {
+  position: static;
+  transform: none;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: none;
+
+  @media (max-width: 1193px) {
+    display: block;
+    width: 70%;
+  }
+}
+
+.navbar {
+  margin-top: 15px;
+
+  @media (max-width: 1194px) {
+    display: none;
+  }
+}
+
+#main-video-title {
+  text-align: left;
+  max-width: 85%;
+  font-size: 24px;
+
+  @media (max-width: 768px) {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mp {
+    padding-right: 25px;
+    padding-left: 25px;
+
+    &:first-child {
+      margin-top: 40px;
+    }
+  }
+}
+
+.btn-back {
+  position: absolute;
+  right: 15px;
+  display: none;
+
+  &:visited, &:active, &:focus{
+    background-color: rgb(173, 22, 22) !important;
+  }
+
+  @media (max-width: 1193px) {
+    display: block !important;
+  }
+}
+
+.languages {
+  margin-top: -45px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-align-last: center;
+
+  @media (max-width: 1193px) {
+    display: none;
+    margin: 0;
+  }
+
+  &.mobile {
+    display: none;
+
+    @media (max-width: 1193px) {
+      display: inline;
+    }
+    select {
+      padding: 10px 15px;
+      margin-right: 6px;
+    }
+  }
+
+  select {
+    padding: 5px 10px;
+    box-shadow: #0000001f 1px 5px 8px 1px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+}
+.tm-search-input {
+  @media (min-width: 768px) {
+    position: absolute;
+    left: 50%;
+    transform: translate(-55%, -50%);
+  }
+}
+
+//
+.tm-container-content {
+  @media (min-width: 768px) and (max-width: 1194px) {
+    padding: 0 !important;
+  }
+
+  .main-video {
+    @media (min-width: 768px) and (max-width: 1194px) {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding-right: 0;
+    }
+  }
+
+  .side-videos {
+    @media (min-width: 768px) and (max-width: 1194px) {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .tm-gallery-details {
+
+      @media (min-width: 600px) and (max-width: 1194px) {
+        height: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      div {
+        @media (min-width: 600px) and (max-width: 1194px) {
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+      }
+
+      .mp {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.categories {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  padding: 0 10px;
+
+  select {
+    background: white;
+  }
+
+  @media (min-width: 1195px) {
+    display: none;
+  }
+
+  .tm-search-input {
+    display: inline;
+    position: static;
+    transform: none;
+    margin-right: 5px;
+  }
+}
+
+  .kids-nav{
+    display: block !important;
+  }
+
+  .m{
+    margin-top: 10px;
+
+    @media(max-width: 768px){
+      position: absolute;
+      right: 80px;
+      bottom: 83px;
+    }
+  }
+@media(max-width: 768px){
+  ::ng-deep body.hidden{
+    overflow: hidden;
+  }
+}
+
+
+.loader {
+  background: rgba(0, 0, 0, 0.205);
+  position: absolute;
+  top: 32%;
+  left: 40%;
+  width: 3em;
+  height: 3em;
+  font-size: 25px;
+  box-sizing: border-box;
+  border-top: 0.3em solid hotpink;
+  border-radius: 50%;
+  animation: rotating 2s ease-in-out infinite;
+  --direction: 1;
+  display: none;
+
+  @media(max-width: 768px){
+    display: block;
+  }
+}
+
+.loader::before,
+.loader::after {
+  content: '';
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  box-sizing: border-box;
+  top: -0.2em;
+}
+
+.loader::before {
+  border-top: 0.3em solid dodgerblue;
+  transform: rotate(120deg);
+}
+
+.loader::after {
+  border-top: 0.3em solid gold;
+  transform: rotate(240deg);
+}
+
+.loader span {
+  position: absolute;
+  color: white;
+  width: inherit;
+  font-size: 12px;
+  height: inherit;
+  text-align: center;
+  line-height: 5em;
+  font-family: sans-serif;
+  animation: rotating 2s linear infinite;
+  --direction: -1;
+}
+
+@keyframes rotating {
+  50% {
+      transform: rotate(calc(180deg * var(--direction)));
+  }
+
+  100% {
+      transform: rotate(calc(360deg * var(--direction)));
+  }
+}
