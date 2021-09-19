@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class HomepageComponent implements OnInit {
   addHeaderClass = false;
+  addHeaderBtnClass = false;
   showContactUsMessage = false;
   faqs = [];
   constructor(public paypalService: PaypalService, public authService: AuthService, 
@@ -28,7 +29,7 @@ export class HomepageComponent implements OnInit {
     if (isMobile) {
       this.document.querySelector('#tm-video').remove();
     }
-    
+
     this.authService.checkIsPremiumUser();
     AOS.init();
     window.scroll(0, 0);
@@ -65,12 +66,23 @@ export class HomepageComponent implements OnInit {
     } else {
       this.addHeaderClass = false;
     }
+
+    if(this.bottomReachedMobileHeaderBtn()){
+      this.addHeaderBtnClass = true;
+    }
+    else{
+      this.addHeaderBtnClass = false;
+    }
   }
 
   bottomReached(): boolean {
     return window.innerHeight + window.scrollY >= 1000;
   }
 
+  bottomReachedMobileHeaderBtn(): boolean {
+    return window.innerHeight + window.scrollY >= 1450;
+  }
+  
   contactForm(data){
     this.contactUsService.sendMessage(data).subscribe(response => {
       this.showContactUsMessage = true;
