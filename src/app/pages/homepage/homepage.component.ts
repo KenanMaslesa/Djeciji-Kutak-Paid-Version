@@ -45,7 +45,7 @@ export class HomepageComponent implements OnInit {
       },
       {
         question: 'Kako da se pretplatim?',
-        answer: 'Uskoro ćemo snimiti video.',
+        answer: 'Prvo se morate registrovati i prijaviti. Nakon toga trebate odabrati svoju pretplatu i način na koji ćete plaćati. Uskoro ćemo snimiti video o tome.',
       },
       {
         question: 'Da li se pretplata automatski skida sa kartice/paypal računa?',
@@ -82,7 +82,7 @@ export class HomepageComponent implements OnInit {
   bottomReachedMobileHeaderBtn(): boolean {
     return window.innerHeight + window.scrollY >= 1450;
   }
-  
+
   contactForm(data){
     this.contactUsService.sendMessage(data).subscribe(response => {
       this.showContactUsMessage = true;
