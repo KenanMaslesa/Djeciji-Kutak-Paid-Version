@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Video } from 'src/app/models/video';
 import { VideoService } from 'src/app/services/video.service';
@@ -20,7 +21,8 @@ export class VideoDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public authService: AuthService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class VideoDetailComponent implements OnInit {
       this.getFavoriteVideos();
     }
     this.id = this.route.snapshot.paramMap.get('id');
-    this.videoService.getVideoById(this.id);
+    this.videoService.getVideoByTitle(this.id);
     this.videoService.getVideos();
     window.scroll(0, 0);
     this.showLoader = true;
@@ -86,11 +88,13 @@ export class VideoDetailComponent implements OnInit {
 
   playVideo(video){
     this.videoService.activeVideo = video;
+    var tempUrl = 'https://www.youtube.com/embed/'+video.id+ this.videoService.iframePart + this.videoService.playlistUrl;
+    this.videoService.activeVideo.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tempUrl);
     this.showLoader = true;
     setTimeout(() => {
       this.document.querySelector('iframe').contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
       this.showLoader = false;
-    }, 2500);
+    }, 3000);
   }
 
   back(){

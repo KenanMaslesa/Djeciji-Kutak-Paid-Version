@@ -20,7 +20,10 @@ export class VideoService {
   showFreeVideos = true;
   loadMoreIndex = 1;
   ytIDs = [];
+  favoriteYtIDs = [];
   playlistUrl: string;
+  favoritePlaylistUrl: string;
+  //&enablecastapi=1
   iframePart =
     '?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&autoplay=1&loop=1&playlist=';
   constructor(
@@ -51,7 +54,7 @@ export class VideoService {
           counter++;
         }
       }
-
+      
       if (counter >= 8) {
         return;
       }
@@ -70,14 +73,20 @@ export class VideoService {
 
   createPlaylist(ytIds) {
     ytIds = this.shuffleArray(ytIds);
-    var url =
-      'https://www.youtube.com/embed/' +
-      ytIds[0] +
-      '?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&autoplay=1&loop=1&playlist=';
+    var url = '';
     ytIds.forEach((element) => {
       url += element + ',';
     });
     this.playlistUrl = url;
+  }
+
+  createFavoritePlaylist(ytIds) {
+    ytIds = this.shuffleArray(ytIds);
+    var url = '';
+    ytIds.forEach((element) => {
+      url += element + ',';
+    });
+    this.favoritePlaylistUrl = url;
   }
 
   getVideos() {
@@ -96,11 +105,14 @@ export class VideoService {
               videos.push({
                 ...responseData[key],
                 firebaseId: key,
+                titleForUrl: responseData[key].title
+                  .replace(/ /g, '-')
+                  .toLowerCase(),
                 iframeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
                   'https://www.youtube.com/embed/' +
                     responseData[key].id +
                     this.iframePart +
-                    responseData[key].id
+                    this.playlistUrl
                 ),
               });
             }
@@ -108,16 +120,21 @@ export class VideoService {
           return this.shuffleArray(videos);
         })
       )
-      .subscribe((response) => {
-        this.showFreeVideos = true;
-        this.freeVideos = this.getFreeVideos(response);
-        this.tempVideos = response;
-        this.loadMore(0, this.tempVideos);
-        this.createPlaylist(this.ytIDs);
-        setTimeout(() => {
-          this.showLoader = false;
-        }, 1000);
-      });
+      .subscribe(
+        (response) => {
+          this.showFreeVideos = true;
+          this.freeVideos = this.getFreeVideos(response);
+          this.tempVideos = response;
+          this.loadMore(0, this.tempVideos);
+          this.createPlaylist(this.ytIDs);
+          setTimeout(() => {
+            this.showLoader = false;
+          }, 1000);
+        },
+        (error) => {
+          alert(error.message);
+        }
+      );
   }
 
   shuffleArray(array) {
@@ -159,7 +176,36 @@ export class VideoService {
             'https://www.youtube.com/embed/' +
               responseVideo.id +
               this.iframePart +
-              responseVideo.id
+              //responseVideo.id for paid version
+              this.playlistUrl
+          );
+      });
+  }
+
+  getVideoByTitle(title) {
+    this.http
+      .get(`assets/videos.json`)
+      //.get(`${environment.firebase.database}/video.json`)
+      .pipe(
+        map((responseData) => {
+          for (const key in responseData) {
+            if (
+              responseData[key].title.replace(/ /g, '-').toLowerCase() == title
+            ) {
+              return responseData[key];
+            }
+          }
+        })
+      )
+      .subscribe((responseVideo) => {
+        this.activeVideo = responseVideo;
+        this.activeVideo.iframeUrl =
+          this.sanitizer.bypassSecurityTrustResourceUrl(
+            'https://www.youtube.com/embed/' +
+              responseVideo.id +
+              this.iframePart +
+              //responseVideo.id for paid version
+              this.playlistUrl
           );
       });
   }
@@ -180,7 +226,7 @@ export class VideoService {
 
   searchVideos(searchTerm) {
     this.http
-    .get(`assets/videos.json`)
+      .get(`assets/videos.json`)
       //.get(`${environment.firebase.database}/video.json`)
       .pipe(
         map((responseData) => {
@@ -194,11 +240,14 @@ export class VideoService {
               videos.push({
                 ...responseData[key],
                 firebaseId: key,
+                titleForUrl: responseData[key].title
+                  .replace(/ /g, '-')
+                  .toLowerCase(),
                 iframeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
                   'https://www.youtube.com/embed/' +
                     responseData[key].id +
                     this.iframePart +
-                    responseData[key].id
+                    this.playlistUrl
                 ),
               });
             }
@@ -215,24 +264,28 @@ export class VideoService {
 
   getVideosByLanguage(language) {
     this.http
-    .get(`assets/videos.json`)
+      .get(`assets/videos.json`)
       //.get(`${environment.firebase.database}/video.json`)
       .pipe(
         map((responseData) => {
           const videos = [];
           for (const key in responseData) {
             if (
-              responseData.hasOwnProperty(key) &&
-              responseData[key].language == language || language == "all"
+              (responseData.hasOwnProperty(key) &&
+                responseData[key].language == language) ||
+              language == 'all'
             ) {
               videos.push({
                 ...responseData[key],
                 firebaseId: key,
+                titleForUrl: responseData[key].title
+                  .replace(/ /g, '-')
+                  .toLowerCase(),
                 iframeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
                   'https://www.youtube.com/embed/' +
                     responseData[key].id +
                     this.iframePart +
-                    responseData[key].id
+                    this.playlistUrl
                 ),
               });
             }
@@ -279,6 +332,8 @@ export class VideoService {
 
   getFavoriteVideos() {
     var user = this.authService.getCurrentUser();
+    this.favoriteYtIDs = [];
+
     if (user) {
       return this.http
         .get(`${environment.firebase.database}/favorite/${user.uid}.json`, {
@@ -292,9 +347,14 @@ export class VideoService {
             const videos = [];
             for (const key in responseData) {
               if (responseData.hasOwnProperty(key)) {
+                this.favoriteYtIDs.push(responseData[key].id);
+
                 videos.push({
                   ...responseData[key],
                   firebaseId: key,
+                  titleForUrl: responseData[key].title
+                    .replace(/ /g, '-')
+                    .toLowerCase(),
                   iframeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
                     'https://www.youtube.com/embed/' +
                       responseData[key].id +
@@ -330,7 +390,7 @@ export class VideoService {
               'https://www.youtube.com/embed/' +
                 responseVideo.id +
                 this.iframePart +
-                responseVideo.id
+                this.favoritePlaylistUrl
             );
         });
     }
@@ -358,6 +418,9 @@ export class VideoService {
                 videos.push({
                   ...responseData[key],
                   firebaseId: key,
+                  titleForUrl: responseData[key].title
+                    .replace(/ /g, '-')
+                    .toLowerCase(),
                   iframeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
                     'https://www.youtube.com/embed/' +
                       responseData[key].id +
@@ -394,6 +457,9 @@ export class VideoService {
                 videos.push({
                   ...responseData[key],
                   firebaseId: key,
+                  titleForUrl: responseData[key].title
+                    .replace(/ /g, '-')
+                    .toLowerCase(),
                   iframeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
                     'https://www.youtube.com/embed/' +
                       responseData[key].id +
