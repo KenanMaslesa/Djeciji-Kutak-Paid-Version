@@ -22,6 +22,11 @@ export class VideosComponent implements OnInit {
     this.document.body.classList.remove('hidden');
     this.document.body.classList.add('fixed');
 
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      this.document.querySelector('#tm-video').remove();
+    }
+
     AOS.init();
     window.scroll(0, 0);
 

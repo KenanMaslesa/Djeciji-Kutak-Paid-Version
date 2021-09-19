@@ -24,6 +24,11 @@ export class HomepageComponent implements OnInit {
     this.document.body.classList.remove('hidden');
     this.document.body.classList.remove('fixed');
 
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      this.document.querySelector('#tm-video').remove();
+    }
+    
     this.authService.checkIsPremiumUser();
     AOS.init();
     window.scroll(0, 0);

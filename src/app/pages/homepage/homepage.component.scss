@@ -6,12 +6,7 @@ body {
   color: #444444;
 }
 
-a {
-  color: #e03a3c;
-}
-
 a:hover {
-  color: #e76668;
   text-decoration: none;
 }
 
@@ -23,6 +18,7 @@ h5,
 h6 {
   font-family: "Raleway", sans-serif;
 }
+
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -61,8 +57,6 @@ h6 {
     transition-delay: 0 !important;
   }
 }
-
-
 
 /* Mobile Navigation */
 .mobile-nav-toggle {
@@ -181,10 +175,10 @@ h6 {
   height: 100vh;
   background: url(/assets/img/background.png) top center no-repeat;
   background-size: cover;
-  position: relative;
+  position: relative;  
   padding-top: 82px;
-
-  &::before{
+  
+  &::before {
     content: "";
     position: absolute;
     top: 0;
@@ -205,8 +199,72 @@ h6 {
       background: rgba(0, 0, 0, 0.1);
     }
   }
+
+  video {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+.get-started-btn {
+  &.mobile {
+    @media (max-width: 768px) {
+      display: block !important;
+      position: absolute;
+      top: 43px;
+      left: 50%;
+      transform: translate(-50%);
+      z-index: 9999;
+      background: #03a4ed;
+      margin: 0;
+    }
+  }
+}
+.donate {
+  color: white !important;
+  padding: 4px 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #f48e99;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 5px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
+#donate {
+  text-align: center;
+  padding-top: 30px;
+
+  @media (max-width: 768px) {
+    padding-top: 50px;
+  }
+
+  p {
+    padding: 0 15px;
+  }
+  .donate-btn {
+    padding: 4px 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    color: white;
+    background: #f48e99;
+    margin: 0 auto;
+  }
+}
 #hero:before {
   content: "";
   position: absolute;
@@ -252,7 +310,6 @@ h6 {
 @media (max-width: 768px) {
   #hero {
     text-align: center;
-    padding-top: 58px;
   }
   #hero h1 {
     font-size: 28px;
@@ -695,7 +752,6 @@ section {
   }
 }
 
-
 /* 
 ---------------------------------------------
 Pricing
@@ -1043,6 +1099,12 @@ form#contact {
   box-shadow: 0px 0px 15px rgb(0 0 0 / 10%);
   padding: 60px 45px;
   border-radius: 20px;
+
+  @supports (-webkit-touch-callout: none) {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+ 
 }
 
 form#contact input {
@@ -1217,12 +1279,12 @@ Banner Style
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding: 190px 0px 130px 0px;
   position: relative;
   overflow: hidden;
+  padding: 150px 0px 130px 0px;
 
   @media (max-width: 768px) {
-    padding: 150px 0px 130px 0px;
+    padding: 160px 0px 130px 0px;
   }
 }
 
@@ -1372,6 +1434,17 @@ About
 .owl-services {
   display: flex;
 
+  div{
+    @supports (-webkit-touch-callout: none) {
+      max-width: 100%;
+    flex: 0 1 100%;
+    }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    flex-wrap: wrap;
+  }
+  
   @media (max-width: 768px) {
     flex-wrap: wrap;
   }
@@ -1380,6 +1453,36 @@ About
 #svg-counters {
   @media (max-width: 768px) {
     display: none;
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    display: none;
+  }
+
+  .one {
+    @media (max-width: 768px) {
+      fill: #51b7ce !important;
+    }
+  }
+
+  .two {
+    @media (max-width: 768px) {
+      fill: #d6f1fa !important;
+    }
+  }
+  .media-container-row {
+    h2 {
+      width: 100%;
+      text-align: center;
+      color: white;
+      padding: 70px;
+      font-size: 36px;
+      font-family: "Circular-Loom";
+
+      @media (max-width: 768px) {
+        padding: 70px 0px;
+      }
+    }
   }
 }
 
@@ -1396,8 +1499,7 @@ nav {
   overflow: hidden;
 }
 
-.kids-nav{
-  
+.kids-nav {
   @media (min-width: 768px) {
     display: none;
   }

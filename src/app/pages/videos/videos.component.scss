@@ -1,6 +1,7 @@
 @media (max-width: 768px) {
   #tm-video {
     width: 140%;
+    display: none;
   }
 
   .mp {
@@ -53,5 +54,5 @@
 
 
 .tm-gallery{
-  min-height: 100vh;
+  min-height: 60vh;
 }
