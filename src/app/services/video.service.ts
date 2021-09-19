@@ -54,7 +54,7 @@ export class VideoService {
           counter++;
         }
       }
-      
+
       if (counter >= 8) {
         return;
       }
@@ -100,7 +100,13 @@ export class VideoService {
           const videos = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
-              this.ytIDs.push(responseData[key].id);
+              if (this.authService.isPremiumUser) {
+                this.ytIDs.push(responseData[key].id);
+              } else {
+                if (responseData[key].free) {
+                  this.ytIDs.push(responseData[key].id);
+                }
+              }
 
               videos.push({
                 ...responseData[key],
