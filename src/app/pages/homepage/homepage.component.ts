@@ -30,6 +30,10 @@ export class HomepageComponent implements OnInit {
     
     this.faqs = [
       {
+        question: 'Zašto se korištenje stranice/aplikacije naplaćuje?',
+        answer: 'Kako je veliki broj ljudi počeo koristiti našu stranicu/aplikaciju došli su nam veći troškovi a i zahtjevi. Odlučili smo da simbolično naplatimo korištenje naše aplikacije kako bi tim sredstvima mogli platiti troškove i unaprijediti razvoj i održavanje stranice/aplikacije.'
+      },
+      {
         question: 'Da li moram imati paypal da bih se pretplatio?',
         answer: 'Ne morate. Možete platiti preko skoro svih kartica. (Visa, MasterCard, Discover i American Express)'
       },
