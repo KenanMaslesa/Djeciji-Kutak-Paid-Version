@@ -22,7 +22,7 @@
           </ul>
         </nav><!-- .nav-menu -->
 
-        <a routerLink="/videos" class="get-started-btn" [class.mobile]="addHeaderBtnClass">Pogledajte videa</a>
+        <a routerLink="/videos" style="display: none;" class="get-started-btn" [class.mobile]="addHeaderBtnClass">Pogledajte videa</a>
         <a routerLink="videos" class="get-started-btn scrollto">Pogledajte videa</a>
         <nav class="kids-nav" #nav>
           <div class="navicon" (click)="nav.classList.toggle('show')">

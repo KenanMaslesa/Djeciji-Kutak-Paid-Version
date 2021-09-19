@@ -208,6 +208,8 @@ h6 {
 }
 .get-started-btn {
   &.mobile {
+    display: none;
+    
     @media (max-width: 768px) {
       display: block !important;
       position: absolute;
