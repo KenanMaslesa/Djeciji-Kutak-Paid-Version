@@ -282,7 +282,7 @@ export class AuthService {
   setNextPaymentDate(planId, startDate){
     var date = new Date(startDate);
     if(this.paypalService.getPlanNameById(planId) == this.paypalService.monthlyName){
-      date = new Date(date.setMonth(date.getMonth() + 1));
+      date = new Date(date.setMonth(date.getMonth() + 3));
     }
     if(this.paypalService.getPlanNameById(planId) == this.paypalService.halfyearlyName){
       date = new Date(date.setMonth(date.getMonth() + 6));

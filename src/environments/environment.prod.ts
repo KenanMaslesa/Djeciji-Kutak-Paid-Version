@@ -12,7 +12,7 @@ export const environment = {
   },
   paypalSubscriptionApi: "https://api-m.paypal.com/v1/billing/subscriptions",
   paypalBasicAuth: "Basic QWVEZnppeWN2Z3NZUW10LS0zTWNhNl9OTEhDQm8xSW5LTTBXQVMxdlMzVEY0SjV2T01EcUotcEg3Z1d6VjY0N3pCaXpaa3ZDU19xSkU5Mzg6RUVTYWJ2WmxHWXZrZDdUNnhsRWZqd0dGYUd4ZmlTcTdRbGk5T2h1LUhFMDVobXFPX0kwWll1THVveVh2Z2NkX1BQOWJINjNOMmtHMXJ4NjQ=",
-  paypalMonthlyPlanId: "P-7K500632UD239742CMEC2Q2Y",
+  paypalMonthlyPlanId: "P-7V9959190K183474CMFEGZ7Q",
   paypalHalfYearlyPlanId: "P-8LG58296YN4670801MEA5RYI",
   paypalYearlyPlanId: "P-9UX94494AB2279319MEA5Q7I",
 };
