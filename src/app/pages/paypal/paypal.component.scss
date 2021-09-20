@@ -106,11 +106,15 @@ Pricing
 
 .pricing-tables .item em {
   color: #ff695f;
-  font-size: 15px;
+  font-size: 19px;
   display: block;
-  margin-top: 25px;
-  text-decoration: line-through;
   font-style: normal;
+  min-height: 28px;
+
+  &:not(.priceKM){
+    margin-top: 25px;
+  text-decoration: line-through;
+  }
 }
 
 .pricing-tables .item span {
