@@ -12,9 +12,14 @@ export class VerifyEmailComponent implements OnInit {
   constructor(public authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
-    if(this.authService.getCurrentUser().emailVerified && this.authService.isLoggedIn){
-      this.router.navigate(['videos']);
-    }
+    this.authService.showLoader = true;
+    setTimeout(() => {
+      this.authService.showLoader = false;
+      if(this.authService.getCurrentUser().emailVerified && this.authService.isLoggedIn){
+        this.router.navigate(['videos']);
+      }
+    }, 3000);
+    
   }
 
 }
