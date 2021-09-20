@@ -87,6 +87,10 @@ export class HomepageAnonymousComponent implements OnInit {
     return window.innerHeight + window.scrollY >= 1450;
   }
 
+  scrollToElement($element){
+    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+
   contactForm(data){
     this.contactUsService.sendMessage(data).subscribe(response => {
       this.showContactUsMessage = true;

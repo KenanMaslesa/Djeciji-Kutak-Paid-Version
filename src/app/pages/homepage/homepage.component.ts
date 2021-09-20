@@ -75,6 +75,10 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+  scrollToElement($element){
+    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+
   bottomReached(): boolean {
     return window.innerHeight + window.scrollY >= 1000;
   }

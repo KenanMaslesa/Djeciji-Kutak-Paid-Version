@@ -14,16 +14,18 @@
 
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li><a href="#home">Početna</a></li>
-            <li><a href="#about">O nama</a></li>
-            <li><a href="#pricing">Cijene</a></li>
-            <li><a href="#contact">Kontakt</a></li>
+            <li><a (click)="scrollToElement(home)" >Početna</a></li>
+            <li><a (click)="scrollToElement(about)">O nama</a></li>
+            <li><a (click)="scrollToElement(services)">Zašto se pretplatiti?</a></li>
+            <li><a (click)="scrollToElement(pricing)">Cijene</a></li>
+            <li><a (click)="scrollToElement(faq)">Najčešća pitanja</a></li>
+            <li><a (click)="scrollToElement(contact)">Kontakt</a></li>
             <li *ngIf="!authService.isLoggedIn"><a routerLink="auth">Prijava/Registracija</a></li>
           </ul>
         </nav><!-- .nav-menu -->
 
         <a routerLink="/videos" style="display: none;" class="get-started-btn" [class.mobile]="addHeaderBtnClass">Pogledajte videa</a>
-        <a routerLink="videos" class="get-started-btn scrollto">Pogledajte videa</a>
+        <a routerLink="/videos" class="get-started-btn scrollto">Pogledajte videa</a>
         <nav class="kids-nav" #nav>
           <div class="navicon" (click)="nav.classList.toggle('show')">
             <div></div>
@@ -53,7 +55,7 @@
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center">
+<section id="hero" class="d-flex align-items-center" #home>
   <div class="video-wrapper">
     <video [playbackRate]="0.6" autoplay loop muted playsinline id="tm-video">
       <source src="assets/hero.mov" type="video/mp4">
@@ -96,7 +98,7 @@
 
 <main id="main">
 
-  <div id="about" class="about-us section">
+  <div id="about" class="about-us section" #about>
     <div class="container">
       <div class="row">
         <div class="col-lg-6 align-self-center">
@@ -161,7 +163,7 @@
   </div>
 
 
-  <div id="services" class="our-services section">
+  <div id="services" class="our-services section" #services>
     <div class="services-right-dec">
       <img src="assets/img/services-right-dec.png" alt="">
     </div>
@@ -253,7 +255,7 @@
 
 
   <!-- ======= Pricing Section ======= -->
-  <div id="pricing" class="pricing-tables">
+  <div id="pricing" class="pricing-tables" #pricing>
     <div class="tables-left-dec">
       <img src="assets/img/tables-left-dec.png" alt="">
     </div>
@@ -338,7 +340,7 @@
   </div>
 
     <!-- ======= Frequently Asked Questions Section ======= -->
-  <section id="faq" class="faq" data-aos-delay="300" data-aos="fade-up" data-aos-duration="1200">
+  <section id="faq" #faq class="faq" data-aos-delay="300" data-aos="fade-up" data-aos-duration="1200">
     <div class="container">
 
       <div class="section-title">
@@ -373,7 +375,7 @@
 
 
   <!-- ======= Contact Section ======= -->
-  <div id="contact" class="contact-us section">
+  <div id="contact" #contact class="contact-us section">
     <div class="container">
       <div class="row">
         <div class="col-lg-7" data-aos="zoom-in-left" data-aos-duration="1200" data-aos-delay="200">
