@@ -24,7 +24,7 @@
           Dječiji kutak
         </strong>
       </span>
-      <a routerLink="/">Početna</a>
+      <a routerLink="/pocetna">Početna</a>
       <a routerLink="/videos">Videa</a>
       <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/omiljeno">Lista omiljenih</a>
       <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/pretplata">Moja pretplata</a>

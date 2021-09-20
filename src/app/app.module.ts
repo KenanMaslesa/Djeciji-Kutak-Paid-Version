@@ -33,6 +33,7 @@ import { PretplataComponent } from './pages/pretplata/pretplata.component';
 import { DesktopNavComponent } from './components/desktop-nav/desktop-nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
+import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
     DesktopNavComponent,
     FooterComponent,
     AuthNavComponent,
+    HomepageAnonymousComponent,
   ],
   imports: [
     BrowserModule,
