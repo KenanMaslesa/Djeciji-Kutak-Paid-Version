@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
               <li class="nav-item" *ngIf="authService.isLoggedIn">
-                  <span style="display: inline; color: black;" class="nav-link">Dobrodošli, {{authService.getCurrentUser().email.split('@')[0]}}</span> <button style="display: inline;" (click)="authService.SignOut()" class="btn btn-danger">Odjavi se</button>
+                  <span style="display: inline; color: black;" class="nav-link">Dobrodošli, {{authService.getCurrentUser().email.split('@')[0]}}</span> <button style="display: inline;" (click)="authService.SignOut()" class="btn btn-danger">Odjavite se</button>
               </li>
           </ul>
          

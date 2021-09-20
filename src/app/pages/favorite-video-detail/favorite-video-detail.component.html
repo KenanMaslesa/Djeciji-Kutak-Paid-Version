@@ -29,7 +29,7 @@
     <a routerLink="/videos">Videa</a>
     <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/omiljeno">Lista omiljenih</a>
     <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/pretplata">Moja pretplata</a>
-    <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavi se</a>
+    <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
     <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
   
   </nav>
