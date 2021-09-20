@@ -824,10 +824,12 @@ Pricing
   display: block;
   font-style: normal;
   min-height: 28px;
-
+  
   &:not(.priceKM){
+    color: #03a4ed;
     margin-top: 25px;
   text-decoration: line-through;
+  font-weight: bold;
   }
 }
 

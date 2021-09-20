@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
         this.authService.loginErrorMessages = "Molimo Vas verifikujte svoju email adresu.";
       }
       else{
-        this.authService.loginErrorMessages = "Molimo Vas prijavite se na sistem.";
+        this.authService.loginErrorMessages = "Molimo Vas prvo se registrujte/prijavite.";
       }
       this.router.navigate(['auth'])
     }
