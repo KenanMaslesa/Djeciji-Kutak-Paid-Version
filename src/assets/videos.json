@@ -1,12 +1,12 @@
 {
   "-MfIi_lE1pMfTjxh4Fd6" : {
-    "free" : true,
+    "free" : false,
     "id" : "4-_ot44K-Mc",
     "language" : "eng",
     "title" : "Head Shoulders Knees and Toes"
   },
   "-MfIimQfpjS0emEQXqCp" : {
-    "free" : true,
+    "free" : false,
     "id" : "_OEoVdby3Vk",
     "language" : "eng",
     "title" : "5 Little Ducks"
@@ -66,7 +66,7 @@
     "title" : "Mary Had A Little Lamb"
   },
   "-Mfi3f4CvsW4oIPfBiCr" : {
-    "free" : true,
+    "free" : false,
     "id" : "zOWtfAzVaGM",
     "language" : "bos",
     "title" : "Pilići"
@@ -210,7 +210,7 @@
     "title" : "Loly"
   },
   "-MhSZI1r8NfJ01AwElaz" : {
-    "free" : false,
+    "free" : true,
     "id" : "Ktm0wI8rkdY",
     "language" : "bos",
     "title" : "Mama voli bebu"
@@ -336,7 +336,7 @@
     "title" : "Adhan | Omar & Hana"
   },
   "-MhhwTBMo1OVjA0GIMii" : {
-    "free" : false,
+    "free" : true,
     "id" : "N4ushfwAHw0",
     "language" : "eng",
     "title" : "Assalamu alaikum | Omar & Hana"
@@ -396,7 +396,7 @@
     "title" : "It doesn't hurt anymore | Omar & Hana"
   },
   "-Mhn2voFau82E0U7tvwS" : {
-    "free" : false,
+    "free" : true,
     "id" : "mLuE00MlifQ",
     "language" : "eng",
     "title" : "Watch grandpa | Omar & Hana"
@@ -432,7 +432,7 @@
     "title" : "Crvić Gliša 2"
   },
   "-MiCw5f97ReLSzmud90e" : {
-    "free" : false,
+    "free" : true,
     "id" : "4otq4c7b2wE",
     "language" : "bos",
     "title" : "Jedno žuto pile"
@@ -606,7 +606,7 @@
     "title" : "Zeko zekane"
   },
   "-Mj5jH7_yt9ddpKnCnsa" : {
-    "free" : true,
+    "free" : false,
     "id" : "RiYbrL8ApJA",
     "language" : "bos",
     "title" : "Mumijevi - Proljeće u dolini"
