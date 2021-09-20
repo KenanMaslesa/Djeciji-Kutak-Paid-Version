@@ -57,7 +57,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          if(this.getCurrentUser()){
+          /*if(this.getCurrentUser()){
             if(this.getCurrentUser().emailVerified != true){
             this.loginErrorMessages = "Molimo Vas verifikujte svoju email adresu. Ako ste već verifikovali onda izadjite i ponovo udjite u aplikaciju (refrešujte stranicu) i bit ćete automatski prijavljeni.";
             this.showLoader = false;
@@ -72,7 +72,12 @@ export class AuthService {
               this.showLoader = false;
               this.router.navigate(['videos']);
             }, 1000);
-          }
+          }*/
+
+          setTimeout(() => {
+            this.showLoader = false;
+            this.router.navigate(['videos']);
+          }, 1000);
         });
       })
       .catch((error) => {
@@ -89,7 +94,8 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.showLoader = false;
-        this.SendVerificationMail();
+        //this.SendVerificationMail();
+        this.router.navigate(['videos']);
       })
       .catch((error) => {
         this.showLoader = false;
@@ -129,7 +135,8 @@ export class AuthService {
   // Returns true when user is looged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null && user.emailVerified ? true : false;
+    //return user !== null && user.emailVerified ? true : false;
+    return user !== null;
   }
 
   getCurrentUser() {

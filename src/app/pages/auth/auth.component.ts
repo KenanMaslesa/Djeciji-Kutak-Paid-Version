@@ -12,7 +12,7 @@ export class AuthComponent implements OnInit {
   constructor(public authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
-    if(this.authService.getCurrentUser().emailVerified && this.authService.isLoggedIn){
+    if(this.authService.isLoggedIn){
       this.router.navigate(['videos']);
     }
   }
