@@ -34,6 +34,7 @@ import { DesktopNavComponent } from './components/desktop-nav/desktop-nav.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
+import { ModalWhyPaidComponent } from './components/modal-why-paid/modal-why-paid.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-
     FooterComponent,
     AuthNavComponent,
     HomepageAnonymousComponent,
+    ModalWhyPaidComponent,
   ],
   imports: [
     BrowserModule,
