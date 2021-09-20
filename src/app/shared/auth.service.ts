@@ -59,7 +59,7 @@ export class AuthService {
         this.ngZone.run(() => {
           if(this.getCurrentUser()){
             if(this.getCurrentUser().emailVerified != true){
-            this.loginErrorMessages = "Molimo Vas verifikujte svoju email adresu. Ako ste već verifikovali onda refrešujte stranicu i pokušajte se ponovo prijaviti.";
+            this.loginErrorMessages = "Molimo Vas verifikujte svoju email adresu. Ako ste već verifikovali onda izadjite i ponovo udjite u aplikaciju (refrešujte stranicu) i bit ćete automatski prijavljeni.";
             this.showLoader = false;
           }
           else{

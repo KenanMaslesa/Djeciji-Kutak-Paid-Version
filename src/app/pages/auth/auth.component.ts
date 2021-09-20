@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
@@ -8,10 +9,12 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private router:Router) { }
 
   ngOnInit(): void {
-
+    if(this.authService.getCurrentUser().emailVerified && this.authService.isLoggedIn){
+      this.router.navigate(['videos']);
+    }
   }
 
 }
