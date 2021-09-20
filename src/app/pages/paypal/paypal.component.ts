@@ -35,6 +35,9 @@ export class PaypalComponent implements OnInit {
         createSubscription: function (data, actions) {
           return actions.subscription.create({
             plan_id: self.paypalService.activeSubscriptionPlanId,
+            application_context: {
+              shipping_preference: 'NO_SHIPPING'
+          }
           });
         },
         onApprove: (data) => {
