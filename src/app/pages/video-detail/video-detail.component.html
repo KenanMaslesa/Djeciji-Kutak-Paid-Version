@@ -45,9 +45,10 @@
         *ngIf="videoService.activeVideo && (videoService.activeVideo.free || authService.isPremiumUser)">
         <iframe class="responsive-iframe" [src]="videoService.activeVideo.iframeUrl" allow="autoplay; encrypted-media"
           allowfullscreen frameborder="0"></iframe>
-          <div *ngIf="showLoader" class="loader">
-            <span>učitavanje..</span>
-          </div>
+        <div *ngIf="showLoader" class="loader">
+          <span>učitavanje..</span>
+        </div>
+
       </div>
 
       <div class="row" style="background: #bbe6f9; margin: 0;">
@@ -59,6 +60,12 @@
         <img height="40px" *ngIf="checkIsFavorite(videoService.activeVideo)" class="heart m"
           src="assets/img/favorite-red.svg">
         <button (click)="back()" class="btn btn-sm btn-info btn-back">Nazad</button>
+
+        <div style="text-align: center;margin: 0 auto;padding-bottom: 25px;"
+          *ngIf="videoService.activeVideo && !videoService.activeVideo.free && !authService.isPremiumUser">
+          <p>Molimo Vas pretplatite se.</p>
+          <button class="btn btn-info" routerLink="/paypal">Pretplati me</button>
+        </div>
 
         <div class="categories">
           <input class="form-control tm-search-input static-input" #input2 (input)="searchVideos(input2.value)"
