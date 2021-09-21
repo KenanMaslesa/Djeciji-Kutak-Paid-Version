@@ -60,7 +60,7 @@ export class HomepageComponent implements OnInit {
         answer: '',
       },
       {
-        question: 'Kako da otkazem pretplatu?',
+        question: 'Kako da otkažem pretplatu?',
         cancelSubs: true,
         answer: '',
       }
