@@ -80,11 +80,11 @@
 
       <ng-container *ngIf="!authService.isPremiumUser">
         <ng-container *ngIf="!video.free">
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" (click)="authService.premium()"
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" routerLink="/paypal"
             data-aos="fade-up" data-aos-duration="1200">
             <figure class="effect-ming tm-video-item premium">
               <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
-              <figcaption class="d-flex align-items-center justify-content-center" (click)="authService.premium()">
+              <figcaption class="d-flex align-items-center justify-content-center" routerLink="/paypal">
                 <button class="btn btn-danger">Pretplatite se</button>
               </figcaption>
             </figure>

@@ -143,13 +143,13 @@
                 <ng-container *ngIf="!authService.isPremiumUser">
 
                   <ng-container *ngIf="!video.free">
-                    <div class="col-12 mb-5 mp" (click)="authService.premium()"
+                    <div class="col-12 mb-5 mp" routerLink="/paypal"
                       *ngIf="video.id != videoService.activeVideo.id">
                       <figure class="effect-ming tm-video-item premium">
                         <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}"
                           class="img-fluid">
                         <figcaption class="d-flex align-items-center justify-content-center"
-                          (click)="authService.premium()">
+                          routerLink="/paypal">
                           <button class="btn btn-danger">Pretplatite se</button>
                         </figcaption>
                       </figure>

@@ -143,17 +143,6 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  premium() {
-    if (!this.isLoggedIn) {
-      if(this.getCurrentUser() != null){
-        this.loginErrorMessages = "Molimo Vas verifikujte svoju email adresu.";
-      }
-      this.router.navigate(['auth']);
-    } else {
-      this.router.navigate(['paypal']);
-    }
-  }
-
   //FIREBASE
 
   saveUserPayment(data) {

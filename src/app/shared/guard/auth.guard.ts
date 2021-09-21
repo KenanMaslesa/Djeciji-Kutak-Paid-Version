@@ -18,14 +18,10 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if(this.authService.isLoggedIn !== true) {
-      if(this.authService.getCurrentUser()!=null){
-        this.authService.loginErrorMessages = "Molimo Vas verifikujte svoju email adresu.";
-      }
-      else{
-        this.authService.loginErrorMessages = "Molimo Vas prvo se registrujte/prijavite.";
-      }
-      this.router.navigate(['auth'])
+    if (this.authService.isLoggedIn !== true) {
+      this.authService.loginErrorMessages =
+        'Molimo Vas prvo se registrujte/prijavite.';
+      this.router.navigate(['auth']);
     }
     return true;
   }
