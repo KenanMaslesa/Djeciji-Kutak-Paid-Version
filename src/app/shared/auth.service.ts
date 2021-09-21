@@ -117,7 +117,8 @@ export class AuthService {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        this.resetPasswordSuccessMessages = 'Poslali smo Vam email, molimo Vas provjerite inbox.';
+        this.resetPasswordSuccessMessages =
+          'Poslali smo Vam email, molimo Vas provjerite inbox.';
       })
       .catch((error) => {
         this.resetPasswordErrorMessages = this.getErrorMessage(error);
@@ -152,7 +153,13 @@ export class AuthService {
         `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`,
         {
           subID: data.subscriptionID,
-        },{params: new HttpParams().set('auth', user.stsTokenManager.accessToken)}
+        },
+        {
+          params: new HttpParams().set(
+            'auth',
+            user.stsTokenManager.accessToken
+          ),
+        }
       );
     }
   }
@@ -163,7 +170,12 @@ export class AuthService {
       return this.http
         .get(
           `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`,
-          {params: new HttpParams().set('auth', user.stsTokenManager.accessToken)}
+          {
+            params: new HttpParams().set(
+              'auth',
+              user.stsTokenManager.accessToken
+            ),
+          }
         )
         .subscribe((responseData) => {
           if (responseData != null) {
@@ -186,7 +198,12 @@ export class AuthService {
         `${environment.firebase.database}/${
           environment.firebase.subscriptions
         }/${this.getCurrentUser().uid}.json`,
-        {params: new HttpParams().set('auth', user.stsTokenManager.accessToken)}
+        {
+          params: new HttpParams().set(
+            'auth',
+            user.stsTokenManager.accessToken
+          ),
+        }
       );
     }
   }
@@ -197,17 +214,23 @@ export class AuthService {
       return this.http
         .delete(
           `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`,
-          {params: new HttpParams().set('auth', user.stsTokenManager.accessToken)}
+          {
+            params: new HttpParams().set(
+              'auth',
+              user.stsTokenManager.accessToken
+            ),
+          }
         )
         .subscribe((response) => {
           this.subscriptionID = null;
         });
     }
   }
-
+  showSubscriptionLoader = false;
   checkIsSubcriptionActive() {
     var user = this.getCurrentUser();
     if (user) {
+      this.showSubscriptionLoader = true;
       this.getSubscriptionDetails().subscribe((responseData: Payment) => {
         if (responseData != null) {
           for (const key in responseData) {
@@ -247,14 +270,20 @@ export class AuthService {
     xhttp.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
         self.subscriptionDetails = JSON.parse(this.responseText);
+        self.showSubscriptionLoader = false;
 
         var dateNow = new Date();
-        var next_billing_time = self.setNextPaymentDate(self.subscriptionDetails.plan_id, self.subscriptionDetails.start_time);
-        self.subscriptionDetails.billing_info.next_billing_time = next_billing_time;
+        var next_billing_time = self.setNextPaymentDate(
+          self.subscriptionDetails.plan_id,
+          self.subscriptionDetails.start_time
+        );
+        self.subscriptionDetails.billing_info.next_billing_time =
+          next_billing_time;
 
         if (self.subscriptionDetails.status != 'ACTIVE') {
-          self.subscriptionMessage = "Vaša pretplata je otkazana, aplikaciju možete koristiti do datuma: ";
-          if(dateNow >= next_billing_time){
+          self.subscriptionMessage =
+            'Vaša pretplata je otkazana, aplikaciju možete koristiti do datuma: ';
+          if (dateNow >= next_billing_time) {
             self.isPremiumUser = false;
             self.isSubscriptionActive = false;
             self.removeSubscription();
@@ -267,7 +296,7 @@ export class AuthService {
     };
     xhttp.open(
       'GET',
-        `${environment.paypalSubscriptionApi}/${subcriptionId}`,
+      `${environment.paypalSubscriptionApi}/${subcriptionId}`,
       true
     );
     xhttp.setRequestHeader('Authorization', environment.paypalBasicAuth);
@@ -275,15 +304,24 @@ export class AuthService {
     xhttp.send();
   }
 
-  setNextPaymentDate(planId, startDate){
+  setNextPaymentDate(planId, startDate) {
     var date = new Date(startDate);
-    if(this.paypalService.getPlanNameById(planId) == this.paypalService.monthlyName){
+    if (
+      this.paypalService.getPlanNameById(planId) ==
+      this.paypalService.monthlyName
+    ) {
       date = new Date(date.setMonth(date.getMonth() + 1));
     }
-    if(this.paypalService.getPlanNameById(planId) == this.paypalService.halfyearlyName){
+    if (
+      this.paypalService.getPlanNameById(planId) ==
+      this.paypalService.halfyearlyName
+    ) {
       date = new Date(date.setMonth(date.getMonth() + 6));
     }
-    if(this.paypalService.getPlanNameById(planId) == this.paypalService.yearlyName){
+    if (
+      this.paypalService.getPlanNameById(planId) ==
+      this.paypalService.yearlyName
+    ) {
       date = new Date(date.setFullYear(date.getFullYear() + 1));
     }
     return date;
