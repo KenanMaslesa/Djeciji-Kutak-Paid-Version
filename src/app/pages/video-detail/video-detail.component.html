@@ -54,11 +54,15 @@
       <div class="row" style="background: #bbe6f9; margin: 0;">
         <h2 class="col-12 tm-text-primary" id="main-video-title" *ngIf="videoService.activeVideo">
           {{videoService.activeVideo.title}}</h2>
+
+          <ng-container *ngIf="authService.isPremiumUser">
         <img height="40px" class="heart m" placement="top" ngbTooltip="Dodajte u listu omiljenih"
           *ngIf="!checkIsFavorite(videoService.activeVideo)" (click)="markAsFavorite(videoService.activeVideo)"
           src="assets/img/favorite-white.svg">
         <img height="40px" *ngIf="checkIsFavorite(videoService.activeVideo)" class="heart m"
           src="assets/img/favorite-red.svg">
+        </ng-container>
+
         <button (click)="back()" class="btn btn-sm btn-info btn-back">Nazad</button>
 
         <div style="text-align: center;margin: 0 auto;padding-bottom: 25px;"
