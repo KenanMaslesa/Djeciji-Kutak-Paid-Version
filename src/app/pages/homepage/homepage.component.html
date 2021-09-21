@@ -19,7 +19,7 @@
             <li><a (click)="scrollToElement(pricing)">Cijene</a></li>
             <li><a (click)="scrollToElement(faq)">Najčešća pitanja</a></li>
             <li><a (click)="scrollToElement(contact)">Kontakt</a></li>
-            <li *ngIf="!authService.isLoggedIn"><a routerLink="auth">Prijava/Registracija</a></li>
+            <li *ngIf="!authService.isLoggedIn"><a routerLink="/auth">Prijava/Registracija</a></li>
           </ul>
         </nav><!-- .nav-menu -->
 
