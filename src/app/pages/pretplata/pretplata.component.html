@@ -1,6 +1,6 @@
 <app-desktop-nav></app-desktop-nav>
 <div class="payment-details-wrapper">
-  <div class="payment-details">
+  <div class="payment-details" [class.blur]="authService.showSubscriptionLoader">
 
     
     <ng-container *ngIf="authService.subscriptionDetails && showModal">
