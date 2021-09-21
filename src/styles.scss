@@ -1208,3 +1208,9 @@ h1.hide {
     overflow: auto;
   }
 }
+
+.mobile-iframe{
+  @media(max-width: 1000px){
+    width: 100%;
+  }
+}

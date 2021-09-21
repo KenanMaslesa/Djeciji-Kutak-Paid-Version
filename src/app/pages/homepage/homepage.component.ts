@@ -36,6 +36,11 @@ export class HomepageComponent implements OnInit {
     
     this.faqs = [
       {
+        question: 'Kako da instaliram aplikaciju?',
+        howToInstall: true,
+        answer: '',
+      },
+      {
         question: 'Zašto se korištenje stranice/aplikacije naplaćuje?',
         answer: 'Kako je veliki broj ljudi počeo koristiti našu stranicu/aplikaciju došli su nam veći troškovi, a tome se nismo nadali. Imamo mogućnost da zarađujemo na reklamama ali ne želimo djecu izlagati sadržaju koji ne možemo u potpunosti kontrolisati. Odlučili smo da simbolično naplatimo korištenje aplikacije jer smatramo da Vaše malo može mnogo olakšati njen razvoj i održavanje. Često dobijamo nove zahtjeve i ideje a za to su nam potrebna novčana sredstva. Mnogo vremena i truda smo uložili da napravimo aplikaciju i da svaki crtani film i pjesmicu detaljno pregledamo i izbacimo muziku i sve ono što je neprimjereno. Potrebna nam je Vaša novčana podrška kako bismo nastavili sa daljnjim radom i održavanjem.'
       },
@@ -43,19 +48,23 @@ export class HomepageComponent implements OnInit {
         question: 'Da li moram imati paypal da bih se pretplatio?',
         answer: 'Ne morate. Možete platiti preko skoro svih kartica. (Visa, MasterCard, Discover i American Express)'
       },
-      {
-        question: 'Kako da se pretplatim?',
-        answer: 'Prvo se morate registrovati i prijaviti. Nakon toga trebate odabrati svoju pretplatu i način na koji ćete plaćati. Uskoro ćemo snimiti video o tome.',
-      },
+    
       {
         question: 'Da li se pretplata automatski skida sa kartice/paypal računa?',
         answer: 'Da, sve dok ne otkažete pretplatu. Kada se pretplatite, zavisno od paketa, aplikacija će sama skidati novac sa računa svakog mjeseca, pola godine ili godinu dok ne otkažete pretplatu.',
       },
+      
       {
-        question: 'Kako da otkazem pretplatu?',
-        isPremium: true,
+        question: 'Kako da se pretplatim?',
+        howToSubs: true,
         answer: '',
       },
+      {
+        question: 'Kako da otkazem pretplatu?',
+        cancelSubs: true,
+        answer: '',
+      }
+     
     ];
   }
 

@@ -355,13 +355,30 @@
 
           <div class="answer" [class.show]="question.classList.contains('active')">
             <p [innerHtml]="faq.answer">
-            </p>
+            </p>         
 
-            <div *ngIf="faq.isPremium">
-              <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici ispod.
-                Tu ćete imati i opciju da jednim klikom otkažete pretplatu.
+            <div *ngIf="faq.howToSubs">
+              <p>Prvo se morate registrovati i prijaviti. Nakon toga trebate odabrati svoju pretplatu i način na koji ćete plaćati.
               </p>
-              <button routerLink="/pretplata" class="btn btn-info">Idi na stranicu</button>
+              <p>Pogledajte video za više informacija:</p>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/o9kE8jhoGhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div *ngIf="faq.cancelSubs">
+              <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici 'Moja pretplata' koja se nalazi ispod.
+                Tu ćete imati i opciju da jednim klikom otkažete pretplatu.
+                <button routerLink="/pretplata" class="btn btn-info">Moja pretplata</button>
+              </p>
+              <p>Pogledajte video za više informacija:</p>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/z34s6lDP7XI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div *ngIf="faq.howToInstall">
+              <p>Ako koristite IOS uređaj aplikaciju možete instalirati na App Store-u:
+                <a href="https://apps.apple.com/app/id1585246821">Link do aplikacije</a>
+              </p>
+              <p>Ako koristite android uređaj aplikaciju možete instalirati na dva načina, pogledajte video:</p>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/gJLa_vxShYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
           </div>
