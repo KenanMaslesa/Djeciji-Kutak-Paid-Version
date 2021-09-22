@@ -99,16 +99,16 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
+        setTimeout(() => {
+          this.showLoader = false;
           //this.SendVerificationMail();
           if(this.goToPaypalAfterLoginRegistration){
-            setTimeout(() => {
-              this.router.navigate(['paypal']);
-            }, 2000);
+            this.router.navigate(['paypal']);
           }
           else{
             this.router.navigate(['videos']);
           }
-          this.showLoader = false;
+        }, 2000);
        
       })
       .catch((error) => {
