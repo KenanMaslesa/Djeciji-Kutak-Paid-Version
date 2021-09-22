@@ -1,5 +1,5 @@
  <!-- ======= Pricing Section ======= -->
- <button *ngIf="!paypalService.showPaypalButtons" routerLink="/pocetna" class="btn btn-info">Nazad</button>
+ <button *ngIf="!paypalService.showPaypalButtons" routerLink="/videos" class="btn btn-info">Nazad</button>
  <button *ngIf="paypalService.showPaypalButtons" (click)="paypalService.showPaypalButtons = false" class="btn btn-info">Nazad</button>
  <div id="pricing" class="pricing-tables" *ngIf="!paypalService.showPaypalButtons">
   <div class="tables-left-dec">
