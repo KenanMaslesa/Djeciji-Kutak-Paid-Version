@@ -24,7 +24,8 @@ export class AuthService {
   subscriptionID: any;
   subscriptionDetails: any;
   subscriptionMessage: string;
-
+  showSubscriptionLoader = false;
+  goToPaypalAfterLoginRegistration = false;
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
@@ -76,8 +77,13 @@ export class AuthService {
 
           setTimeout(() => {
             this.showLoader = false;
-            this.router.navigate(['videos']);
-          }, 1000);
+            if(this.goToPaypalAfterLoginRegistration){
+              this.router.navigate(['paypal']);
+            }
+            else{
+              this.router.navigate(['videos']);
+            }
+          }, 2000);
         });
       })
       .catch((error) => {
@@ -93,9 +99,17 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.showLoader = false;
-        //this.SendVerificationMail();
-        this.router.navigate(['videos']);
+          //this.SendVerificationMail();
+          if(this.goToPaypalAfterLoginRegistration){
+            setTimeout(() => {
+              this.router.navigate(['paypal']);
+            }, 2000);
+          }
+          else{
+            this.router.navigate(['videos']);
+          }
+          this.showLoader = false;
+       
       })
       .catch((error) => {
         this.showLoader = false;
@@ -129,6 +143,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      this.goToPaypalAfterLoginRegistration = false;
       this.router.navigate(['']);
     });
   }
@@ -226,11 +241,9 @@ export class AuthService {
         });
     }
   }
-  showSubscriptionLoader = false;
   checkIsSubcriptionActive() {
     var user = this.getCurrentUser();
     if (user) {
-      this.showSubscriptionLoader = true;
       this.getSubscriptionDetails().subscribe((responseData: Payment) => {
         if (responseData != null) {
           for (const key in responseData) {
@@ -264,8 +277,10 @@ export class AuthService {
   }
 
   //PAYPAL
+
   checkPaypalSubcription(subcriptionId) {
     const self = this;
+    this.showSubscriptionLoader = true;
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {

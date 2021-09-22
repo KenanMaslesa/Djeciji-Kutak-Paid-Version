@@ -68,7 +68,7 @@
         <div style="text-align: center;margin: 0 auto;padding-bottom: 25px;"
           *ngIf="videoService.activeVideo && !videoService.activeVideo.free && !authService.isPremiumUser">
           <p>Molimo Vas pretplatite se.</p>
-          <button class="btn btn-info" routerLink="/paypal">Pretplati me</button>
+          <button class="btn btn-info" routerLink="/paypal" (click)="authService.goToPaypalAfterLoginRegistration = true">Pretplati me</button>
         </div>
 
         <div class="categories">
@@ -143,13 +143,13 @@
                 <ng-container *ngIf="!authService.isPremiumUser">
 
                   <ng-container *ngIf="!video.free">
-                    <div class="col-12 mb-5 mp" routerLink="/paypal"
+                    <div class="col-12 mb-5 mp" routerLink="/paypal" (click)="authService.goToPaypalAfterLoginRegistration = true"
                       *ngIf="video.id != videoService.activeVideo.id">
                       <figure class="effect-ming tm-video-item premium">
                         <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}"
                           class="img-fluid">
                         <figcaption class="d-flex align-items-center justify-content-center"
-                          routerLink="/paypal">
+                          routerLink="/paypal" (click)="authService.goToPaypalAfterLoginRegistration = true">
                           <button class="btn btn-danger">Pretplatite se</button>
                         </figcaption>
                       </figure>
