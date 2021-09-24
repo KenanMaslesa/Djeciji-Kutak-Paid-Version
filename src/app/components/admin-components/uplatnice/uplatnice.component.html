@@ -14,6 +14,14 @@
     </select>
 
   </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required ngModel name="email" placeholder="Email" />
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required ngModel name="fullName" placeholder="Ime i prezime" />
+  </div>
   <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">
     Dodaj uplatnicu
   </button>

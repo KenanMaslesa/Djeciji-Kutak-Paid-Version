@@ -46,7 +46,7 @@ export class HomepageAnonymousComponent implements OnInit {
       },
       {
         question: 'Zašto se korištenje stranice/aplikacije naplaćuje?',
-        answer: 'Kako je veliki broj ljudi počeo koristiti našu stranicu/aplikaciju došli su nam veći troškovi, a tome se nismo nadali. Imamo mogućnost da zarađujemo na reklamama ali ne želimo djecu izlagati sadržaju koji ne možemo u potpunosti kontrolisati. Odlučili smo da simbolično naplatimo korištenje aplikacije jer smatramo da Vaše malo može mnogo olakšati njen razvoj i održavanje. Često dobijamo nove zahtjeve i ideje a za to su nam potrebna novčana sredstva. Mnogo vremena i truda smo uložili da napravimo aplikaciju i da svaki crtani film i pjesmicu detaljno pregledamo i izbacimo muziku i sve ono što je neprimjereno. Potrebna nam je Vaša novčana podrška kako bismo nastavili sa daljnjim radom i održavanjem.'
+        answer: 'Kako je veliki broj ljudi počeo koristiti našu stranicu/aplikaciju došli su nam troškovi kojima se nismo nadali. Imamo mogućnost da zarađujemo na reklamama ali ne želimo djecu izlagati sadržaju koji ne možemo u potpunosti kontrolisati. Odlučili smo da simbolično naplatimo korištenje aplikacije jer smatramo da Vaše malo može mnogo olakšati njen razvoj i održavanje. Često dobijamo nove zahtjeve i ideje a za to su nam potrebna novčana sredstva. Mnogo vremena i truda smo uložili da napravimo aplikaciju i da svaki crtani film i pjesmicu detaljno pregledamo i izbacimo muziku i sve ono što je neprimjereno. Potrebna nam je Vaša novčana podrška kako bismo nastavili sa daljnjim radom i održavanjem.'
       },
       {
         question: 'Da li moram imati paypal da bih se pretplatio?',
