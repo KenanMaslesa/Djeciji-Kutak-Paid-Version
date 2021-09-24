@@ -35,6 +35,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
 import { ModalWhyPaidComponent } from './components/modal-why-paid/modal-why-paid.component';
+import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ModalWhyPaidComponent } from './components/modal-why-paid/modal-why-pai
     AuthNavComponent,
     HomepageAnonymousComponent,
     ModalWhyPaidComponent,
+    UplatniceComponent,
   ],
   imports: [
     BrowserModule,

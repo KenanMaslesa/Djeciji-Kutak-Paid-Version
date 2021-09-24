@@ -1,0 +1,26 @@
+<form style="width: 40%;" #postForm="ngForm" (ngSubmit)="addUplatnica(postForm.value); postForm.reset()">
+  <div class="form-group">
+    <input type="text" class="form-control" required ngModel name="userUid" placeholder="UID" />
+  </div>
+
+  <div class="form-group">
+    <input type="date" class="form-control" ngModel name="date" placeholder="Datum uplate" />
+  </div>
+
+  <div class="form-group">
+    <select ngModel name="pretplata">
+      <option value="halfyear">Polugodišnja</option>
+      <option value="year">Godišnja</option>
+    </select>
+
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">
+    Dodaj uplatnicu
+  </button>
+</form>
+
+
+<div class="uplatnice" *ngFor="let uplatnica of uplatnice">
+  <span>{{uplatnica.uid}}</span>
+  <span>{{uplatnica.date}}</span>
+</div>

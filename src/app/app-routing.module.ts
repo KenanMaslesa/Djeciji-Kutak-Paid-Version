@@ -17,6 +17,7 @@ import { ContactMessagesComponent } from './components/admin-components/contact-
 import { AdminVideosComponent } from './components/admin-components/admin-videos/admin-videos.component';
 import { PretplataComponent } from './pages/pretplata/pretplata.component';
 import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
+import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/videos', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'pretplata', component: PretplataComponent, canActivate: [AuthGuard] },
   
   { path: 'admin', component: AdminComponent, canActivate: [RoleGuard] },
+  { path: 'admin/uplatnice', component: UplatniceComponent, canActivate: [RoleGuard] },
   { path: 'admin/videos', component: AdminVideosComponent, canActivate: [RoleGuard] },
   { path: 'admin/messages', component: ContactMessagesComponent, canActivate: [RoleGuard] },
 ];

@@ -33,8 +33,10 @@ export class AuthService {
     public http: HttpClient,
     public paypalService: PaypalService
   ) {
-    this.checkIsSubcriptionActive();
-    this.checkIsPremiumUser();
+    if(this.isLoggedIn){
+      this.checkIsSubcriptionActive();
+      this.checkIsPremiumUser();
+    }
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
@@ -42,7 +44,7 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
-        this.checkIsPremiumUser();
+        //this.checkIsPremiumUser();
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
@@ -77,10 +79,9 @@ export class AuthService {
 
           setTimeout(() => {
             this.showLoader = false;
-            if(this.goToPaypalAfterLoginRegistration){
+            if (this.goToPaypalAfterLoginRegistration) {
               this.router.navigate(['paypal']);
-            }
-            else{
+            } else {
               this.router.navigate(['videos']);
             }
           }, 2000);
@@ -102,14 +103,12 @@ export class AuthService {
         setTimeout(() => {
           this.showLoader = false;
           //this.SendVerificationMail();
-          if(this.goToPaypalAfterLoginRegistration){
+          if (this.goToPaypalAfterLoginRegistration) {
             this.router.navigate(['paypal']);
-          }
-          else{
+          } else {
             this.router.navigate(['videos']);
           }
         }, 2000);
-       
       })
       .catch((error) => {
         this.showLoader = false;
@@ -197,6 +196,7 @@ export class AuthService {
             this.isPremiumUser = true;
             return true;
           } else {
+            this.checkIsUplatnicaActive();
             this.isPremiumUser = false;
             return false;
           }
@@ -250,8 +250,53 @@ export class AuthService {
             this.subscriptionID = responseData[key].subID;
             this.checkPaypalSubcription(this.subscriptionID);
           }
-        }
+        } 
       });
+    }
+  }
+
+  checkIsUplatnicaActive() {
+    var user = this.getCurrentUser();
+
+    if (user) {
+      return this.http
+        .get(
+          `${environment.firebase.database}/uplatnice/${
+            user.uid
+          }.json`,
+          {
+            params: new HttpParams().set(
+              'auth',
+              user.stsTokenManager.accessToken
+            ),
+          }
+        )
+        .subscribe((responseData) => {
+          if (responseData != null) {
+            for (const key in responseData) {
+              var date = new Date(responseData[key].uplatnica.date);
+              var endDate = new Date();
+
+              if (responseData[key].uplatnica.pretplata == 'year') {
+                 endDate = new Date(
+                  date.setFullYear(date.getFullYear() + 1)
+                );
+                
+              } else if (responseData[key].uplatnica.pretplata == 'halfyear') {
+                 endDate = new Date(date.setMonth(date.getMonth() + 6));
+              }
+
+              var now = new Date();
+              if(now > endDate){
+                this.isPremiumUser = false
+              }
+              else{
+                this.isPremiumUser = true;
+              }
+
+            }
+          }
+        });
     }
   }
 
