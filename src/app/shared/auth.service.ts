@@ -26,6 +26,7 @@ export class AuthService {
   subscriptionMessage: string;
   showSubscriptionLoader = false;
   goToPaypalAfterLoginRegistration = false;
+  offlinePayment = false;
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
@@ -292,6 +293,9 @@ export class AuthService {
               }
               else{
                 this.isPremiumUser = true;
+                this.offlinePayment = true;
+                debugger
+                this.subscriptionDetails = {start_time: new Date(responseData[key].uplatnica.date), next_billing_time :endDate};
               }
 
             }
