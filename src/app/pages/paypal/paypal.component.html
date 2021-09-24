@@ -1,6 +1,9 @@
  <!-- ======= Pricing Section ======= -->
  <button *ngIf="!paypalService.showPaypalButtons" routerLink="/videos" class="btn btn-info">Nazad</button>
  <button *ngIf="paypalService.showPaypalButtons" (click)="paypalService.showPaypalButtons = false" class="btn btn-info">Nazad na <em>Odaberite pretplatu</em></button>
+ 
+
+ 
  <div id="pricing" class="pricing-tables" *ngIf="!paypalService.showPaypalButtons">
   <div class="tables-left-dec">
     <img src="assets/img/tables-left-dec.png" alt="">
@@ -11,58 +14,91 @@
   <div class="container">
 
     <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
-      <h2>Odaberite svoju pretplatu</h2>
+      <h2>{{onlinePayment?"Odaberite svoju pretplatu":"Odaberite način plaćanja"}}</h2>
      
     </div>
 
-    <div class="row">
-      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
-        <div class="item first-item">
-          <h4>Mjesečna pretplata</h4>
-          <em></em>
-          <span>1,8 EUR</span>
-          <em class="priceKM">≈ 3,5 KM</em>
-          <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left" data-aos-duration="1200"
-            data-aos-delay="200">
+    <div class="tabs" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+      <button class="btn tab" [class.active]="offlinePayment" (click)="offlinePayment = true; onlinePayment = false">Plaćanje uplatnicom</button>
+      <button class="btn tab" [class.active]="onlinePayment" (click)="offlinePayment = false; onlinePayment = true">Online plaćanje</button>
+    </div>
 
-          <div class="main-blue-button-hover">
-            <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.monthlyPlanId)">Pretplatite se</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
-        <div class="item second-item">
-          <h4>Polugodišnja pretplata</h4>
-          <em>10,8 EUR</em>
-          <span>9 EUR</span>
-          <em class="priceKM">≈ 17,5 KM</em>
-          <img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-up" data-aos-duration="1200"
-            data-aos-delay="600">
-          <div class="main-blue-button-hover">
-            <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.halfyearlyPlanId)">Pretplatite se</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
-        <div class="item third-item">
-          <h4>Godišnja pretplata</h4>
-          <em>21,6 EUR</em>
-          <span>15 EUR</span>
-          <em class="priceKM">≈ 29,30 KM</em>
-          <img height="120px" src="/assets/img/omar.png" alt="" data-aos="flip-left" data-aos-duration="1200"
-            data-aos-delay="1200">
+    <div *ngIf="offlinePayment" id="offline-payment" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+      <div class="row">
+        <p>Ako niste ljubitelj online plaćanja ovo je prava opcija za Vas. Uplatite na naš račun u pošti, banci ili putem mobilnog bankarstva. Nakon toga nam pošaljite neku vrstu dokaza da ste uplatili (uplatnicu, screenshoot) i mi ćemo Vam odobriti pristup aplikaciji.</p>
 
-          <div class="main-blue-button-hover">
-            <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.yearlyPlanId)">Pretplatite se</a>
-          </div>
+        <div>
+          <p>Primalac: <strong>Dječiji kutak</strong></p>
+          <p>Broj računa: <strong>1613000102595403</strong></p>
+          <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
+          <p>IBAN: <strong>BA391613000102595403</strong></p>
+          <p>SWIFT: <strong>RZBABA2S</strong></p>
         </div>
-      </div>
+        <div class="uplatnica-wrapper">
+          <h3>Uplatnica za godišnju pretplatu</h3>
+          <img class="uplatnica" src="/assets/img/uplatnica1.png" alt="">
+        </div>
 
-      <div style="text-align: center;" class="col-12" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="800">
-        <p>Kada odaberete svoju pretplatu proces plaćanja ćete izvršiti samo jednom, a mi ćemo svaki naredni put (svaki mjesec, svako pola godine ili godinu) automatski skidati novac sa vašeg računa u zavisnosti od pretplate koju odaberete sve dok ne otkažete pretplatu.</p>
-        <p>Kada se pretplatite moći ćete kada god poželite otkazati pretplatu na sljedećoj stranici <a routerLink="/pretplata">Moja pretplata</a> koja će Vam uvijek biti na vidljivom mjestu.</p>
+        <div class="uplatnica-wrapper">
+          <h3>Uplatnica za polugodišnju pretplatu</h3>
+          <img class="uplatnica" src="/assets/img/uplatnica2.png" alt="">
+        </div>
       </div>
     </div>
+
+    <div *ngIf="onlinePayment" id="online-payment">
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+          <div class="item first-item">
+            <h4>Mjesečna pretplata</h4>
+            <em></em>
+            <span>1,8 EUR</span>
+            <em class="priceKM">≈ 3,5 KM</em>
+            <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left" data-aos-duration="1200"
+              data-aos-delay="200">
+  
+            <div class="main-blue-button-hover">
+              <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.monthlyPlanId)">Pretplatite se</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+          <div class="item second-item">
+            <h4>Polugodišnja pretplata</h4>
+            <em>10,8 EUR</em>
+            <span>9 EUR</span>
+            <em class="priceKM">≈ 17,5 KM</em>
+            <img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-up" data-aos-duration="1200"
+              data-aos-delay="600">
+            <div class="main-blue-button-hover">
+              <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.halfyearlyPlanId)">Pretplatite se</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
+          <div class="item third-item">
+            <h4>Godišnja pretplata</h4>
+            <em>21,6 EUR</em>
+            <span>15 EUR</span>
+            <em class="priceKM">≈ 29,30 KM</em>
+            <img height="120px" src="/assets/img/omar.png" alt="" data-aos="flip-left" data-aos-duration="1200"
+              data-aos-delay="1200">
+  
+            <div class="main-blue-button-hover">
+              <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.yearlyPlanId)">Pretplatite se</a>
+            </div>
+          </div>
+        </div>
+  
+        <div style="text-align: center;" class="col-12" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="800">
+          <p>Kada odaberete svoju pretplatu proces plaćanja ćete izvršiti samo jednom, a mi ćemo svaki naredni put (svaki mjesec, svako pola godine ili godinu) automatski skidati novac sa vašeg računa u zavisnosti od pretplate koju odaberete sve dok ne otkažete pretplatu.</p>
+          <p>Kada se pretplatite moći ćete kada god poželite otkazati pretplatu na sljedećoj stranici <a routerLink="/pretplata">Moja pretplata</a> koja će Vam uvijek biti na vidljivom mjestu.</p>
+        </div>
+      </div>
+    </div>
+    
+
+   
   </div>
 </div>
 

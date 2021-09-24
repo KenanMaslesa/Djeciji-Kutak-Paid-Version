@@ -15,6 +15,8 @@ export class PaypalComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   planId = 'P-1WH391004G147653JMEA5OQQ';
   showPaypalButtons: boolean;
+  offlinePayment = false;
+  onlinePayment = false;
 
   constructor(
     private authService: AuthService,
