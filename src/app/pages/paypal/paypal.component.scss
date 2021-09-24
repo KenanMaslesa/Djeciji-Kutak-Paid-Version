@@ -252,12 +252,13 @@ Pricing
     .uplatnica-wrapper {
       width: 100%;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 50px;
     
       .uplatnica {
         max-height: 440px;
         width: 870px;
         margin: 0 auto;
+        margin-bottom: 20px;
     
         @media(max-width: 900px){
           width: 100%;

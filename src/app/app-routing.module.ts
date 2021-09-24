@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'videos', component: VideosComponent },
   { path: 'video/:id', component: VideoDetailComponent },
-  { path: 'paypal', component: PaypalComponent, canActivate: [AuthGuard] },
+  { path: 'paypal', component: PaypalComponent },
   { path: 'omiljeno', component: FavoriteComponent, canActivate: [AuthGuard] },
   {
     path: 'omiljeno/:id',

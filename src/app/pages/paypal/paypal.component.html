@@ -20,20 +20,14 @@
 
     <div class="tabs" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
       <button class="btn tab" [class.active]="offlinePayment" (click)="offlinePayment = true; onlinePayment = false">Plaćanje uplatnicom</button>
-      <button class="btn tab" [class.active]="onlinePayment" (click)="offlinePayment = false; onlinePayment = true">Online plaćanje</button>
+      <button class="btn tab" [class.active]="onlinePayment" (click)="onlinePayment = true; offlinePayment = false;">Online plaćanje</button>
     </div>
 
     <div *ngIf="offlinePayment" id="offline-payment" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
       <div class="row">
-        <p>Ako niste ljubitelj online plaćanja ovo je prava opcija za Vas. Uplatite na naš račun u pošti, banci ili putem mobilnog bankarstva. Nakon toga nam pošaljite neku vrstu dokaza da ste uplatili (uplatnicu, screenshoot) i mi ćemo Vam odobriti pristup aplikaciji.</p>
+        <p data-aos="fade-left" data-aos-duration="1200" >Ako niste ljubitelj online plaćanja ovo je prava opcija za Vas. Uplatite na naš račun u pošti, banci ili putem mobilnog bankarstva. Nakon toga nam pošaljite neku vrstu dokaza da ste uplatili (uplatnicu, screenshoot) na email <strong>djecijikutak.kontakt@gmail.com</strong> ili nam se javite na <a href="https://www.facebook.com/Dje%C4%8Diji-kutak-102585532159218/" target="_blank">facebook stranici</a>  i mi ćemo Vam odobriti pristup aplikaciji.</p>
 
-        <div>
-          <p>Primalac: <strong>Dječiji kutak</strong></p>
-          <p>Broj računa: <strong>1613000102595403</strong></p>
-          <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
-          <p>IBAN: <strong>BA391613000102595403</strong></p>
-          <p>SWIFT: <strong>RZBABA2S</strong></p>
-        </div>
+        
         <div class="uplatnica-wrapper">
           <h3>Uplatnica za godišnju pretplatu</h3>
           <img class="uplatnica" src="/assets/img/uplatnica1.png" alt="">
@@ -42,12 +36,23 @@
         <div class="uplatnica-wrapper">
           <h3>Uplatnica za polugodišnju pretplatu</h3>
           <img class="uplatnica" src="/assets/img/uplatnica2.png" alt="">
+
+          <div>
+            <p>Primalac: <strong>Dječiji kutak</strong></p>
+            <p>Broj računa: <strong>1613000102595403</strong></p>
+            <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
+            <p>IBAN: <strong>BA391613000102595403</strong></p>
+            <p>SWIFT: <strong>RZBABA2S</strong></p>
+          </div>
         </div>
+
+       
       </div>
     </div>
 
     <div *ngIf="onlinePayment" id="online-payment">
       <div class="row">
+        <p style="text-align: center;" class="col-12" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="800">Ako želite da platite online prvo se morate registrovati/prijaviti i nakon toga ćete moći odabrati pretplatu i način plaćanja (paypal, kartično plaćanje)</p>
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
           <div class="item first-item">
             <h4>Mjesečna pretplata</h4>
@@ -58,7 +63,7 @@
               data-aos-delay="200">
   
             <div class="main-blue-button-hover">
-              <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.monthlyPlanId)">Pretplatite se</a>
+              <a (click)="onlinePaymentClicked(); paypalService.onSubscriptionPlanSelected(paypalService.monthlyPlanId)">Pretplatite se</a>
             </div>
           </div>
         </div>
@@ -71,7 +76,7 @@
             <img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-up" data-aos-duration="1200"
               data-aos-delay="600">
             <div class="main-blue-button-hover">
-              <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.halfyearlyPlanId)">Pretplatite se</a>
+              <a (click)="onlinePaymentClicked(); paypalService.onSubscriptionPlanSelected(paypalService.halfyearlyPlanId)">Pretplatite se</a>
             </div>
           </div>
         </div>
@@ -85,7 +90,7 @@
               data-aos-delay="1200">
   
             <div class="main-blue-button-hover">
-              <a (click)="paypalService.onSubscriptionPlanSelected(paypalService.yearlyPlanId)">Pretplatite se</a>
+              <a (click)="onlinePaymentClicked(); paypalService.onSubscriptionPlanSelected(paypalService.yearlyPlanId)">Pretplatite se</a>
             </div>
           </div>
         </div>

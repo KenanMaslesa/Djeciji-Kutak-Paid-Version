@@ -294,7 +294,6 @@ export class AuthService {
               else{
                 this.isPremiumUser = true;
                 this.offlinePayment = true;
-                debugger
                 this.subscriptionDetails = {start_time: new Date(responseData[key].uplatnica.date), next_billing_time :endDate};
               }
 

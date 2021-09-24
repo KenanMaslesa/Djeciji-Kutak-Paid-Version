@@ -56,4 +56,10 @@ export class PaypalComponent implements OnInit {
 
     AOS.init();
   }
+
+  onlinePaymentClicked(planId){
+    if(!this.authService.isLoggedIn){
+      this.router.navigate(["auth"]);
+    }
+  }
 }
