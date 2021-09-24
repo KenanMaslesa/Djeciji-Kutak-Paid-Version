@@ -38,8 +38,8 @@ export class PaypalComponent implements OnInit {
           return actions.subscription.create({
             plan_id: self.paypalService.activeSubscriptionPlanId,
             application_context: {
-              shipping_preference: 'NO_SHIPPING'
-          }
+              shipping_preference: 'NO_SHIPPING',
+            },
           });
         },
         onApprove: (data) => {
@@ -57,9 +57,12 @@ export class PaypalComponent implements OnInit {
     AOS.init();
   }
 
-  onlinePaymentClicked(planId){
-    if(!this.authService.isLoggedIn){
-      this.router.navigate(["auth"]);
+  onlinePaymentClicked() {
+    if (!this.authService.isLoggedIn) {
+      this.authService.goToPaypalAfterLoginRegistration = true;
+      this.authService.loginErrorMessages =
+        'Molimo Vas prvo se registrujte/prijavite.';
+      this.router.navigate(['auth']);
     }
   }
 }
