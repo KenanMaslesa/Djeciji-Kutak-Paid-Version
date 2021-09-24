@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 import AOS from 'aos';
 import { PaypalService } from 'src/app/services/paypal.service';
-
+import { FacebookService, InitParams } from 'ngx-facebook';
 declare var paypal;
 
 @Component({
@@ -21,10 +21,11 @@ export class PaypalComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public router: Router,
-    public paypalService: PaypalService
+    public paypalService: PaypalService,
   ) {}
 
   ngOnInit() {
+
     const self = this;
     paypal
       .Buttons({
@@ -56,6 +57,7 @@ export class PaypalComponent implements OnInit {
 
     AOS.init();
   }
+
 
   onlinePaymentClicked() {
     if (!this.authService.isLoggedIn) {

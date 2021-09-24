@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import AOS from 'aos';
+import { FacebookService, InitParams } from 'ngx-facebook';
 import { ContactService } from 'src/app/services/contact-us/contact.service';
 import { PaypalService } from 'src/app/services/paypal.service';
 import { AuthService } from 'src/app/shared/auth.service';
@@ -16,7 +17,8 @@ export class HomepageComponent implements OnInit {
   showContactUsMessage = false;
   faqs = [];
   constructor(public paypalService: PaypalService, public authService: AuthService, 
-    private contactUsService: ContactService, @Inject(DOCUMENT) private document: Document) {
+    private contactUsService: ContactService, @Inject(DOCUMENT) private document: Document,
+    private facebookService: FacebookService) {
 
   }
   
@@ -25,6 +27,8 @@ export class HomepageComponent implements OnInit {
     this.document.body.classList.remove('hidden');
     this.document.body.classList.remove('fixed');
 
+    this.initFacebookService();
+    
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
       this.document.querySelector('#tm-video').remove();
@@ -66,6 +70,11 @@ export class HomepageComponent implements OnInit {
       }
      
     ];
+  }
+
+  private initFacebookService(): void {
+    const initParams: InitParams = { xfbml:true, version:'v12.0'};
+    this.facebookService.init(initParams);
   }
 
   @HostListener('window:scroll', [])
