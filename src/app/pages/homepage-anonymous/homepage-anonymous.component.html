@@ -358,21 +358,50 @@
             </p>         
 
             <div *ngIf="faq.howToSubs">
-              <p>Prvo se morate registrovati i prijaviti. Nakon toga trebate odabrati svoju pretplatu i način na koji ćete plaćati. Plaćanje preko paypala je jako jednostavno pa smo odlučili da ne snimamo video kako se pretplatiti preko paypala.
-                Snimili smo video za one koji nemaju paypal a koji žele da se pretplate preko kartice (Visa, MasterCard, Discover i American Express)
+              <p>Prvo se trebate registrovati na aplikaciju. Ako se već niste registrovali kliknite na <a [routerLink]="['/auth']" style="
+                width: 125px;
+                display: inline-block;
+            " routerLinkActive="active" class="btn btn-info">Registracija</a>
               </p>
+
+              <p>Nakon toga trebate odabrati svoju pretplatu i način na koji ćete plaćati. </p>
+              <h3 style="margin-top: 20px;">Plaćanje uplatnicom</h3>
+               <p>Ako plaćate uplatnicom, trebate uplatiti novac na naš račun a zatim nam poslati neki dokaz da ste uplatili i email preko kojeg ste se registrovali i mi ćemo Vam za taj email odobriti pristup aplikaciji. </p>
+              
+
+              <h3 style="margin-top: 20px;">Online plaćanje</h3>
+               <p>Plaćanje preko paypala je jako jednostavno pa smo odlučili da ne snimamo video kako se pretplatiti preko paypala.
+                Snimili smo video za one koji nemaju paypal a koji žele da se pretplate preko kartice (Visa, MasterCard, Discover i American Express)</p>
               <p>Pogledajte video za više informacija:</p>
               <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/o9kE8jhoGhk?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
             <div *ngIf="faq.cancelSubs">
               <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici 'Moja pretplata' koja se nalazi ispod.
-                Tu ćete imati i opciju da jednim klikom otkažete pretplatu.
+                Ako ste platili online tu ćete imati i opciju da jednim klikom otkažete pretplatu.
                 <button routerLink="/pretplata" class="btn btn-info">Moja pretplata</button>
               </p>
               <p>Pogledajte video za više informacija:</p>
               <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/z34s6lDP7XI?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+
+            <div *ngIf="faq.uplatnice">
+              <div class="uplatnica-wrapper">
+                <h3>Uplatnica za godišnju pretplatu</h3>
+                <img class="uplatnica" src="/assets/img/uplatnica-godisnja-pretplata.png" alt="">
+              </div>
+      
+              <div class="uplatnica-wrapper">
+                <h3>Uplatnica za polugodišnju pretplatu</h3>
+                <img class="uplatnica" src="/assets/img/uplatnica-polugodisnja-pretplata.png" alt="">
+      
+                  <p>Primalac: <strong>Dječiji kutak</strong></p>
+                  <p>Broj računa: <strong>1613000102595403</strong></p>
+                  <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
+                  <p>IBAN: <strong>BA391613000102595403</strong></p>
+                  <p>SWIFT: <strong>RZBABA2S</strong></p>
+                </div>
+              </div>
 
             <div *ngIf="faq.howToInstall">
               <p>Ako koristite IOS uređaj aplikaciju možete instalirati na App Store-u:

@@ -532,25 +532,34 @@ section {
     cursor: pointer;
 
     &:hover {
-      color: red;
+      color: #f48e99;
     }
 
     &.active {
-      color: red;
+      color: white;
+    background: #f48e99;
+    padding: 10px;
+
+
     }
   }
   .answer {
     max-height: 0px;
     opacity: 0;
     visibility: hidden;
-    transition: all 1s;
+    transition: all 0.5s;
 
     &.show {
       opacity: 1;
-      max-height: 100vh;
+      max-height: 100%;
       visibility: visible;
+      border: 2px solid #f48e99;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     }
   }
+
 }
 
 .faq .faq-list li {

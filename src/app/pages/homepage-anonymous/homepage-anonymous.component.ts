@@ -20,8 +20,9 @@ export class HomepageAnonymousComponent implements OnInit {
 
   }
   
-
+  
   ngOnInit(): void {
+    window.scroll(0, 0);
     if(this.authService.isLoggedIn){
       this.router.navigate(['videos'])
     }
@@ -36,7 +37,6 @@ export class HomepageAnonymousComponent implements OnInit {
 
     this.authService.checkIsPremiumUser();
     AOS.init();
-    window.scroll(0, 0);
     
     this.faqs = [
       {
@@ -50,12 +50,12 @@ export class HomepageAnonymousComponent implements OnInit {
       },
       {
         question: 'Da li moram imati paypal da bih se pretplatio?',
-        answer: 'Ne morate. Možete platiti preko skoro svih kartica. (Visa, MasterCard, Discover i American Express)'
+        answer: 'Ne morate. Možete nam uplatiti novac uplatnicom a ako želite da platite online možete platiti preko skoro svih kartica. (Visa, MasterCard, Discover i American Express)'
       },
     
       {
         question: 'Da li se pretplata automatski skida sa kartice/paypal računa?',
-        answer: 'Da, sve dok ne otkažete pretplatu. Kada se pretplatite, zavisno od paketa, aplikacija će sama skidati novac sa računa svakog mjeseca, pola godine ili godinu dok ne otkažete pretplatu.',
+        answer: 'Da, ako ste platili online, sve dok ne otkažete pretplatu. Kada platite online, zavisno od paketa, aplikacija će sama skidati novac sa računa svakog mjeseca, pola godine ili godinu dok ne otkažete pretplatu.',
       },
       
       {
@@ -67,7 +67,16 @@ export class HomepageAnonymousComponent implements OnInit {
         question: 'Kako da otkažem pretplatu?',
         cancelSubs: true,
         answer: '',
-      }
+      },
+      {
+        question: 'Gdje mogu pronaći uplatnice ako ne želim da plaćam online?',
+        uplatnice: true,
+        answer: '',
+      },
+      {
+        question: 'Kada se pretplatim da li ću moći gledati sav sadržaj aplikacije?',
+        answer: 'Da, moći ćete gledati sav sadržaj aplikacije koji bude dostupan u tom periodu kada se pretplatite.',
+      },
      
     ];
   }
