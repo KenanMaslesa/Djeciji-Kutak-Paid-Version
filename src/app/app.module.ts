@@ -36,7 +36,6 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
 import { ModalWhyPaidComponent } from './components/modal-why-paid/modal-why-paid.component';
 import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
-import { FacebookModule } from 'ngx-facebook';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +72,6 @@ import { FacebookModule } from 'ngx-facebook';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    FacebookModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
