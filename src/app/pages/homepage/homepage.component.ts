@@ -50,7 +50,7 @@ export class HomepageComponent implements OnInit {
       },
       {
         question: 'Da li vršite povrat novca?',
-        answer: 'Da, ako plaćate online. Ako Vam se aplikacija ne svidi javite nam se u roku od 3 dana i vratit ćemo Vam novac na račun preko kojeg ste platili. U slučaju da budete imali poteškoće sa aplikacijom koje smo mi uzrokovali (ako ne budete mogli koristiti aplikaciju i slično), kontaktirajte nas i vratit ćemo Vam novac za taj period u kojem ste imali poteškoće nezavisno od toga da li ste platili online ili uplatnicom.'
+        answer: 'Da, ako plaćate online. Ako Vam se aplikacija ne svidi javite nam se u roku od 3 dana i vratit ćemo Vam novac na račun preko kojeg ste platili. U slučaju da budete imali poteškoće sa aplikacijom koje smo mi uzrokovali (ako ne budete mogli koristiti aplikaciju i slično), kontaktirajte nas i ako želite vratit ćemo Vam novac za taj period u kojem ste imali poteškoće nezavisno od toga da li ste platili online ili uplatnicom.'
       },
       {
         question: 'Da li moram imati paypal da bih se pretplatio?',
