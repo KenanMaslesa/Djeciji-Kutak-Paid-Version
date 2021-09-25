@@ -1232,3 +1232,18 @@ h1.hide {
     }
   }
 }
+
+.abroad{
+  background: white;
+  width: 870px;
+  margin: 0 auto;
+  padding: 5px;
+
+  &__title{
+    margin-top: 25px;
+  }
+
+  @media (max-width: 767px){
+    width: 100%;
+}
+}
