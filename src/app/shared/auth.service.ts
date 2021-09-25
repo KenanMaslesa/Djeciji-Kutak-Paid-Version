@@ -58,7 +58,7 @@ export class AuthService {
   SignIn(email, password) {
     this.showLoader = true;
     return this.afAuth
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email.trim(), password.trim())
       .then((result) => {
         this.ngZone.run(() => {
           /*if(this.getCurrentUser()){
@@ -99,7 +99,7 @@ export class AuthService {
     this.showLoader = true;
 
     return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email.trim(), password.trim())
       .then((result) => {
         setTimeout(() => {
           this.showLoader = false;
