@@ -46,7 +46,7 @@ export class HomepageAnonymousComponent implements OnInit {
       },
       {
         question: 'Kako da Vas kontaktiram?',
-        answer: 'Možete nam se javiti preko messengera koji je dostupan na aplikaciji ili na viber/whatsapp na broj 062-889-968.',
+        answer: 'Možete nam se javiti preko chata koji je dostupan na aplikaciji ili na viber/whatsapp na broj 062-889-968.',
       },
       {
         question: 'Zašto se korištenje stranice/aplikacije naplaćuje?',
