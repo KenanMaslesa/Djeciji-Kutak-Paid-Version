@@ -96,6 +96,11 @@ export class AdminService {
     );
   }
 
+  getUplatnice() {
+    return this.http.get(
+      `${environment.firebase.database}/uplatnice.json`);
+  }
+
  
   
  
