@@ -1,4 +1,4 @@
-<form style="width: 40%;" #postForm="ngForm" (ngSubmit)="addUplatnica(postForm.value); postForm.reset()">
+<form #postForm="ngForm" (ngSubmit)="addUplatnica(postForm.value); postForm.reset()">
   <div class="form-group">
     <input type="text" class="form-control" required ngModel name="userUid" placeholder="UID" />
   </div>

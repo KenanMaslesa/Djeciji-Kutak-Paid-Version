@@ -1,15 +1,16 @@
-<table class="table table-dark">
-  <tr *ngFor="let message of messages">
-    <td>
-      {{message.name}}
-    </td>
-    <td>
-      {{message.email}}
-    </td>
-    <td>
-      {{message.message}}
-    </td>
-  </tr>
-</table>
 
-<h1 *ngIf="messages.length < 1">Još nema poruka</h1>
+  <div>
+    <div *ngFor="let message of messages" style="border-bottom: 1px solid red;">
+      <p>
+        <strong>Ime i prezime:</strong> {{message.name}}
+      </p>
+      <p>
+        <strong>Email:</strong> {{message.email}}
+      </p>
+      <p>
+        <strong>Poruka: </strong>{{message.message}}
+      </p>
+    </div>
+  </div>
+  
+  <h1 *ngIf="messages.length < 1">Još nema poruka</h1>
