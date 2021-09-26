@@ -23,7 +23,7 @@ export class VideoService {
   favoriteYtIDs = [];
   playlistUrl: string;
   favoritePlaylistUrl: string;
-  //&enablecastapi=1
+  language = 'all';
   iframePart =
     '?enablejsapi=1&enablecastapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&autoplay=1&loop=1&playlist=';
   constructor(
@@ -100,6 +100,8 @@ export class VideoService {
           const videos = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
+              if(this.language == responseData[key].language || this.language == 'all'){
+
               if (this.authService.isPremiumUser) {
                 this.ytIDs.push(responseData[key].id);
               } else {
@@ -123,6 +125,7 @@ export class VideoService {
               });
             }
           }
+        }
           return this.shuffleArray(videos);
         })
       )
@@ -268,7 +271,7 @@ export class VideoService {
       });
   }
 
-  getVideosByLanguage(language) {
+  getVideosByLanguage() {
     this.showLoader = true;
     this.http
       .get(`assets/videos.json`)
@@ -280,8 +283,8 @@ export class VideoService {
           for (const key in responseData) {
             if (
               (responseData.hasOwnProperty(key) &&
-                responseData[key].language == language) ||
-              language == 'all'
+                responseData[key].language == this.language) ||
+              this.language == 'all'
             ) {
               if (this.authService.isPremiumUser) {
                 this.ytIDs.push(responseData[key].id);

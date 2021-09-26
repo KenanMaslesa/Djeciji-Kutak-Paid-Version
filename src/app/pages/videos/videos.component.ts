@@ -89,11 +89,12 @@ export class VideosComponent implements OnInit {
   }
 
 
-  getVideosByLanguage(language){
-      this.videoService.getVideosByLanguage(language);
+  getVideosByLanguage(){
+      this.videoService.getVideosByLanguage();
   }
 
   onChangeLanguage(value){
-    this.getVideosByLanguage(value);
+    this.videoService.language = value;
+    this.getVideosByLanguage();
   }
 }

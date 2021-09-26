@@ -12,7 +12,7 @@
 
     <div class="language">
       <label>Jezik:</label>
-      <select (change)="onChangeLanguage($event.target.value)">
+      <select [(ngModel)]="videoService.language" (change)="onChangeLanguage($event.target.value)">
         <option value="all">Svi</option>
         <option value="eng">Engleski</option>
         <option value="bos">Bosanski</option>

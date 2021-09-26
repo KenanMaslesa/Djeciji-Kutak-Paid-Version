@@ -75,7 +75,7 @@
           <input class="form-control tm-search-input static-input" #input2 (input)="searchVideos(input2.value)"
             type="search" placeholder="Pretraga" aria-label="Search">
           <div class="languages mobile">
-            <select (change)="onChangeLanguage($event.target.value)">
+            <select [(ngModel)]="videoService.language" (change)="onChangeLanguage($event.target.value)">
               <option value="all">Svi jezici</option>
               <option value="eng">Engleski</option>
               <option value="bos">Bosanski</option>
@@ -88,10 +88,10 @@
 
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 side-videos" style="z-index: 1;">
       <div class="languages">
-        <select (change)="onChangeLanguage($event.target.value)">
+        <select [(ngModel)]="videoService.language" (change)="onChangeLanguage($event.target.value)">
           <option value="all">Svi jezici</option>
-          <option value="eng">Engleski</option>
-          <option value="bos">Bosanski</option>
+          <option value="eng">Engleski jezik</option>
+          <option value="bos">Bosanski jezik</option>
         </select>
       </div>
       <div class="row mb-3 tm-gallery-details">
@@ -167,7 +167,7 @@
           </ng-container>
         </ng-container>
         <div class="col-12" style="text-align: center; padding-bottom: 100px; cursor: pointer;"
-          *ngIf="videoService.showLoadMoreButton">
+          *ngIf="videoService.showLoadMoreButton && videoService.language == 'all'">
           <button class="btn btn-info" style="border-radius: 10px;" (click)="loadMore()">Učitaj više</button>
         </div>
       </div>
