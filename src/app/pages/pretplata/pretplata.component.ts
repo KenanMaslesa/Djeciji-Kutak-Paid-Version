@@ -22,7 +22,6 @@ export class PretplataComponent implements OnInit {
   }
 
   subscriptionDate(date){
-    debugger
     return  new Date(date);
   }
 

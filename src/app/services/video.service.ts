@@ -310,7 +310,6 @@ export class VideoService {
       )
       .subscribe((response) => {
         this.showLoader = false;
-        debugger
         this.createPlaylist(this.ytIDs);
         this.videos = response;
       });
