@@ -26,7 +26,6 @@ export class VideoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.checkIsPremiumUser();
     this.document.body.classList.add('hidden');
     this.showLoader = false;
 
