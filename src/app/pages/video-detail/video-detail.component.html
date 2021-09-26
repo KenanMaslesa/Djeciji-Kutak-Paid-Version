@@ -76,7 +76,7 @@
             type="search" placeholder="Pretraga" aria-label="Search">
           <div class="languages mobile">
             <select [(ngModel)]="videoService.language" (change)="onChangeLanguage($event.target.value)">
-              <option value="all">Svi jezici</option>
+              <option value="all">svi jezici</option>
               <option value="eng">engleski</option>
               <option value="bos">bosanski</option>
             </select>
@@ -89,7 +89,7 @@
     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 side-videos" style="z-index: 1;">
       <div class="languages">
         <select [(ngModel)]="videoService.language" (change)="onChangeLanguage($event.target.value)">
-          <option value="all">Svi jezici</option>
+          <option value="all">svi jezici</option>
           <option value="eng">engleski jezik</option>
           <option value="bos">bosanski jezik</option>
         </select>
