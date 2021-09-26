@@ -36,6 +36,7 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
 import { ModalWhyPaidComponent } from './components/modal-why-paid/modal-why-paid.component';
 import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
+import { CheckIsPremiumComponent } from './components/check-is-premium/check-is-premium.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +63,7 @@ import { UplatniceComponent } from './components/admin-components/uplatnice/upla
     HomepageAnonymousComponent,
     ModalWhyPaidComponent,
     UplatniceComponent,
+    CheckIsPremiumComponent,
   ],
   imports: [
     BrowserModule,

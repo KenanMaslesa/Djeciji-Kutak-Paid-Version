@@ -26,6 +26,7 @@ export class VideoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.videoService.getVideos();
     this.document.body.classList.add('hidden');
     this.showLoader = false;
 
@@ -34,7 +35,6 @@ export class VideoDetailComponent implements OnInit {
     }
     this.id = this.route.snapshot.paramMap.get('id');
     this.videoService.getVideoByTitle(this.id);
-    this.videoService.getVideos();
     window.scroll(0, 0);
     this.showLoader = true;
     setTimeout(() => {
