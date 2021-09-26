@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 import AOS from 'aos';
 import { PaypalService } from 'src/app/services/paypal.service';
 import { FacebookService, InitParams } from 'ngx-facebook';
+import { DOCUMENT } from '@angular/common';
 declare var paypal;
 
 @Component({
@@ -22,10 +23,12 @@ export class PaypalComponent implements OnInit {
     private authService: AuthService,
     public router: Router,
     public paypalService: PaypalService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
     window.scroll(0, 0);
+    this.document.body.classList.remove('hidden');
 
     const self = this;
     paypal
