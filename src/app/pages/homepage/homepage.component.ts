@@ -31,7 +31,6 @@ export class HomepageComponent implements OnInit {
       this.document.querySelector('#tm-video').remove();
     }
 
-    this.authService.checkIsPremiumUser();
     AOS.init();
     
     this.faqs = [
