@@ -66,7 +66,7 @@
     "title" : "Mary Had A Little Lamb"
   },
   "-Mfi3f4CvsW4oIPfBiCr" : {
-    "free" : false,
+    "free" : true,
     "id" : "zOWtfAzVaGM",
     "language" : "bos",
     "title" : "Pilići"
@@ -432,7 +432,7 @@
     "title" : "Crvić Gliša 2"
   },
   "-MiCw5f97ReLSzmud90e" : {
-    "free" : true,
+    "free" : false,
     "id" : "4otq4c7b2wE",
     "language" : "bos",
     "title" : "Jedno žuto pile"

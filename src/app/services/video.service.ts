@@ -269,6 +269,7 @@ export class VideoService {
   }
 
   getVideosByLanguage(language) {
+    this.showLoader = true;
     this.http
       .get(`assets/videos.json`)
       //.get(`${environment.firebase.database}/video.json`)
@@ -300,6 +301,7 @@ export class VideoService {
         })
       )
       .subscribe((response) => {
+        this.showLoader = false;
         this.videos = response;
       });
   }
