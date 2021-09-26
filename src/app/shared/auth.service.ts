@@ -34,10 +34,6 @@ export class AuthService {
     public http: HttpClient,
     public paypalService: PaypalService
   ) {
-    if(this.isLoggedIn){
-      this.checkIsSubcriptionActive();
-      this.checkIsPremiumUser();
-    }
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {

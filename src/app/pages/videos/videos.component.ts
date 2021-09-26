@@ -19,6 +19,7 @@ export class VideosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.document.body.classList.remove('hidden');
     this.document.body.classList.add('fixed');
 
@@ -28,7 +29,6 @@ export class VideosComponent implements OnInit {
     }
 
     AOS.init();
-    window.scroll(0, 0);
 
     if(!this.videoService.videos){
       this.videoService.getVideos();
