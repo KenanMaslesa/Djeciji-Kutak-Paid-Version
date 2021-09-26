@@ -11,7 +11,6 @@ export class CheckIsPremiumComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    debugger
     this.authService.checkIsPremiumUser();
   }
 
