@@ -45,7 +45,7 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
-        //this.checkIsPremiumUser();
+        this.checkIsPremiumUser();
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
