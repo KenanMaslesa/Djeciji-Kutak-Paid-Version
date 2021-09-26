@@ -19,6 +19,7 @@ export class AuthService {
   resetPasswordErrorMessages: string;
   resetPasswordSuccessMessages: string;
   showLoader = false;
+  showAuthLoader = true;
   isPremiumUser = false;
   isSubscriptionActive = false;
   subscriptionID: any;
@@ -44,6 +45,7 @@ export class AuthService {
         this.checkIsPremiumUser();
         this.checkIsSubcriptionActive();
       } else {
+        this.showAuthLoader = false;
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
         this.isPremiumUser = false;
@@ -192,6 +194,7 @@ export class AuthService {
         .subscribe((responseData) => {
           if (responseData != null) {
             this.isPremiumUser = true;
+            this.showAuthLoader = false;
             return true;
           } else {
             this.checkIsUplatnicaActive();
@@ -269,6 +272,7 @@ export class AuthService {
           }
         )
         .subscribe((responseData) => {
+          this.showAuthLoader = false;
           if (responseData != null) {
             for (const key in responseData) {
               var date = new Date(responseData[key].uplatnica.date);
