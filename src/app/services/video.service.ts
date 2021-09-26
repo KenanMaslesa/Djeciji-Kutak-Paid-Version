@@ -276,12 +276,20 @@ export class VideoService {
       .pipe(
         map((responseData) => {
           const videos = [];
+          this.ytIDs = [];
           for (const key in responseData) {
             if (
               (responseData.hasOwnProperty(key) &&
                 responseData[key].language == language) ||
               language == 'all'
             ) {
+              if (this.authService.isPremiumUser) {
+                this.ytIDs.push(responseData[key].id);
+              } else {
+                if (responseData[key].free) {
+                  this.ytIDs.push(responseData[key].id);
+                }
+              }
               videos.push({
                 ...responseData[key],
                 firebaseId: key,
@@ -302,6 +310,8 @@ export class VideoService {
       )
       .subscribe((response) => {
         this.showLoader = false;
+        debugger
+        this.createPlaylist(this.ytIDs);
         this.videos = response;
       });
   }

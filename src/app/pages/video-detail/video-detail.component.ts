@@ -53,6 +53,9 @@ export class VideoDetailComponent implements OnInit {
 
   onChangeLanguage(value) {
     this.getVideosByLanguage(value);
+    setTimeout(() => {
+      this.playVideo(this.videoService.activeVideo)
+    }, 1000);
   }
   getFavoriteVideos() {
     this.videoService.getFavoriteVideos().subscribe((response) => {
