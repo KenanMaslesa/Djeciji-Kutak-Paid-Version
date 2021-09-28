@@ -18,7 +18,7 @@ export class FavoriteVideoDetailComponent implements OnInit {
     window.scroll(0, 0);
     this.id = this.route.snapshot.paramMap.get('id');
     this.getFavoriteVideos();
-    this.videoService.getFavoriteVideoById(this.id);
+    this.videoService.getVideoByTitle(this.id);
   }
 
   searchVideos(searchTerm){
