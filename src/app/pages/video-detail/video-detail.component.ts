@@ -92,7 +92,7 @@ export class VideoDetailComponent implements OnInit {
 
   playVideo(video){
     this.videoService.activeVideo = video;
-    var tempUrl = 'https://www.youtube.com/embed/'+video.id+ this.videoService.iframePart + this.videoService.playlistUrl;
+    var tempUrl = 'https://www.youtube.com/embed/'+video.id+ this.videoService.iframePart + this.videoService.playlistUrl +video.id;
     this.videoService.activeVideo.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tempUrl);
     this.showLoader = true;
     setTimeout(() => {

@@ -186,7 +186,7 @@ export class VideoService {
               responseVideo.id +
               this.iframePart +
               //responseVideo.id for paid version
-              this.playlistUrl
+              this.playlistUrl + responseVideo.id
           );
       });
   }
@@ -214,7 +214,7 @@ export class VideoService {
               responseVideo.id +
               this.iframePart +
               //responseVideo.id for paid version
-              this.playlistUrl
+              this.playlistUrl + responseVideo.id
           );
       });
   }
