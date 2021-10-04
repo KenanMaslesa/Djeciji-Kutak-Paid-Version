@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Video } from 'src/app/models/video';
 import { VideoService } from 'src/app/services/video.service';
@@ -13,11 +14,17 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class FavoriteVideoDetailComponent implements OnInit {
   public id: string;
   favoriteVideos:  Video [];
-  constructor(public videoService: VideoService, private route: ActivatedRoute, private router: Router, public authService: AuthService, @Inject(DOCUMENT) private document: Document) { }
+  showLoader = false;
+  constructor(public videoService: VideoService, private route: ActivatedRoute, private router: Router,private sanitizer: DomSanitizer, public authService: AuthService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
     this.document.body.classList.add('hidden');
     this.getFavoriteVideosOnInit();
+    this.showLoader = true;
+    setTimeout(() => {
+      this.document.querySelector('iframe').contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*')
+      this.showLoader = false;
+    }, 3000);
   }
 
   searchVideos(searchTerm){
@@ -54,5 +61,16 @@ export class FavoriteVideoDetailComponent implements OnInit {
 
   onChangeLanguage(value){
     this.getVideosByLanguage(value);
+  }
+
+  playVideo(video){
+    this.showLoader = true;
+    this.videoService.activeVideo = video;
+    var tempUrl = 'https://www.youtube.com/embed/'+video.id+ this.videoService.iframePart + (this.videoService.favoritePlaylistUrl!=undefined? this.videoService.favoritePlaylistUrl:video.id) ;
+    this.videoService.activeVideo.iframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tempUrl);
+    setTimeout(() => {
+      this.document.querySelector('iframe').contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      this.showLoader = false;
+    }, 3000);
   }
 }

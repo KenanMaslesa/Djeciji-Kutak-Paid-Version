@@ -42,6 +42,9 @@
       <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 mp-0 main-video">
           <div class="currentVideo" *ngIf="videoService.activeVideo">
             <iframe class="responsive-iframe" [src]="videoService.activeVideo.iframeUrl" allow='autoplay' allowfullscreen frameborder="0"></iframe>
+            <div *ngIf="showLoader" class="loader">
+              <span>učitavanje..</span>
+            </div>
           </div>
 
           <div class="row" style="background: #bbe6f9; margin: 0;">
@@ -78,7 +81,7 @@
                     <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
                       <figcaption class="d-flex align-items-center justify-content-center">
                           <h2 class="video-title">{{video.title}}</h2>
-                          <a (click)="videoService.activeVideo = video">View more</a>
+                          <a (click)="playVideo(video)">View more</a>
                       </figcaption>
                   </figure>
                   <div class="d-flex justify-content-between tm-text-gray">
