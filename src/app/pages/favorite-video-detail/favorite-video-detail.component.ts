@@ -15,10 +15,7 @@ export class FavoriteVideoDetailComponent implements OnInit {
   constructor(public videoService: VideoService, private route: ActivatedRoute, private router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
-    window.scroll(0, 0);
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.getFavoriteVideos();
-    this.videoService.getVideoByTitle(this.id);
+    this.getFavoriteVideosOnInit();
   }
 
   searchVideos(searchTerm){
@@ -28,6 +25,18 @@ export class FavoriteVideoDetailComponent implements OnInit {
   getFavoriteVideos(){
     this.videoService.getFavoriteVideos().subscribe(response => {
       this.favoriteVideos = response;
+      this.videoService.createPlaylist(this.videoService.favoriteYtIDs);
+
+    })
+  }
+
+  getFavoriteVideosOnInit(){
+    this.videoService.getFavoriteVideos().subscribe(response => {
+      this.favoriteVideos = response;
+      this.videoService.createPlaylist(this.videoService.favoriteYtIDs);
+      window.scroll(0, 0);
+      this.id = this.route.snapshot.paramMap.get('id');
+      this.videoService.getVideoByTitle(this.id);
     })
   }
 
