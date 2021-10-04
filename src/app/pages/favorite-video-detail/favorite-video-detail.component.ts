@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Video } from 'src/app/models/video';
 import { VideoService } from 'src/app/services/video.service';
@@ -12,9 +13,10 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class FavoriteVideoDetailComponent implements OnInit {
   public id: string;
   favoriteVideos:  Video [];
-  constructor(public videoService: VideoService, private route: ActivatedRoute, private router: Router, public authService: AuthService) { }
+  constructor(public videoService: VideoService, private route: ActivatedRoute, private router: Router, public authService: AuthService, @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
+    this.document.body.classList.add('hidden');
     this.getFavoriteVideosOnInit();
   }
 
