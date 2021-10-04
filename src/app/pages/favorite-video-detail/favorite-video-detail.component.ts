@@ -42,7 +42,7 @@ export class FavoriteVideoDetailComponent implements OnInit {
   getFavoriteVideosOnInit(){
     this.videoService.getFavoriteVideos().subscribe(response => {
       this.favoriteVideos = response;
-      this.videoService.createPlaylist(this.videoService.favoriteYtIDs);
+      this.videoService.createFavoritePlaylist(this.videoService.favoriteYtIDs);
       window.scroll(0, 0);
       this.id = this.route.snapshot.paramMap.get('id');
       this.videoService.getVideoByTitle(this.id);
