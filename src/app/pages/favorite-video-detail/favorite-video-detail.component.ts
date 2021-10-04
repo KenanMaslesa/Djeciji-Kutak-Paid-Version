@@ -34,7 +34,7 @@ export class FavoriteVideoDetailComponent implements OnInit {
   getFavoriteVideos(){
     this.videoService.getFavoriteVideos().subscribe(response => {
       this.favoriteVideos = response;
-      this.videoService.createPlaylist(this.videoService.favoriteYtIDs);
+      this.videoService.createFavoritePlaylist(this.videoService.favoriteYtIDs);
 
     })
   }
