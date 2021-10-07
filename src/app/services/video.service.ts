@@ -25,7 +25,7 @@ export class VideoService {
   favoritePlaylistUrl: string;
   language = 'all';
   iframePart =
-    '?enablejsapi=1&enablecastapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&autoplay=1&loop=1&playlist=';
+    '?enablejsapi=1&enablecastapi=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&autoplay=1&loop=1&playlist=';
   constructor(
     private http: HttpClient,
     private sanitizer: DomSanitizer,
