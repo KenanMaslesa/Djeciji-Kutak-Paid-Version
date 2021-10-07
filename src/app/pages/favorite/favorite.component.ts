@@ -20,6 +20,11 @@ export class FavoriteComponent implements OnInit {
     window.scroll(0, 0);
     AOS.init();
     this.getFavoriteVideos();
+
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      this.document.querySelector('#tm-video').remove();
+    }
   }
 
   getFavoriteVideos(){
