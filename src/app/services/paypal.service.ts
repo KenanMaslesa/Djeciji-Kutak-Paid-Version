@@ -18,7 +18,10 @@ export class PaypalService {
    }
 
   onSubscriptionPlanSelected(planId) {
-    this.showPaypalButtons = true;
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user!=null){
+      this.showPaypalButtons = true;
+    }
     this.activeSubscriptionPlanId = planId;
   }
 
