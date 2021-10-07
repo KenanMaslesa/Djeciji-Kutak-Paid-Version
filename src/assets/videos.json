@@ -767,5 +767,35 @@
     "id" : "SYKOkpo-0Fk",
     "language" : "bos",
     "title" : "Mumijevi - Brodolom"
+  },
+  "20" : {
+    "free" : false,
+    "id" : "la-jqhcwAWs",
+    "language" : "bos",
+    "title" : "Velika nevolja - Štrumfovi"
+  },
+  "21" : {
+    "free" : false,
+    "id" : "7BR45m0BfYc",
+    "language" : "bos",
+    "title" : "Veliki štrumf - Štrumfovi"
+  },
+  "22" : {
+    "free" : false,
+    "id" : "aO_VWdhI1VE",
+    "language" : "bos",
+    "title" : "Sve što sija nije štrumf - Štrumfovi"
+  },
+  "23" : {
+    "free" : false,
+    "id" : "tX5fLME9Jdw",
+    "language" : "bos",
+    "title" : "Lažni štrumf - Štrumfovi"
+  },
+  "24" : {
+    "free" : false,
+    "id" : "qQHVZPd0C_k",
+    "language" : "bos",
+    "title" : "Magični Vicko - Štrumfovi"
   }
 }
