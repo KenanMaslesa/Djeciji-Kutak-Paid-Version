@@ -56,3 +56,22 @@
 .tm-gallery{
   min-height: 60vh;
 }
+
+.total{
+  text-align: right;
+  margin-top: -40px;
+  color: white !important;
+    filter: drop-shadow(1px 4px 6px rgba(128, 128, 128, 0.9));
+    font-family: 'Circular-Loom';
+
+  @media(max-width: 768px){
+    text-align: center;
+    margin-top: 0;
+  }
+}
+
+.mm-10{
+  @media(max-width: 768px){
+    margin-top: 10px !important;
+  }
+}
