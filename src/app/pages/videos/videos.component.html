@@ -22,7 +22,6 @@
 </div>
 
 <div class="container-fluid tm-container-content mm-10 tm-mt-60">
-  <p class="total" *ngIf="videoService.videos && videoService.tempVideos">Prikazano: {{videoService.videos.length}}/{{videoService.tempVideos.length}}</p>
   <p class="subscriptionMessage" *ngIf="authService.subscriptionMessage">{{authService.subscriptionMessage}} {{authService.subscriptionDetails.billing_info.next_billing_time | date: 'dd.MM.yyyy.'}}</p>
   <div class="row tm-gallery">
 
