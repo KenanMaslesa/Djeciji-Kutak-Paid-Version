@@ -1,0 +1,30 @@
+
+
+.page-not-found-container{
+  padding: 50px;
+
+  .page-not-found-content  {
+    span{
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 60px;
+      line-height: 66px;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: #393939;
+      display: block;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      text-align: left;
+      font-size: 18px;
+      line-height: 1.85;
+      letter-spacing: normal;
+      margin-bottom: 26px;
+      padding-right: 25px;
+  }
+  
+  }
+}

@@ -18,6 +18,7 @@ import { AdminVideosComponent } from './components/admin-components/admin-videos
 import { PretplataComponent } from './pages/pretplata/pretplata.component';
 import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
 import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/videos', pathMatch: 'full' },
@@ -41,6 +42,8 @@ const routes: Routes = [
   { path: 'admin/uplatnice', component: UplatniceComponent, canActivate: [RoleGuard] },
   { path: 'admin/videos', component: AdminVideosComponent, canActivate: [RoleGuard] },
   { path: 'admin/messages', component: ContactMessagesComponent, canActivate: [RoleGuard] },
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({
