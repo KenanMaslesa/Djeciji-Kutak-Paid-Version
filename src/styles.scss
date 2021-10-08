@@ -850,6 +850,7 @@ select:not([multiple]) {
   overflow: hidden;
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
 
+  /*
   &::before,
   &::after {
     content: "";
@@ -859,7 +860,7 @@ select:not([multiple]) {
     z-index: 999;
     position: absolute;
     top: 0;
-  }
+  }*/
 }
 .responsive-iframe {
   position: absolute;
