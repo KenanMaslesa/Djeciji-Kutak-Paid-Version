@@ -19,6 +19,7 @@ export class VideosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.videoService.getVideos();
     window.scroll(0, 0);
     this.document.body.classList.remove('hidden');
     this.document.body.classList.add('fixed');

@@ -31,7 +31,6 @@ export class VideoService {
     private sanitizer: DomSanitizer,
     private authService: AuthService
   ) {
-    this.getVideos();
     this.videos = [];
   }
 
