@@ -126,7 +126,7 @@
     "title" : "Twinkle, little star"
   },
   "-Mgyy1tfdOT06oh_2RWp" : {
-    "free" : true,
+    "free" : false,
     "id" : "s1Uvm-HBNwg",
     "language" : "bos",
     "title" : "Tri pileta"
@@ -805,7 +805,7 @@
     "title" : "أغنية بسم الله مع زكي - BISMILLAH pjesmica"
   },
   "26" : {
-    "free" : false,
+    "free" : true,
     "id" : "g2M6M0jLDec",
     "language" : "arabic",
     "title" : "الله خلق كل شىء اغنية زكي - Allah je sve stvorio"
