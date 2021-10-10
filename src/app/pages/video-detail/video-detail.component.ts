@@ -26,7 +26,9 @@ export class VideoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.videoService.getVideos();
+    if(this.videoService.videos.length == 0){
+      this.videoService.getVideos();
+    }
     this.document.body.classList.add('hidden');
     this.showLoader = false;
 
@@ -87,7 +89,7 @@ export class VideoDetailComponent implements OnInit {
   }
 
   loadMore(): void {
-     this.videoService.loadMore(this.videoService.loadMoreIndex++, this.videoService.tempVideos)
+     this.videoService.loadMore(this.videoService.loadMoreIndex++, this.videoService.getTempVideosByCurrentLanguage())
   }
 
   playVideo(video){

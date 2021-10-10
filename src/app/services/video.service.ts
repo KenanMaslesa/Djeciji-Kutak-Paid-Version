@@ -136,6 +136,8 @@ export class VideoService {
           this.loadMore(0, this.tempVideos);
           this.createPlaylist(this.ytIDs);
           setTimeout(() => {
+            debugger
+            this.showLoadMoreButton = this.videos.length >= 8;
             this.showLoader = false;
           }, 1000);
         },
@@ -143,6 +145,16 @@ export class VideoService {
           alert(error.message);
         }
       );
+  }
+
+  getTempVideosByCurrentLanguage(){
+    var tempArray = [];
+    this.tempVideos.forEach(video => {
+      if(video.language == this.language || this.language == 'all'){
+        tempArray.push(video);
+      }
+    });
+    return tempArray;
   }
 
   shuffleArray(array) {
@@ -272,6 +284,7 @@ export class VideoService {
 
   getVideosByLanguage() {
     this.showLoader = true;
+    this.showFreeVideos = this.language == 'all';
     this.http
       .get(`assets/videos.json`)
       //.get(`${environment.firebase.database}/video.json`)
@@ -314,6 +327,7 @@ export class VideoService {
         this.showLoader = false;
         this.createPlaylist(this.ytIDs);
         this.videos = response;
+        this.showLoadMoreButton = this.videos.length > 8;
       });
   }
 

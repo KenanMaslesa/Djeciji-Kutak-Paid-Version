@@ -797,5 +797,54 @@
     "id" : "qQHVZPd0C_k",
     "language" : "bos",
     "title" : "Magični Vicko - Strumfovi"
+  },
+  "25" : {
+    "free" : false,
+    "id" : "dPTBZQdsxz0",
+    "language" : "arabic",
+    "title" : "أغنية بسم الله مع زكي - BISMILLAH pjesmica"
+  },
+  "26" : {
+    "free" : false,
+    "id" : "g2M6M0jLDec",
+    "language" : "arabic",
+    "title" : "الله خلق كل شىء اغنية زكي - Allah je sve stvorio"
+  },
+  "27" : {
+    "free" : false,
+    "id" : "d5If7HkXv1I",
+    "language" : "arabic",
+    "title" : "أغنية الأبجدية العربية مع زكي  - Arabic Alphabet Song"
+  },
+  "28" : {
+    "free" : false,
+    "id" : "FL0-UrCx3bc",
+    "language" : "arabic",
+    "title" : "النظافة نصف الإيمان   نصائح زكي -  Čistoća je pola vjere"
+  },
+  "29" : {
+    "free" : false,
+    "id" : "Bj8ceBiKhzY",
+    "language" : "arabic",
+    "title" : "دعونا نتعلم آية الكرسي مع ليث وليلى  - Naučimo Ayatul Kursi"
+  },
+  "30" : {
+    "free" : false,
+    "id" : "Z_duaSO8yIg",
+    "language" : "arabic",
+    "title" : "رمضان سيأتي قريبا - Uskoro će Ramazan"
+  },
+  "31" : {
+    "free" : false,
+    "id" : "rj6apu0-Xc8",
+    "language" : "arabic",
+    "title" : "التخييممع الأصدقاء - Kampovanje sa prijateljima"
+  },
+  "32" : {
+    "free" : false,
+    "id" : "F_hX7WPR7CU",
+    "language" : "arabic",
+    "title" : "أنشدة رمضان مع زكي - Ramazan - pjesmica"
   }
+  
 }
