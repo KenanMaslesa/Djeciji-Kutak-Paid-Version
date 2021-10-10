@@ -26,9 +26,8 @@ export class VideoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.videoService.videos.length == 0){
-      this.videoService.getVideos();
-    }
+    this.videoService.getYtIds();
+   
     this.document.body.classList.add('hidden');
     this.showLoader = false;
 
