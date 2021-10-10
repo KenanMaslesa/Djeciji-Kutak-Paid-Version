@@ -88,7 +88,7 @@ export class VideoService {
     this.favoritePlaylistUrl = url;
   }
 
-  getYtIds(){
+  getYtIdsAndCreatePlaylist(){
     this.ytIDs = [];
     this.http
       .get(`assets/videos.json`)
