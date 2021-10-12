@@ -19,7 +19,7 @@ export class RoleGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if(this.authService.isLoggedIn == true) {
-      if(this.authService.getCurrentUser().email == "kenoo.maslesa@gmail.com"){
+      if(this.authService.getCurrentUser().uid == "ByfsloxG5JbmgMLATQSRTA11nZI2"){
         return true;
       }
       this.router.navigate([''])
