@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Video } from '../models/video';
-import { AuthService } from '../shared/auth.service';
+import { Video } from '../../models/video';
+import { AuthService } from '../../shared/auth/auth.service';
 import { pipe } from 'rxjs';
 
 @Injectable({

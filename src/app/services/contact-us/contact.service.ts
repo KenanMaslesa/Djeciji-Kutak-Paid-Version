@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

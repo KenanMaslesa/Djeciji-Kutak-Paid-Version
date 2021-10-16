@@ -1,8 +1,8 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 import AOS from 'aos';
-import { PaypalService } from 'src/app/services/paypal.service';
+import { PaypalService } from 'src/app/services/paypal/paypal.service';
 import { FacebookService, InitParams } from 'ngx-facebook';
 import { DOCUMENT } from '@angular/common';
 declare var paypal;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video';
 import { AdminService } from 'src/app/services/admin/admin.service';
-import { VideoService } from 'src/app/services/video.service';
+import { VideoService } from 'src/app/services/video/video.service';
 
 @Component({
   selector: 'app-admin-videos',

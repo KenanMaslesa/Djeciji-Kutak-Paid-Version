@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DonateModalService } from 'src/app/services/donate-modal/donate-modal.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-modal-why-paid',

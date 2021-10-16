@@ -3,8 +3,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Video } from 'src/app/models/video';
-import { VideoService } from 'src/app/services/video.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { VideoService } from 'src/app/services/video/video.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-favorite-video-detail',

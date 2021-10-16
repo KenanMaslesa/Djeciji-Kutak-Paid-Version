@@ -3,8 +3,8 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import AOS from 'aos';
 import { ContactService } from 'src/app/services/contact-us/contact.service';
-import { PaypalService } from 'src/app/services/paypal.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { PaypalService } from 'src/app/services/paypal/paypal.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 @Component({
   selector: 'app-homepage-anonymous',
   templateUrl: './homepage-anonymous.component.html',

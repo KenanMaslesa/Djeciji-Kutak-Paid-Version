@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video';
-import { VideoService } from 'src/app/services/video.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { VideoService } from 'src/app/services/video/video.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 import AOS from 'aos';
 import { DOCUMENT } from '@angular/common';
 

@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Payment } from '../models/payment';
-import { PaypalService } from '../services/paypal.service';
+import { Payment } from '../../models/payment';
+import { PaypalService } from '../../services/paypal/paypal.service';
 
 @Injectable({
   providedIn: 'root',
