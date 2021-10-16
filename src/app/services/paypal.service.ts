@@ -13,6 +13,15 @@ export class PaypalService {
   monthlyName = 'month';
   halfyearlyName = 'halfYear';
   yearlyName = 'year';
+  monthlyRegularPriceEUR: number;
+  monthlyDiscountPriceEUR = 1.8;
+  monthlyPriceKM = 3.5;
+  halfYearlyRegularPriceEUR = 10.8;
+  halfYearlyDiscountPriceEUR = 9;
+  halfYearlyPriceKM = 10.8;
+  yearlyRegularPriceEUR = 21.6;
+  yearlyDiscountPriceEUR = 15;
+  yearlyPriceKM = 29.30;
   constructor() {
     this.activeSubscriptionPlanId = this.monthlyPlanId;
    }

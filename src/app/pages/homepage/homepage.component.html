@@ -19,12 +19,11 @@
             <li><a (click)="scrollToElement(pricing)">Cijene</a></li>
             <li><a (click)="scrollToElement(faq)">Najčešća pitanja</a></li>
             <li><a (click)="scrollToElement(contact)">Kontakt</a></li>
-            <li *ngIf="!authService.isLoggedIn"><a routerLink="/auth">Prijava/Registracija</a></li>
+            <li *ngIf="!authService.isLoggedIn"><a routerLink="auth">Prijava/Registracija</a></li>
           </ul>
         </nav><!-- .nav-menu -->
 
-        <a routerLink="/videos" style="display: none;" class="get-started-btn"
-          [class.mobile]="addHeaderBtnClass">Pogledajte videa</a>
+        <a routerLink="/videos" style="display: none;" class="get-started-btn" [class.mobile]="addHeaderBtnClass">Pogledajte videa</a>
         <a routerLink="/videos" class="get-started-btn scrollto">Pogledajte videa</a>
         <nav class="kids-nav" #nav>
           <div class="navicon" (click)="nav.classList.toggle('show')">
@@ -55,7 +54,7 @@
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
-<section id="hero" #home class="d-flex align-items-center">
+<section id="hero" class="d-flex align-items-center" #home>
   <div class="video-wrapper">
     <video [playbackRate]="0.6" autoplay loop muted playsinline id="tm-video">
       <source src="assets/hero.mov" type="video/mp4">
@@ -93,6 +92,7 @@
       </div>
     </div>
   </div>
+
 </section><!-- End Hero -->
 
 <main id="main">
@@ -252,6 +252,7 @@
   </section>
 
 
+
   <!-- ======= Pricing Section ======= -->
   <div id="pricing" class="pricing-tables" #pricing>
     <div class="tables-left-dec">
@@ -270,41 +271,44 @@
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
           <div class="item first-item">
             <h4>Mjesečna pretplata</h4>
-            <em></em>
-            <span>1,8 EUR</span>
-            <em class="priceKM">≈ 3,5 KM</em>
+            <em>{{paypalService.monthlyRegularPriceEUR?paypalService.monthlyRegularPriceEUR + ' EUR': ''}}</em>
+            <span>{{paypalService.monthlyDiscountPriceEUR}} EUR</span>
+            <em class="priceKM">≈ {{paypalService.monthlyPriceKM}} KM</em>
             <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left" data-aos-duration="1200"
               data-aos-delay="200">
 
             <div class="main-blue-button-hover">
-              <a routerLink="/paypal">Pretplatite se</a>
+              <a routerLink="/paypal"
+              >Pretplatite se</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
           <div class="item second-item">
             <h4>Polugodišnja pretplata</h4>
-            <em>10,8 EUR</em>
-            <span>9 EUR</span>
-            <em class="priceKM">≈ 17,5 KM</em>
+            <em>{{paypalService.halfYearlyRegularPriceEUR}} EUR</em>
+            <span>{{paypalService.halfYearlyDiscountPriceEUR}} EUR</span>
+            <em class="priceKM">≈ {{paypalService.halfYearlyPriceKM}} KM</em>
             <img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-up" data-aos-duration="1200"
               data-aos-delay="600">
             <div class="main-blue-button-hover">
-              <a routerLink="/paypal">Pretplatite se</a>
+              <a routerLink="/paypal"
+                >Pretplatite se</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
           <div class="item third-item">
             <h4>Godišnja pretplata</h4>
-            <em>21,6 EUR</em>
-            <span>15 EUR</span>
-            <em class="priceKM">≈ 29,30 KM</em>
+            <em>{{paypalService.yearlyRegularPriceEUR}} EUR</em>
+            <span>{{paypalService.yearlyDiscountPriceEUR}} EUR</span>
+            <em class="priceKM">≈ {{paypalService.yearlyPriceKM}} KM</em>
             <img height="120px" src="/assets/img/omar.png" alt="" data-aos="flip-left" data-aos-duration="1200"
               data-aos-delay="1200">
 
             <div class="main-blue-button-hover">
-              <a routerLink="/paypal">Pretplatite se</a>
+              <a routerLink="/paypal"
+                >Pretplatite se</a>
             </div>
           </div>
         </div>
@@ -351,11 +355,10 @@
 
           <div class="answer" [class.show]="question.classList.contains('active')">
             <p [innerHtml]="faq.answer">
-            </p>
+            </p>         
 
             <div *ngIf="faq.howToSubs">
-              <p>Prvo se trebate registrovati na aplikaciju. Ako se već niste registrovali kliknite na <a
-                  [routerLink]="['/auth']" style="
+              <p>Prvo se trebate registrovati na aplikaciju. Ako se već niste registrovali kliknite na <a [routerLink]="['/auth']" style="
                 width: 130px;
                 display: inline-block;
             " routerLinkActive="active" class="btn btn-info">Registracija</a>
@@ -363,74 +366,57 @@
 
               <p>Nakon toga trebate odabrati svoju pretplatu i način na koji ćete plaćati. </p>
               <h3 style="margin-top: 20px;">Plaćanje uplatnicom</h3>
-              <p>Ako plaćate uplatnicom, trebate uplatiti novac na naš račun a zatim nam poslati neki dokaz da ste
-                uplatili novac i mi ćemo Vam odobriti pristup aplikaciji.
-                Možete nas kontaktirati preko chata koji je dostupan na aplikaciji, ili na viber/whatsapp (062-889-968)
-              </p>
-
+              <p>Ako plaćate uplatnicom, trebate uplatiti novac na naš račun a zatim nam poslati neki dokaz da ste uplatili novac i mi ćemo Vam odobriti pristup aplikaciji.
+                Možete nas kontaktirati preko chata koji je dostupan na aplikaciji, ili na viber/whatsapp (062-889-968) </p>
+              
 
               <h3 style="margin-top: 20px;">Online plaćanje</h3>
-              <p>Plaćanje preko paypala je jako jednostavno pa smo odlučili da ne snimamo video kako se pretplatiti
-                preko paypala.
-                Snimili smo video za one koji nemaju paypal a koji žele da se pretplate preko kartice (Visa, MasterCard,
-                Discover i American Express)</p>
+               <p>Plaćanje preko paypala je jako jednostavno pa smo odlučili da ne snimamo video kako se pretplatiti preko paypala.
+                Snimili smo video za one koji nemaju paypal a koji žele da se pretplate preko kartice (Visa, MasterCard, Discover i American Express)</p>
               <p>Pogledajte video za više informacija:</p>
-              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315"
-                src="https://www.youtube.com/embed/o9kE8jhoGhk?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/o9kE8jhoGhk?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
             <div *ngIf="faq.cancelSubs">
-              <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici 'Moja pretplata'
-                koja se nalazi ispod.
+              <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici 'Moja pretplata' koja se nalazi ispod.
                 Ako ste platili online tu ćete imati i opciju da jednim klikom otkažete pretplatu.
                 <button routerLink="/pretplata" class="btn btn-info">Moja pretplata</button>
               </p>
               <p>Pogledajte video za više informacija:</p>
-              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315"
-                src="https://www.youtube.com/embed/z34s6lDP7XI?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/z34s6lDP7XI?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
-            <div *ngIf="faq.tv">
-              <p>Da, možete. Pogledajte kako to uraditi:</p>
-              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/y3WiQ75G7Eo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            
             <div *ngIf="faq.uplatnice">
               <div class="uplatnica-wrapper">
                 <h3>Uplatnica za godišnju pretplatu</h3>
                 <img class="uplatnica" src="/assets/img/uplatnica-godisnja-pretplata.png" alt="">
               </div>
-
+      
               <div class="uplatnica-wrapper">
                 <h3>Uplatnica za polugodišnju pretplatu</h3>
                 <img class="uplatnica" src="/assets/img/uplatnica-polugodisnja-pretplata.png" alt="">
-
+      
                 <h3 class="abroad__title">Uplate iz inostranstva</h3>
                 <div class="abroad">
-                  <p>Primalac: <strong>Dječiji kutak</strong></p>
-                  <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
-                  <p>IBAN: <strong>BA391613000102595403</strong></p>
-                  <p>SWIFT: <strong>RZBABA2S</strong></p>
+                        <p>Primalac: <strong>Dječiji kutak</strong></p>
+                        <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
+                        <p>IBAN: <strong>BA391613000102595403</strong></p>
+                        <p>SWIFT: <strong>RZBABA2S</strong></p>
+                </div>
                 </div>
               </div>
-            </div>
+
+              <div *ngIf="faq.tv">
+                <p>Da, možete. Pogledajte kako to uraditi:</p>
+                <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/y3WiQ75G7Eo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
 
             <div *ngIf="faq.howToInstall">
               <p>Ako koristite IOS uređaj aplikaciju možete instalirati na App Store-u:
                 <a href="https://apps.apple.com/app/id1585246821">Link do aplikacije</a>
               </p>
               <p>Ako koristite android uređaj aplikaciju možete instalirati na dva načina, pogledajte video:</p>
-              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315"
-                src="https://www.youtube.com/embed/gJLa_vxShYY?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/gJLa_vxShYY?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
           </div>
@@ -449,8 +435,7 @@
         <div class="col-lg-7" data-aos="zoom-in-left" data-aos-duration="1200" data-aos-delay="200">
           <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
             <h2>kontaktirajte nas</h2>
-            <p class="info">Imate neko pitanje ili nam želite uputiti kritiku ili savjet? Pošaljite poruku preko
-              aplikacije ili nam se javite nam viber/whatsapp na broj 062-889-968</p>
+            <p class="info">Imate neko pitanje ili nam želite uputiti kritiku ili savjet? Pošaljite poruku preko aplikacije ili nam se javite nam viber/whatsapp na broj 062-889-968</p>
           </div>
           <img width="100%" data-aos="flip-left" data-aos-duration="1200" data-aos-delay="100"
             src="/assets/img/characters.png">
