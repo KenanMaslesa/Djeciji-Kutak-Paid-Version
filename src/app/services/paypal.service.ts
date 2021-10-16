@@ -18,7 +18,7 @@ export class PaypalService {
   monthlyPriceKM = 3.5;
   halfYearlyRegularPriceEUR = 10.8;
   halfYearlyDiscountPriceEUR = 9;
-  halfYearlyPriceKM = 10.8;
+  halfYearlyPriceKM = 17.5;
   yearlyRegularPriceEUR = 21.6;
   yearlyDiscountPriceEUR = 15;
   yearlyPriceKM = 29.30;
