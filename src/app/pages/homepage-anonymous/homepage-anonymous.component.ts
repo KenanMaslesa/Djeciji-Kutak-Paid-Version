@@ -39,6 +39,10 @@ export class HomepageAnonymousComponent implements OnInit {
     
     this.faqs = [
       {
+        question: 'Da li imate dopuštenje autora za korištenje videozapisa?',
+        answer: 'Da, naravno. Za svaki videozapis koji objavimo imamo dopuštenje njegovog vlasnika. Postavili smo ih na platformu koja omogućava autorima uvid u korištenje njihovih videozapisa te samim tim u svakom momentu imaju mogućnost da dozvole odnosno zabrane korištenje njihovog sadržaja. Sva zarada od videozapisa ide direktno autorima, mi od toga nemamo ništa, samo naplaćujemo korištenje stranice/aplikacije u koju smo uložili i u koju ulažemo dosta truda, vremena i novca.',
+      },
+      {
         question: 'Kako da instaliram aplikaciju?',
         howToInstall: true,
         answer: '',
