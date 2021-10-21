@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import AOS from 'aos';
 import { ContactService } from 'src/app/services/contact-us/contact.service';
 import { PaypalService } from 'src/app/services/paypal/paypal.service';
@@ -16,12 +17,17 @@ export class HomepageComponent implements OnInit {
   showContactUsMessage = false;
   faqs = [];
   constructor(public paypalService: PaypalService, public authService: AuthService, 
-    private contactUsService: ContactService, @Inject(DOCUMENT) private document: Document,) {
+    private contactUsService: ContactService, @Inject(DOCUMENT) private document: Document,
+    private router: Router) {
 
   }
   
 
   ngOnInit(): void {
+    if(this.router.url === '/' && this.authService.isLoggedIn){
+      this.router.navigate(['videos'])
+    }
+     
     window.scroll(0, 0);
     this.document.body.classList.remove('hidden');
     this.document.body.classList.remove('fixed');

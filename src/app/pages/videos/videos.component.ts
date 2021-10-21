@@ -51,7 +51,6 @@ export class VideosComponent implements OnInit {
   }
 
   loadMore(): void {
-    debugger
      this.videoService.loadMore(this.videoService.loadMoreIndex++, this.videoService.getTempVideosByCurrentLanguage())
   }
 

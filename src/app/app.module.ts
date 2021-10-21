@@ -33,7 +33,6 @@ import { PretplataComponent } from './pages/pretplata/pretplata.component';
 import { DesktopNavComponent } from './components/desktop-nav/desktop-nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
-import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
 import { ModalWhyPaidComponent } from './components/modal-why-paid/modal-why-paid.component';
 import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -60,7 +59,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     DesktopNavComponent,
     FooterComponent,
     AuthNavComponent,
-    HomepageAnonymousComponent,
     ModalWhyPaidComponent,
     UplatniceComponent,
     NotFoundComponent,

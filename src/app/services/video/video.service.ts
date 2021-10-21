@@ -171,7 +171,6 @@ export class VideoService {
           this.loadMore(0, this.tempVideos);
           this.createPlaylist(this.ytIDs);
           setTimeout(() => {
-            debugger
             this.showLoadMoreButton = this.videos.length >= 8;
             this.showLoader = false;
           }, 1000);

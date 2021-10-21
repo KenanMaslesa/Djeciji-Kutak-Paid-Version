@@ -16,13 +16,12 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ContactMessagesComponent } from './components/admin-components/contact-messages/contact-messages.component';
 import { AdminVideosComponent } from './components/admin-components/admin-videos/admin-videos.component';
 import { PretplataComponent } from './pages/pretplata/pretplata.component';
-import { HomepageAnonymousComponent } from './pages/homepage-anonymous/homepage-anonymous.component';
 import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/videos', pathMatch: 'full' },
-  { path: '', component: HomepageAnonymousComponent },
+  { path: '', component: HomepageComponent },
   { path: 'pocetna', component: HomepageComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
