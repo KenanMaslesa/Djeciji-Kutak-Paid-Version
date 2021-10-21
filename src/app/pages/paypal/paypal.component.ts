@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import AOS from 'aos';
@@ -11,7 +11,7 @@ declare var paypal;
   templateUrl: './paypal.component.html',
   styleUrls: ['./paypal.component.scss'],
 })
-export class PaypalComponent implements OnInit {
+export class PaypalComponent implements OnInit, AfterViewInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   planId = 'P-1WH391004G147653JMEA5OQQ';
   showPaypalButtons: boolean;
@@ -27,6 +27,10 @@ export class PaypalComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0, 0);
+    AOS.init();
+  }
+
+  ngAfterViewInit(){
     this.document.body.classList.remove('hidden');
 
     const self = this;
@@ -57,10 +61,7 @@ export class PaypalComponent implements OnInit {
         },
       })
       .render(this.paypalElement.nativeElement);
-
-    AOS.init();
   }
-
 
   onlinePaymentClicked() {
     if (!this.authService.isLoggedIn) {

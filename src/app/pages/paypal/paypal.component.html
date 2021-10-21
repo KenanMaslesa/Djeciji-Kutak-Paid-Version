@@ -15,7 +15,7 @@
   <div class="container">
 
     <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
-      <h2>{{onlinePayment || offlinePayment?"Odaberite svoju pretplatu":"Odaberite način plaćanja"}}</h2>
+      <h2>{{onlinePayment || offlinePayment? "Odaberite svoju pretplatu" : "Odaberite način plaćanja"}}</h2>
 
     </div>
 
@@ -67,7 +67,7 @@
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
           <div class="item first-item">
             <h4>Mjesečna pretplata</h4>
-            <em>{{paymentService.monthlyRegularPriceEUR?paymentService.monthlyRegularPriceEUR + ' EUR': ''}}</em>
+            <em>{{paymentService.monthlyRegularPriceEUR? paymentService.monthlyRegularPriceEUR + ' EUR': ''}}</em>
             <span>{{paymentService.monthlyDiscountPriceEUR}} EUR</span>
             <em class="priceKM">≈ {{paymentService.monthlyPriceKM}} KM</em>
             <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left" data-aos-duration="1200"
@@ -122,9 +122,6 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
 </div>
 
