@@ -27,9 +27,9 @@
             'dd.MM.yyyy.'}}</strong> jer ste za taj period platili.</p>
         
         
-        <p *ngIf="authService.subscriptionDetails.status == 'ACTIVE'">Sljedeće plaćanje će se automatski izvršiti:
+        <!--<p *ngIf="authService.subscriptionDetails.status == 'ACTIVE'">Sljedeće plaćanje će se automatski izvršiti:
           <strong>{{subscriptionDate(authService.subscriptionDetails.billing_info.next_billing_time) | date:
-            'dd.MM.yyyy.'}}</strong> ako do tada ne otkažete pretplatu.</p>
+            'dd.MM.yyyy.'}}</strong> ako do tada ne otkažete pretplatu.</p>-->
             <p *ngIf="authService.subscriptionDetails.status == 'CANCELLED'">Možete koristiti našu aplikaciju do:
               <strong>{{subscriptionDate(authService.subscriptionDetails.billing_info.next_billing_time) | date:
                 'dd.MM.yyyy.'}}</strong> jer ste za taj period platili.</p>
