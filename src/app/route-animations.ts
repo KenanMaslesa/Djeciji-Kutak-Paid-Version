@@ -248,7 +248,7 @@ export const fade = trigger('routeAnimations', [
         right: 0,
         top: 0,
         width: '100%',
-        transform: 'translateX(100%)',
+        transform: 'translateX(-100%)',
         opacity: 0,
       }),
     ]),
