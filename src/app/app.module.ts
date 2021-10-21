@@ -35,6 +35,8 @@ import { UplatniceComponent } from './components/admin-components/uplatnice/upla
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ShowOnlyForPremiumUsersDirective } from './shared/directives/show-only-for-premium-users.directive';
 import { ScrollToAnchorDirective } from './shared/directives/scroll-to-anchor.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +65,7 @@ import { ScrollToAnchorDirective } from './shared/directives/scroll-to-anchor.di
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
