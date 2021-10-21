@@ -52,7 +52,7 @@ export class PaypalComponent implements OnInit, AfterViewInit {
         },
         onApprove: (data) => {
           this.paymentService.saveUserPayment(data).subscribe((response) => {
-            this.paymentService.checkIsPremiumUser();
+            this.authService.authStatusChanged.emit(true);
             this.router.navigate(['videos']);
           });
         },

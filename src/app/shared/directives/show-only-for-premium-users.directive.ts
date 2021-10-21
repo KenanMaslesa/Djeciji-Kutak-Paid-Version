@@ -12,18 +12,20 @@ export class ShowOnlyForPremiumUsersDirective {
     private authService: AuthService  ) {
       this.authService.premiumStatusChanged.subscribe((statusChanged) => {
         if(statusChanged){
-          this.checkIsPremiumUser();
+          console.log('statusChanged')
+          this.checkIsPremiumUserAndShowOrHideTemplate();
         }
       })
     }
 
   ngOnInit() {
-    this.checkIsPremiumUser();
+    this.checkIsPremiumUserAndShowOrHideTemplate();
   }
 
-  checkIsPremiumUser(){
+  checkIsPremiumUserAndShowOrHideTemplate(){
     if(this.authService.isLoggedIn && this.authService.isPremiumUser){
       this.viewContainerRef.createEmbeddedView(this.templateRef);
+      console.log('createEmbeddedView')
     }
      else {
       this.viewContainerRef.clear();
