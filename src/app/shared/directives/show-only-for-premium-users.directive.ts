@@ -12,7 +12,6 @@ export class ShowOnlyForPremiumUsersDirective {
     private authService: AuthService  ) {
       this.authService.premiumStatusChanged.subscribe((statusChanged) => {
         if(statusChanged){
-          console.log('statusChanged')
           this.checkIsPremiumUserAndShowOrHideTemplate();
         }
       })
@@ -25,7 +24,6 @@ export class ShowOnlyForPremiumUsersDirective {
   checkIsPremiumUserAndShowOrHideTemplate(){
     if(this.authService.isLoggedIn && this.authService.isPremiumUser){
       this.viewContainerRef.createEmbeddedView(this.templateRef);
-      console.log('createEmbeddedView')
     }
      else {
       this.viewContainerRef.clear();
