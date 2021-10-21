@@ -10,7 +10,7 @@ import {
 } from '@angular/animations';
 
 export const fade = trigger('routeAnimations', [
-  transition('HomePage => VideoPage', [
+  transition('HomePage => *', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
@@ -31,7 +31,7 @@ export const fade = trigger('routeAnimations', [
       ),
     ]),
   ]),
-  transition('VideoPage => HomePage', [
+  transition('* => HomePage', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
@@ -73,7 +73,7 @@ export const fade = trigger('routeAnimations', [
       ),
     ]),
   ]),
-  transition('VideoDetailPage => VideoPage', [
+  transition('VideoDetailPage => *', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
@@ -157,28 +157,7 @@ export const fade = trigger('routeAnimations', [
       ),
     ]),
   ]),
-  transition('FavoriteDetailPage => FavoritePage', [
-    query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        width: '100%',
-        transform: 'translateX(100%)',
-        opacity: 0,
-      }),
-    ]),
-    query(':enter', [
-      animate(
-        '400ms ease',
-        style({
-          transform: 'translateX(0)',
-          opacity: 1,
-        })
-      ),
-    ]),
-  ]),
-  transition('FavoritePage => HomePage', [
+  transition('FavoriteDetailPage => *', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
@@ -249,27 +228,6 @@ export const fade = trigger('routeAnimations', [
         top: 0,
         width: '100%',
         transform: 'translateX(-100%)',
-        opacity: 0,
-      }),
-    ]),
-    query(':enter', [
-      animate(
-        '700ms ease',
-        style({
-          transform: 'translateX(0)',
-          opacity: 1,
-        })
-      ),
-    ]),
-  ]),
-  transition('AuthPage => HomePage', [
-    query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        width: '100%',
-        transform: 'translateX(100%)',
         opacity: 0,
       }),
     ]),
