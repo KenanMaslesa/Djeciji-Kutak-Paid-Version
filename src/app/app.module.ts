@@ -35,6 +35,7 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { ModalWhyPaidComponent } from './components/modal-why-paid/modal-why-paid.component';
 import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ShowOnlyForPremiumUsersDirective } from './shared/directives/show-only-for-premium-users.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +61,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ModalWhyPaidComponent,
     UplatniceComponent,
     NotFoundComponent,
+    ShowOnlyForPremiumUsersDirective
   ],
   imports: [
     BrowserModule,

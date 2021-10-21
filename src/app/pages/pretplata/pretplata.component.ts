@@ -11,7 +11,6 @@ export class PretplataComponent implements OnInit {
   constructor(public paymentService: PaymentService) { }
 
   ngOnInit(): void {
-    this.paymentService.checkIsSubcriptionActive();
   }
 
   subscriptionStatus(status){

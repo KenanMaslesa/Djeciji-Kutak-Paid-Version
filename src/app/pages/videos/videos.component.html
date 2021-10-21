@@ -43,7 +43,7 @@
             </figure>
             <div class="d-flex justify-content-between tm-text-gray">
               <span> {{video.title}}</span>
-              <ng-container *ngIf="authService.isLoggedIn && authService.isPremiumUser">
+              <ng-container *showOnlyForPremiumUsers>
                 <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih" *ngIf="!checkIsFavorite(video)"
                   (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
                 <img height="40px" *ngIf="checkIsFavorite(video)" class="heart" src="assets/img/favorite-red.svg">
@@ -71,7 +71,7 @@
           </figure>
           <div class="d-flex justify-content-between tm-text-gray">
             <span> {{video.title}}</span>
-            <ng-container *ngIf="authService.isLoggedIn && authService.isPremiumUser">
+            <ng-container *showOnlyForPremiumUsers>
               <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih" *ngIf="!checkIsFavorite(video)"
                 (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
               <img height="40px" *ngIf="checkIsFavorite(video)" class="heart" src="assets/img/favorite-red.svg">

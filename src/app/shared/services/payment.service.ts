@@ -93,11 +93,13 @@ export class PaymentService {
             'Vaša pretplata je otkazana, aplikaciju možete koristiti do datuma: ';
           if (dateNow >= next_billing_time) {
             self.authService.isPremiumUser = false;
+            self.authService.premiumStatusChanged.emit(true);
             self.isSubscriptionActive = false;
             self.removeSubscription();
           }
         } else {
           self.authService.isPremiumUser = true;
+          self.authService.premiumStatusChanged.emit(true);
           self.isSubscriptionActive = true;
           self.showPaymentLoader = false;
         }
@@ -245,6 +247,7 @@ export class PaymentService {
                   next_billing_time: endDate,
                 };
               }
+              this.authService.premiumStatusChanged.emit(true);
             }
           }
         });
@@ -289,6 +292,7 @@ export class PaymentService {
           } else {
             this.checkIsUplatnicaActive();
             this.authService.isPremiumUser = false;
+            this.authService.premiumStatusChanged.emit(true);
           }
         });
     }

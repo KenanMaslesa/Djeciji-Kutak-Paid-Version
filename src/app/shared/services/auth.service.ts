@@ -15,6 +15,7 @@ export class AuthService {
   showLoader = false;
   isPremiumUser = false;
   goToPaypalAfterLoginRegistration = false;
+  premiumStatusChanged = new EventEmitter<boolean>();
   authStatusChanged = new EventEmitter<boolean>();
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
