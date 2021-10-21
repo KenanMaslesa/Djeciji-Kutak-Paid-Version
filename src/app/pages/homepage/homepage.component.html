@@ -5,15 +5,15 @@
     <div class="row justify-content-center">
       <div class="col-xl-10 d-flex align-items-center">
         <h1 class="logo mr-auto">
-          <a (click)="scrollToElement(home)">Dječiji kutak<span>.</span></a>
+          <a scrollToAnchor [anchor]="home">Dječiji kutak<span>.</span></a>
         </h1>
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li><a (click)="scrollToElement(about)">O nama</a></li>
-            <li><a (click)="scrollToElement(services)">Zašto se pretplatiti?</a></li>
-            <li><a (click)="scrollToElement(pricing)">Cijene</a></li>
-            <li><a (click)="scrollToElement(faq)">Najčešća pitanja</a></li>
-            <li><a (click)="scrollToElement(contact)">Kontakt</a></li>
+            <li><a scrollToAnchor [anchor]="about">O nama</a></li>
+            <li><a scrollToAnchor [anchor]="services">Zašto se pretplatiti?</a></li>
+            <li><a scrollToAnchor [anchor]="pricing">Cijene</a></li>
+            <li><a scrollToAnchor [anchor]="faq">Najčešća pitanja</a></li>
+            <li><a scrollToAnchor [anchor]="contact">Kontakt</a></li>
             <li *ngIf="!authService.isLoggedIn"><a routerLink="/auth">Prijava/Registracija</a></li>
           </ul>
         </nav><!-- .nav-menu -->
@@ -33,11 +33,11 @@
               Dječiji kutak
             </strong>
           </span>
-          <a (click)="scrollToElement(about); nav.classList.remove('show')">O nama</a>
-          <a (click)="scrollToElement(services); nav.classList.remove('show')">Zašto se pretplatiti?</a>
-          <a (click)="scrollToElement(pricing); nav.classList.remove('show')">Cijene</a>
-          <a (click)="scrollToElement(faq); nav.classList.remove('show')">Najčešća pitanja</a>
-          <a (click)="scrollToElement(contact); nav.classList.remove('show')">Kontakt</a>
+          <a scrollToAnchor [anchor]="about" (click)="removeActiveClassFromNav()">O nama</a>
+          <a scrollToAnchor [anchor]="services" (click)="removeActiveClassFromNav()">Zašto se pretplatiti?</a>
+          <a scrollToAnchor [anchor]="pricing" (click)="removeActiveClassFromNav()">Cijene</a>
+          <a scrollToAnchor [anchor]="faq" (click)="removeActiveClassFromNav()">Najčešća pitanja</a>
+          <a scrollToAnchor [anchor]="contact" (click)="removeActiveClassFromNav()">Kontakt</a>
           <a routerLink="/videos">Pogledajte videa</a>
           <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
           <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
@@ -290,8 +290,8 @@
       </div>
     </div>
   </div>
-  
-    <!-- ======= Frequently Asked Questions Section ======= -->
+
+  <!-- ======= Frequently Asked Questions Section ======= -->
   <section id="faq" #faq class="faq" data-aos-delay="300" data-aos="fade-up" data-aos-duration="1200">
     <div class="container">
 

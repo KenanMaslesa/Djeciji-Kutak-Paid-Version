@@ -34,6 +34,7 @@ import { AuthNavComponent } from './components/navigation/auth-nav/auth-nav.comp
 import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ShowOnlyForPremiumUsersDirective } from './shared/directives/show-only-for-premium-users.directive';
+import { ScrollToAnchorDirective } from './shared/directives/scroll-to-anchor.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { ShowOnlyForPremiumUsersDirective } from './shared/directives/show-only-
     AuthNavComponent,
     UplatniceComponent,
     NotFoundComponent,
-    ShowOnlyForPremiumUsersDirective
+    ShowOnlyForPremiumUsersDirective,
+    ScrollToAnchorDirective
   ],
   imports: [
     BrowserModule,

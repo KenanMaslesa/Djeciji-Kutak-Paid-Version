@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, HostListener, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import AOS from 'aos';
 import { ContactService } from 'src/app/services/contact-us/contact.service';
@@ -16,6 +16,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   addHeaderBtnClass = false;
   showContactUsMessage = false;
   faqs = [];
+  @ViewChild('nav') nav: ElementRef;
+
   constructor(
     public paymentService: PaymentService,
     public authService: AuthService,
@@ -125,14 +127,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     }
   }
 
-  scrollToElement($element) {
-    $element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    });
-  }
-
   bottomReached(): boolean {
     return window.innerHeight + window.scrollY >= 1000;
   }
@@ -150,5 +144,9 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         alert('Molimo Vas pokusajte ponovo');
       }
     );
+  }
+
+  removeActiveClassFromNav(){
+    this.nav.nativeElement.classList.remove('show');
   }
 }
