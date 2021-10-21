@@ -2,7 +2,7 @@
   <div class="navicon" (click)="nav.classList.toggle('show')">
     <div></div>
   </div>
-  <span > 
+  <span>
     <strong *ngIf="authService.getCurrentUser()">
       {{authService.getCurrentUser().email.split('@')[0]}}
     </strong>
@@ -12,9 +12,8 @@
   </span>
   <a routerLink="/pocetna">Početna</a>
   <a routerLink="/videos" [routerLinkActive]="['active']">Videa</a>
-  <a *showOnlyForPremiumUsers  [routerLinkActive]="['active']" routerLink="/omiljeno">Lista omiljenih</a>
+  <a *showOnlyForPremiumUsers [routerLinkActive]="['active']" routerLink="/omiljeno">Lista omiljenih</a>
   <a *showOnlyForPremiumUsers [routerLinkActive]="['active']" routerLink="/pretplata">Moja pretplata</a>
   <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
   <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
-
 </nav>
