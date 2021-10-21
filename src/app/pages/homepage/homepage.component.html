@@ -4,26 +4,22 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-xl-10 d-flex align-items-center">
-        <!-- <h1 class="logo mr-auto"><a href="index.html" style="color: white;">Dječiji kutak<span>.</span></a></h1>-->
         <h1 class="logo mr-auto">
-
-          <a (click)="scrollToElement(home)">Dječiji kutak<span>.</span></a>
+          <a scrollToAnchor [anchor]="home">Dječiji kutak<span>.</span></a>
         </h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!--<a href="index.html" class="logo mr-auto"><img src="assets/img/logo-biggest.png" alt=""></a>-->
-
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li><a (click)="scrollToElement(about)">O nama</a></li>
-            <li><a (click)="scrollToElement(services)">Zašto se pretplatiti?</a></li>
-            <li><a (click)="scrollToElement(pricing)">Cijene</a></li>
-            <li><a (click)="scrollToElement(faq)">Najčešća pitanja</a></li>
-            <li><a (click)="scrollToElement(contact)">Kontakt</a></li>
+            <li><a scrollToAnchor [anchor]="about">O nama</a></li>
+            <li><a scrollToAnchor [anchor]="services">Zašto se pretplatiti?</a></li>
+            <li><a scrollToAnchor [anchor]="pricing">Cijene</a></li>
+            <li><a scrollToAnchor [anchor]="faq">Najčešća pitanja</a></li>
+            <li><a scrollToAnchor [anchor]="contact">Kontakt</a></li>
             <li *ngIf="!authService.isLoggedIn"><a routerLink="/auth">Prijava/Registracija</a></li>
           </ul>
         </nav><!-- .nav-menu -->
 
-        <a routerLink="/videos" style="display: none;" class="get-started-btn" [class.mobile]="addHeaderBtnClass">Pogledajte videa</a>
+        <a routerLink="/videos" style="display: none;" class="get-started-btn"
+          [class.mobile]="addHeaderBtnClass">Pogledajte videa</a>
         <a routerLink="/videos" class="get-started-btn scrollto">Pogledajte videa</a>
         <nav class="kids-nav" #nav>
           <div class="navicon" (click)="nav.classList.toggle('show')">
@@ -37,11 +33,11 @@
               Dječiji kutak
             </strong>
           </span>
-          <a (click)="scrollToElement(about); nav.classList.remove('show')">O nama</a>
-          <a (click)="scrollToElement(services); nav.classList.remove('show')">Zašto se pretplatiti?</a>
-          <a (click)="scrollToElement(pricing); nav.classList.remove('show')">Cijene</a>
-          <a (click)="scrollToElement(faq); nav.classList.remove('show')">Najčešća pitanja</a>
-          <a (click)="scrollToElement(contact); nav.classList.remove('show')">Kontakt</a>
+          <a scrollToAnchor [anchor]="about" (click)="removeActiveClassFromNav()">O nama</a>
+          <a scrollToAnchor [anchor]="services" (click)="removeActiveClassFromNav()">Zašto se pretplatiti?</a>
+          <a scrollToAnchor [anchor]="pricing" (click)="removeActiveClassFromNav()">Cijene</a>
+          <a scrollToAnchor [anchor]="faq" (click)="removeActiveClassFromNav()">Najčešća pitanja</a>
+          <a scrollToAnchor [anchor]="contact" (click)="removeActiveClassFromNav()">Kontakt</a>
           <a routerLink="/videos">Pogledajte videa</a>
           <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
           <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
@@ -63,17 +59,6 @@
   <div class="container-fluid" style="position: absolute;">
     <div class="row justify-content-center main-banner">
       <div class="col-xl-10">
-        <div class="row">
-          <!--<div class="col-xl-5">
-            <h1  data-aos="fade-left"  data-aos-duration="1200">Najbolji crtani filmovi za vašu djecu</h1>
-            <h2  data-aos="fade-right"  data-aos-duration="1200">Odgoj vaše djece zavisi od onoga što gledaju, mi smo se
-              potrudili da im damo ono najbolje</h2>
-            <a  data-aos="flip-up"  data-aos-delay="900"  data-aos-duration="1600" routerLink="videos"
-              class="btn-get-started scrollto">Get Started</a>
-          </div>-->
-
-
-        </div>
         <div class="col-lg-8 align-self-center">
           <div class="header-text-wrapper">
             <div class="item header-text">
@@ -173,13 +158,6 @@
       <div class="row">
         <div class="col-lg-6 offset-lg-3" data-aos="fade-down-left" data-aos-duration="1200" data-aos-delay="200">
 
-          <!-- <div class="section-heading">
-            <h2>Zašto se pretplatiti na platformu <span>Dječiji</span> <em> kutak</em>?</h2>
-            <h4 style="margin-top: 25px;"  data-aos="fade-left"  data-aos-duration="1200"  data-aos-delay="200">
-              U potrazi i potrebi ste za: 
-            </h4>
-          </div>-->
-
           <div class="section-title">
             <h2>Zašto se pretplatiti na Dječiji kutak?</h2>
           </div>
@@ -271,66 +249,41 @@
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
           <div class="item first-item">
             <h4>Mjesečna pretplata</h4>
-            <em>{{paypalService.monthlyRegularPriceEUR?paypalService.monthlyRegularPriceEUR + ' EUR': ''}}</em>
-            <span>{{paypalService.monthlyDiscountPriceEUR}} EUR</span>
-            <em class="priceKM">≈ {{paypalService.monthlyPriceKM}} KM</em>
+            <em>{{paymentService.monthlyRegularPriceEUR? paymentService.monthlyRegularPriceEUR + ' EUR': ''}}</em>
+            <span>{{paymentService.monthlyDiscountPriceEUR}} EUR</span>
+            <em class="priceKM">≈ {{paymentService.monthlyPriceKM}} KM</em>
             <img height="120px" src="/assets/img/hana.png" alt="" data-aos="flip-left" data-aos-duration="1200"
               data-aos-delay="200">
 
             <div class="main-blue-button-hover">
-              <a routerLink="/paypal"
-              >Pretplatite se</a>
+              <a routerLink="/paypal">Pretplatite se</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
           <div class="item second-item">
             <h4>Polugodišnja pretplata</h4>
-            <em>{{paypalService.halfYearlyRegularPriceEUR}} EUR</em>
-            <span>{{paypalService.halfYearlyDiscountPriceEUR}} EUR</span>
-            <em class="priceKM">≈ {{paypalService.halfYearlyPriceKM}} KM</em>
+            <em>{{paymentService.halfYearlyRegularPriceEUR}} EUR</em>
+            <span>{{paymentService.halfYearlyDiscountPriceEUR}} EUR</span>
+            <em class="priceKM">≈ {{paymentService.halfYearlyPriceKM}} KM</em>
             <img height="120px" src="/assets/img/ommar.png" alt="" data-aos="flip-up" data-aos-duration="1200"
               data-aos-delay="600">
             <div class="main-blue-button-hover">
-              <a routerLink="/paypal"
-                >Pretplatite se</a>
+              <a routerLink="/paypal">Pretplatite se</a>
             </div>
           </div>
         </div>
         <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
           <div class="item third-item">
             <h4>Godišnja pretplata</h4>
-            <em>{{paypalService.yearlyRegularPriceEUR}} EUR</em>
-            <span>{{paypalService.yearlyDiscountPriceEUR}} EUR</span>
-            <em class="priceKM">≈ {{paypalService.yearlyPriceKM}} KM</em>
+            <em>{{paymentService.yearlyRegularPriceEUR}} EUR</em>
+            <span>{{paymentService.yearlyDiscountPriceEUR}} EUR</span>
+            <em class="priceKM">≈ {{paymentService.yearlyPriceKM}} KM</em>
             <img height="120px" src="/assets/img/omar.png" alt="" data-aos="flip-left" data-aos-duration="1200"
               data-aos-delay="1200">
 
             <div class="main-blue-button-hover">
-              <a routerLink="/paypal"
-                >Pretplatite se</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--
-  <div id="subscribe" class="subscribe"  data-aos="zoom-in"  data-aos-duration="1200"  data-aos-delay="200">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="inner-content">
-            <div class="row">
-              <div class="col-lg-10 offset-lg-1">
-                <h2>Know Your Website SEO Score by Email</h2>
-                <form id="subscribe" action="" method="get">
-                  <input type="text" name="website" id="website" placeholder="Your Website URL" required="">
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email"
-                    required="">
-                  <button type="submit" id="form-submit" class="main-button ">Subscribe</button>
-                </form>
-              </div>
+              <a routerLink="/paypal">Pretplatite se</a>
             </div>
           </div>
         </div>
@@ -338,7 +291,7 @@
     </div>
   </div>
 
-    <!-- ======= Frequently Asked Questions Section ======= -->
+  <!-- ======= Frequently Asked Questions Section ======= -->
   <section id="faq" #faq class="faq" data-aos-delay="300" data-aos="fade-up" data-aos-duration="1200">
     <div class="container">
 
@@ -355,10 +308,11 @@
 
           <div class="answer" [class.show]="question.classList.contains('active')">
             <p [innerHtml]="faq.answer">
-            </p>         
+            </p>
 
             <div *ngIf="faq.howToSubs">
-              <p>Prvo se trebate registrovati na aplikaciju. Ako se već niste registrovali kliknite na <a [routerLink]="['/auth']" style="
+              <p>Prvo se trebate registrovati na aplikaciju. Ako se već niste registrovali kliknite na <a
+                  [routerLink]="['/auth']" style="
                 width: 130px;
                 display: inline-block;
             " routerLinkActive="active" class="btn btn-info">Registracija</a>
@@ -366,24 +320,37 @@
 
               <p>Nakon toga trebate odabrati svoju pretplatu i način na koji ćete plaćati. </p>
               <h3 style="margin-top: 20px;">Plaćanje uplatnicom</h3>
-              <p>Ako plaćate uplatnicom, trebate uplatiti novac na naš račun a zatim nam poslati neki dokaz da ste uplatili novac i mi ćemo Vam odobriti pristup aplikaciji.
-                Možete nas kontaktirati preko chata koji je dostupan na aplikaciji, ili na viber/whatsapp (062-889-968) </p>
-              
+              <p>Ako plaćate uplatnicom, trebate uplatiti novac na naš račun a zatim nam poslati neki dokaz da ste
+                uplatili novac i mi ćemo Vam odobriti pristup aplikaciji.
+                Možete nas kontaktirati preko chata koji je dostupan na aplikaciji, ili na viber/whatsapp (062-889-968)
+              </p>
+
 
               <h3 style="margin-top: 20px;">Online plaćanje</h3>
-               <p>Plaćanje preko paypala je jako jednostavno pa smo odlučili da ne snimamo video kako se pretplatiti preko paypala.
-                Snimili smo video za one koji nemaju paypal a koji žele da se pretplate preko kartice (Visa, MasterCard, Discover i American Express)</p>
+              <p>Plaćanje preko paypala je jako jednostavno pa smo odlučili da ne snimamo video kako se pretplatiti
+                preko paypala.
+                Snimili smo video za one koji nemaju paypal a koji žele da se pretplate preko kartice (Visa, MasterCard,
+                Discover i American Express)</p>
               <p>Pogledajte video za više informacija:</p>
-              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/o9kE8jhoGhk?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315"
+                src="https://www.youtube.com/embed/o9kE8jhoGhk?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             </div>
 
             <div *ngIf="faq.cancelSubs">
-              <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici 'Moja pretplata' koja se nalazi ispod.
+              <p>Kada se pretplatite sve informacije o Vašoj pretplati moći ćete pronaći na stranici 'Moja pretplata'
+                koja se nalazi ispod.
                 Ako ste platili online tu ćete imati i opciju da jednim klikom otkažete pretplatu.
                 <button routerLink="/pretplata" class="btn btn-info">Moja pretplata</button>
               </p>
               <p>Pogledajte video za više informacija:</p>
-              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/z34s6lDP7XI?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315"
+                src="https://www.youtube.com/embed/z34s6lDP7XI?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             </div>
 
             <div *ngIf="faq.uplatnice">
@@ -391,32 +358,39 @@
                 <h3>Uplatnica za godišnju pretplatu</h3>
                 <img class="uplatnica" src="/assets/img/uplatnica-godisnja-pretplata.png" alt="">
               </div>
-      
+
               <div class="uplatnica-wrapper">
                 <h3>Uplatnica za polugodišnju pretplatu</h3>
                 <img class="uplatnica" src="/assets/img/uplatnica-polugodisnja-pretplata.png" alt="">
-      
+
                 <h3 class="abroad__title">Uplate iz inostranstva</h3>
                 <div class="abroad">
-                        <p>Primalac: <strong>Dječiji kutak</strong></p>
-                        <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
-                        <p>IBAN: <strong>BA391613000102595403</strong></p>
-                        <p>SWIFT: <strong>RZBABA2S</strong></p>
-                </div>
+                  <p>Primalac: <strong>Dječiji kutak</strong></p>
+                  <p>Svrha uplate: <strong>Polugodišnja/Godišnja pretplata</strong></p>
+                  <p>IBAN: <strong>BA391613000102595403</strong></p>
+                  <p>SWIFT: <strong>RZBABA2S</strong></p>
                 </div>
               </div>
+            </div>
 
-              <div *ngIf="faq.tv">
-                <p>Da, možete. Pogledajte kako to uraditi:</p>
-                <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/y3WiQ75G7Eo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+            <div *ngIf="faq.tv">
+              <p>Da, možete. Pogledajte kako to uraditi:</p>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315"
+                src="https://www.youtube.com/embed/y3WiQ75G7Eo" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
 
             <div *ngIf="faq.howToInstall">
               <p>Ako koristite IOS uređaj aplikaciju možete instalirati na App Store-u:
                 <a href="https://apps.apple.com/app/id1585246821">Link do aplikacije</a>
               </p>
               <p>Ako koristite android uređaj aplikaciju možete instalirati na dva načina, pogledajte video:</p>
-              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315" src="https://www.youtube.com/embed/gJLa_vxShYY?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="mobile-iframe" style="margin-top: 20px;" width="560" height="315"
+                src="https://www.youtube.com/embed/gJLa_vxShYY?enablejsapi=1&vq=hd1080&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             </div>
 
           </div>
@@ -435,7 +409,8 @@
         <div class="col-lg-7" data-aos="zoom-in-left" data-aos-duration="1200" data-aos-delay="200">
           <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
             <h2>kontaktirajte nas</h2>
-            <p class="info">Imate neko pitanje ili nam želite uputiti kritiku ili savjet? Pošaljite poruku preko aplikacije ili nam se javite nam viber/whatsapp na broj 062-889-968</p>
+            <p class="info">Imate neko pitanje ili nam želite uputiti kritiku ili savjet? Pošaljite poruku preko
+              aplikacije ili nam se javite nam viber/whatsapp na broj 062-889-968</p>
           </div>
           <img width="100%" data-aos="flip-left" data-aos-duration="1200" data-aos-delay="100"
             src="/assets/img/characters.png">
@@ -483,6 +458,3 @@
 </main><!-- End #main -->
 
 <app-footer></app-footer>
-
-
-<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>

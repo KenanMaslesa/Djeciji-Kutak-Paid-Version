@@ -1,9 +1,8 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import AOS from 'aos';
-import { PaypalService } from 'src/app/services/paypal/paypal.service';
-import { FacebookService, InitParams } from 'ngx-facebook';
+import { PaymentService } from 'src/app/shared/services/payment.service';
 import { DOCUMENT } from '@angular/common';
 declare var paypal;
 
@@ -12,7 +11,7 @@ declare var paypal;
   templateUrl: './paypal.component.html',
   styleUrls: ['./paypal.component.scss'],
 })
-export class PaypalComponent implements OnInit {
+export class PaypalComponent implements OnInit, AfterViewInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   planId = 'P-1WH391004G147653JMEA5OQQ';
   showPaypalButtons: boolean;
@@ -22,12 +21,16 @@ export class PaypalComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public router: Router,
-    public paypalService: PaypalService,
+    public paymentService: PaymentService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
     window.scroll(0, 0);
+    AOS.init();
+  }
+
+  ngAfterViewInit(){
     this.document.body.classList.remove('hidden');
 
     const self = this;
@@ -41,27 +44,24 @@ export class PaypalComponent implements OnInit {
         },
         createSubscription: function (data, actions) {
           return actions.subscription.create({
-            plan_id: self.paypalService.activeSubscriptionPlanId,
+            plan_id: self.paymentService.activeSubscriptionPlanId,
             application_context: {
               shipping_preference: 'NO_SHIPPING',
             },
           });
         },
         onApprove: (data) => {
-          this.authService.saveUserPayment(data).subscribe((response) => {
-            this.authService.checkIsPremiumUser();
+          this.paymentService.saveUserPayment(data).subscribe((response) => {
+            this.authService.authStatusChanged.emit(true);
             this.router.navigate(['videos']);
           });
         },
         onError: (err) => {
-          this.authService.errorMessage = err.message;
+          alert(err.message);
         },
       })
       .render(this.paypalElement.nativeElement);
-
-    AOS.init();
   }
-
 
   onlinePaymentClicked() {
     if (!this.authService.isLoggedIn) {
