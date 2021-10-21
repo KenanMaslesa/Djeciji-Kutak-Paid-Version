@@ -45,6 +45,13 @@ export class PaymentService {
   constructor(private authService: AuthService, private http: HttpClient) {
     this.activeSubscriptionPlanId = this.monthlyPlanId;
     this.checkIsPremiumUser();
+
+    this.authService.authStatusChanged.subscribe((authStatusChanged) => {
+      if(authStatusChanged){
+        console.log('changed')
+        this.checkIsPremiumUser();
+      }
+    })
   }
 
   onSubscriptionPlanSelected(planId) {
@@ -197,6 +204,7 @@ export class PaymentService {
           }
         )
         .subscribe((response) => {
+          this.authService.authStatusChanged.emit(true);
           this.subscriptionID = null;
         });
     }

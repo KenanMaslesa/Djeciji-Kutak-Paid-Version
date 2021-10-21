@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import AOS from 'aos';
-import { PaymentService } from 'src/app/services/payment/payment.service';
+import { PaymentService } from 'src/app/shared/services/payment.service';
 import { DOCUMENT } from '@angular/common';
 declare var paypal;
 

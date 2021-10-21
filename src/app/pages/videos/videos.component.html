@@ -107,4 +107,10 @@
 <app-footer></app-footer>
 
 
-<app-loader *ngIf="videoService.showLoader || paymentService.showPaymentLoader"></app-loader>
+<app-loader *ngIf="videoService.showLoader">
+   Učitavanje...
+</app-loader>
+
+<app-loader *ngIf="paymentService.showPaymentLoader && !videoService.showLoader">
+  Provjera...
+</app-loader>

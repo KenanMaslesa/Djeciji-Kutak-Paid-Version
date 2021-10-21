@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { EventEmitter, Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -15,20 +15,18 @@ export class AuthService {
   showLoader = false;
   isPremiumUser = false;
   goToPaypalAfterLoginRegistration = false;
+  authStatusChanged = new EventEmitter<boolean>();
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public http: HttpClient ) {
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
+    public http: HttpClient
+  ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
-        //this.checkIsPremiumUser();
-        //this.checkIsSubcriptionActive();
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
@@ -63,12 +61,14 @@ export class AuthService {
 
           setTimeout(() => {
             this.showLoader = false;
+            this.authStatusChanged.emit(true);
+
             if (this.goToPaypalAfterLoginRegistration) {
               this.router.navigate(['paypal']);
             } else {
               this.router.navigate(['videos']);
             }
-          }, 2000);
+          }, 1000);
         });
       })
       .catch((error) => {
