@@ -1,57 +1,60 @@
 <app-desktop-nav></app-desktop-nav>
 <div class="payment-details-wrapper">
-  <div class="payment-details" [class.blur]="authService.showSubscriptionLoader">
+  <div class="payment-details" [class.blur]="paymentService.showPaymentLoader">
 
-    
-    <ng-container *ngIf="authService.subscriptionDetails && showModal">
+
+    <ng-container *ngIf="paymentService.subscriptionDetails && showModal">
       <div class="title modal">
         <h3>Jeste li sigurni da želite otkazati pretplatu?</h3>
-        <button class="btn btn-danger"
-        (click)="cancelPaypalSubscription()">DA</button>
+        <button class="btn btn-danger" (click)="cancelPaypalSubscription()">DA</button>
         <button class="btn btn-success" (click)="showModal = false">NE</button>
       </div>
     </ng-container>
-    
-    <ng-container *ngIf="authService.subscriptionDetails">
+
+    <ng-container *ngIf="paymentService.subscriptionDetails">
       <div class="title">
-        <h3>Status Vaše pretplate: {{authService.offlinePayment?"AKTIVNA":""}} {{subscriptionStatus(authService.subscriptionDetails.status)}}</h3>
-        <button *ngIf="authService.subscriptionDetails.status == 'ACTIVE'" class="btn btn-danger"
-        (click)="showModal = true"> Otkazi pretplatu</button>
+        <h3>Status Vaše pretplate: {{paymentService.offlinePayment?"AKTIVNA":""}}
+          {{subscriptionStatus(paymentService.subscriptionDetails.status)}}</h3>
+        <button *ngIf="paymentService.subscriptionDetails.status == 'ACTIVE'" class="btn btn-danger"
+          (click)="showModal = true"> Otkazi pretplatu</button>
       </div>
-      
-      <p>Pretplatili ste se: <strong>{{subscriptionDate(authService.subscriptionDetails.start_time) | date:
-        'dd.MM.yyyy.'}}</strong></p>
 
-        <p *ngIf="authService.offlinePayment">Možete koristiti našu aplikaciju do:
-          <strong>{{subscriptionDate(authService.subscriptionDetails.next_billing_time) | date:
-            'dd.MM.yyyy.'}}</strong> jer ste za taj period platili.</p>
-        
-        
-        <!--<p *ngIf="authService.subscriptionDetails.status == 'ACTIVE'">Sljedeće plaćanje će se automatski izvršiti:
-          <strong>{{subscriptionDate(authService.subscriptionDetails.billing_info.next_billing_time) | date:
+      <p>Pretplatili ste se: <strong>{{subscriptionDate(paymentService.subscriptionDetails.start_time) | date:
+          'dd.MM.yyyy.'}}</strong></p>
+
+      <p *ngIf="paymentService.offlinePayment">Možete koristiti našu aplikaciju do:
+        <strong>{{subscriptionDate(paymentService.subscriptionDetails.next_billing_time) | date:
+          'dd.MM.yyyy.'}}</strong> jer ste za taj period platili.
+      </p>
+
+
+      <!--<p *ngIf="paymentService.subscriptionDetails.status == 'ACTIVE'">Sljedeće plaćanje će se automatski izvršiti:
+          <strong>{{subscriptionDate(paymentService.subscriptionDetails.billing_info.next_billing_time) | date:
             'dd.MM.yyyy.'}}</strong> ako do tada ne otkažete pretplatu.</p>-->
-            <p *ngIf="authService.subscriptionDetails.status == 'CANCELLED'">Možete koristiti našu aplikaciju do:
-              <strong>{{subscriptionDate(authService.subscriptionDetails.billing_info.next_billing_time) | date:
-                'dd.MM.yyyy.'}}</strong> jer ste za taj period platili.</p>
-                
-      
-          <div *ngIf="!authService.offlinePayment">
-            <h3>Vaši podaci:</h3>
-            <p>Ime: <strong>{{authService.subscriptionDetails.subscriber.name.given_name}}</strong></p>
-            <p>Prezime: <strong>{{authService.subscriptionDetails.subscriber.name.surname}}</strong></p>
-        <p>Email preko kojeg ste se pretplatili:
-          <strong>{{authService.subscriptionDetails.subscriber.email_address}}</strong></p>
-        </div>
-      </ng-container>
+      <p *ngIf="paymentService.subscriptionDetails.status == 'CANCELLED'">Možete koristiti našu aplikaciju do:
+        <strong>{{subscriptionDate(paymentService.subscriptionDetails.billing_info.next_billing_time) | date:
+          'dd.MM.yyyy.'}}</strong> jer ste za taj period platili.
+      </p>
 
-    
-      
-      <ng-container *ngIf="!authService.subscriptionDetails && !authService.offlinePayment">
+
+      <div *ngIf="!paymentService.offlinePayment">
+        <h3>Vaši podaci:</h3>
+        <p>Ime: <strong>{{paymentService.subscriptionDetails.subscriber.name.given_name}}</strong></p>
+        <p>Prezime: <strong>{{paymentService.subscriptionDetails.subscriber.name.surname}}</strong></p>
+        <p>Email preko kojeg ste se pretplatili:
+          <strong>{{paymentService.subscriptionDetails.subscriber.email_address}}</strong>
+        </p>
+      </div>
+    </ng-container>
+
+
+
+    <ng-container *ngIf="!paymentService.subscriptionDetails && !paymentService.offlinePayment">
       <h2>Još uvijek niste pretplaćeni</h2>
 
-      
+
       <a class="btn btn-info" routerLink="/paypal">Nazad</a>
     </ng-container>
   </div>
 </div>
-<app-loader *ngIf="authService.showSubscriptionLoader"></app-loader>
+<app-loader *ngIf="paymentService.showPaymentLoader"></app-loader>

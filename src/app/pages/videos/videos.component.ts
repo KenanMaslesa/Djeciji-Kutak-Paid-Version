@@ -1,9 +1,10 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
-import { VideoService } from 'src/app/services/video/video.service';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { VideoService } from 'src/app/shared/services/video.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import AOS from 'aos';
-import { Video } from 'src/app/models/video';
+import { Video } from 'src/app/shared/models/video';
 import { DOCUMENT } from '@angular/common';
+import { PaymentService } from 'src/app/services/payment/payment.service';
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
@@ -15,6 +16,7 @@ export class VideosComponent implements OnInit {
   constructor(
     public videoService: VideoService,
     public authService: AuthService,
+    public paymentService: PaymentService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 

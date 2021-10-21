@@ -3,8 +3,8 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import AOS from 'aos';
 import { ContactService } from 'src/app/services/contact-us/contact.service';
-import { PaypalService } from 'src/app/services/paypal/paypal.service';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { PaymentService } from 'src/app/services/payment/payment.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-homepage',
@@ -16,7 +16,7 @@ export class HomepageComponent implements OnInit {
   addHeaderBtnClass = false;
   showContactUsMessage = false;
   faqs = [];
-  constructor(public paypalService: PaypalService, public authService: AuthService, 
+  constructor(public paymentService: PaymentService, public authService: AuthService, 
     private contactUsService: ContactService, @Inject(DOCUMENT) private document: Document,
     private router: Router) {
 

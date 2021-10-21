@@ -2,9 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Video } from 'src/app/models/video';
-import { VideoService } from 'src/app/services/video/video.service';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Video } from 'src/app/shared/models/video';
+import { VideoService } from 'src/app/shared/services/video.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-video-detail',

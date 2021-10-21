@@ -23,7 +23,7 @@
 </div>
 
 <div class="container-fluid tm-container-content tm-mt-60">
-  <p class="subscriptionMessage" *ngIf="authService.subscriptionMessage">{{authService.subscriptionMessage}} {{authService.subscriptionDetails.billing_info.next_billing_time | date: 'dd.MM.yyyy.'}}</p>
+  <p class="subscriptionMessage" *ngIf="paymentService.subscriptionMessage">{{authService.subscriptionMessage}} {{authService.subscriptionDetails.billing_info.next_billing_time | date: 'dd.MM.yyyy.'}}</p>
   <!--<p class="total" *ngIf="videoService.videos && videoService.tempVideos">Prikazano: {{videoService.videos.length}}/{{videoService.tempVideos.length}}</p>-->
 
   <div class="row tm-gallery">
@@ -107,4 +107,4 @@
 <app-footer></app-footer>
 
 
-<app-loader *ngIf="videoService.showLoader || authService.showAuthLoader"></app-loader>
+<app-loader *ngIf="videoService.showLoader || paymentService.showPaymentLoader"></app-loader>

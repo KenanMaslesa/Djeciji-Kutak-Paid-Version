@@ -20,7 +20,6 @@ import { UplatniceComponent } from './components/admin-components/uplatnice/upla
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/videos', pathMatch: 'full' },
   { path: '', component: HomepageComponent },
   { path: 'pocetna', component: HomepageComponent },
   { path: 'auth', component: AuthComponent },
@@ -46,7 +45,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: false })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

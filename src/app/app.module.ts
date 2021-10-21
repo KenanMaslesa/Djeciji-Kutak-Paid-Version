@@ -14,7 +14,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { AlertsComponent } from './components/alerts/alerts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from './components/loader/loader.component';
 import { VideosComponent } from './pages/videos/videos.component';
@@ -42,7 +41,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     AuthComponent,
     VerifyEmailComponent,
     ForgotPasswordComponent,
-    AlertsComponent,
     LoaderComponent,
     VideosComponent,
     VideoDetailComponent,

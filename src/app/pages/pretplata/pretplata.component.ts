@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { PaymentService } from 'src/app/services/payment/payment.service';
 
 @Component({
   selector: 'app-pretplata',
@@ -8,10 +8,10 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
 })
 export class PretplataComponent implements OnInit {
   showModal = false;
-  constructor(public authService: AuthService) { }
+  constructor(public paymentService: PaymentService) { }
 
   ngOnInit(): void {
-    this.authService.checkIsSubcriptionActive();
+    this.paymentService.checkIsSubcriptionActive();
   }
 
   subscriptionStatus(status){
@@ -26,7 +26,7 @@ export class PretplataComponent implements OnInit {
   }
 
   cancelPaypalSubscription(){
-    this.authService.cancelPaypalSubscription();
+    this.paymentService.cancelPaypalSubscription();
     this.showModal = false;
   }
 }
