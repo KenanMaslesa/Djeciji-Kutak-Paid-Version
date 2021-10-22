@@ -10,7 +10,7 @@
         placeholder="Pretraga" aria-label="Search">
     </form>
 
-    <app-navigation></app-navigation>
+    <mobile-navigation></mobile-navigation>
 
     <nav class="kids-nav" #nav>
       <div class="navicon" (click)="nav.classList.toggle('show')">
@@ -26,8 +26,8 @@
       </span>
       <a routerLink="/pocetna">Početna</a>
       <a routerLink="/videos">Videa</a>
-      <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/omiljeno">Lista omiljenih</a>
-      <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/pretplata">Moja pretplata</a>
+      <a *showOnlyForPremiumUsers routerLink="/omiljeno">Lista omiljenih</a>
+      <a *showOnlyForPremiumUsers routerLink="/pretplata">Moja pretplata</a>
       <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
       <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
 
@@ -55,7 +55,7 @@
         <h2 class="col-12 tm-text-primary" id="main-video-title" *ngIf="videoService.activeVideo">
           {{videoService.activeVideo.title}}</h2>
 
-          <ng-container *ngIf="authService.isPremiumUser">
+          <ng-container *showOnlyForPremiumUsers>
         <img height="40px" class="heart m" placement="top" ngbTooltip="Dodajte u listu omiljenih"
           *ngIf="!checkIsFavorite(videoService.activeVideo)" (click)="markAsFavorite(videoService.activeVideo)"
           src="assets/img/favorite-white.svg">
@@ -124,7 +124,7 @@
             <ng-container *ngIf="videoService.activeVideo">
               <ng-container *ngFor="let video of videoService.videos;">
 
-                <ng-container *ngIf="authService.isPremiumUser">
+                <ng-container *showOnlyForPremiumUsers>
                   <div class="col-12 mb-5 mp" *ngIf="video.id != videoService.activeVideo.id">
                     <figure class="effect-ming tm-video-item" data-video="mOSnBSVAUCE">
                       <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">

@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Video } from 'src/app/models/video';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Video } from 'src/app/shared/models/video';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -97,11 +97,6 @@ export class AdminService {
   }
 
   getUplatnice() {
-    return this.http.get(
-      `${environment.firebase.database}/uplatnice.json`);
+    return this.http.get(`${environment.firebase.database}/uplatnice.json`);
   }
-
- 
-  
- 
 }

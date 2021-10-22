@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  selector: 'mobile-navigation',
+  templateUrl: './mobile-navigation.component.html',
+  styleUrls: ['./mobile-navigation.component.scss']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class MobileNavigationComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
 

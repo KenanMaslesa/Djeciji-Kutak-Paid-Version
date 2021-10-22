@@ -20,22 +20,22 @@ import { UplatniceComponent } from './components/admin-components/uplatnice/upla
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/videos', pathMatch: 'full' },
-  { path: '', component: HomepageComponent },
-  { path: 'pocetna', component: HomepageComponent },
-  { path: 'auth', component: AuthComponent },
+  { path: '', component: HomepageComponent, data: {animation: 'HomePage'} },
+  { path: 'pocetna', component: HomepageComponent, data: {animation: 'HomePage'} },
+  { path: 'auth', component: AuthComponent, data: {animation: 'AuthPage'} },
   { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'videos', component: VideosComponent },
-  { path: 'video/:id', component: VideoDetailComponent },
+  { path: 'videos', component: VideosComponent, data: {animation: 'VideoPage'}},
+  { path: 'video/:id', component: VideoDetailComponent, data: {animation: 'VideoDetailPage'} },
   { path: 'paypal', component: PaypalComponent },
-  { path: 'omiljeno', component: FavoriteComponent, canActivate: [AuthGuard] },
+  { path: 'omiljeno', component: FavoriteComponent, canActivate: [AuthGuard], data: {animation: 'FavoritePage'} },
   {
     path: 'omiljeno/:id',
     component: FavoriteVideoDetailComponent,
     canActivate: [AuthGuard],
+    data: {animation: 'FavoriteDetailPage'}
   },
-  { path: 'pretplata', component: PretplataComponent, canActivate: [AuthGuard] },
+  { path: 'pretplata', component: PretplataComponent, canActivate: [AuthGuard], data: {animation: 'SubscriptionPage'} },
   
   { path: 'admin', component: AdminComponent, canActivate: [RoleGuard] },
   { path: 'admin/uplatnice', component: UplatniceComponent, canActivate: [RoleGuard] },
@@ -46,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: false })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

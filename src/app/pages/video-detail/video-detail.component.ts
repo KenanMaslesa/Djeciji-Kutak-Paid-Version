@@ -1,17 +1,17 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Video } from 'src/app/models/video';
-import { VideoService } from 'src/app/services/video/video.service';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Video } from 'src/app/shared/models/video';
+import { VideoService } from 'src/app/shared/services/video.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-video-detail',
   templateUrl: './video-detail.component.html',
   styleUrls: ['./video-detail.component.scss'],
 })
-export class VideoDetailComponent implements OnInit {
+export class VideoDetailComponent implements OnInit, AfterViewInit {
   public id: string;
   favoriteVideos: Video[];
   showLoader = false;
@@ -26,12 +26,12 @@ export class VideoDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.videoService.getYtIdsAndCreatePlaylist();
 
     if(this.videoService.videos.length == 0){
       this.videoService.getVideos();
     }
-    this.document.body.classList.add('hidden');
     this.showLoader = false;
 
     if(this.authService.getCurrentUser()){
@@ -39,11 +39,14 @@ export class VideoDetailComponent implements OnInit {
     }
     this.id = this.route.snapshot.paramMap.get('id');
     this.videoService.getVideoByTitle(this.id);
-    window.scroll(0, 0);
     this.showLoader = true;
+  }
+
+  ngAfterViewInit(){
+    this.document.body.classList.add('hidden');
     setTimeout(() => {
-      this.document.querySelector('iframe').contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*')
       this.showLoader = false;
+      this.document.querySelector('iframe').contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*')
     }, 3000);
   }
 
@@ -67,6 +70,7 @@ export class VideoDetailComponent implements OnInit {
       this.favoriteVideos = response;
     });
   }
+  
   checkIsFavorite(video) {
     if(this.favoriteVideos == undefined) return false;
 

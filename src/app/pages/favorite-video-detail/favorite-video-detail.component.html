@@ -1,102 +1,101 @@
-
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <h1 class="logo mr-auto">
-      <a routerLink="/videos">Dječiji kutak<span>.</span></a>
+      <a routerLink="/omiljeno">Dječiji kutak<span>.</span></a>
     </h1>
-    
-
-      <form class="d-flex tm-search-form">
-        <input class="form-control tm-search-input" #input (input)="searchVideos(input.value)" type="search" placeholder="Search"
-            aria-label="Search">
+    <form class="d-flex tm-search-form">
+      <input class="form-control tm-search-input" #input (input)="searchVideos(input.value)" type="search"
+        placeholder="Search" aria-label="Search">
     </form>
 
-   <app-navigation></app-navigation>
+    <mobile-navigation></mobile-navigation>
 
-   <nav class="kids-nav" #nav>
-    <div class="navicon" (click)="nav.classList.toggle('show')">
-      <div></div>
-    </div>
-    <span > 
-      <strong *ngIf="authService.getCurrentUser()">
-        {{authService.getCurrentUser().email}}
-      </strong>
-      <strong *ngIf="!authService.getCurrentUser()">
-        Dječiji kutak
-      </strong>
-    </span>
-    <a routerLink="/pocetna">Početna</a>
-    <a routerLink="/videos">Videa</a>
-    <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/omiljeno">Lista omiljenih</a>
-    <a *ngIf="authService.isLoggedIn && authService.isPremiumUser" routerLink="/pretplata">Moja pretplata</a>
-    <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
-    <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
-  
-  </nav>
+    <nav class="kids-nav" #nav>
+      <div class="navicon" (click)="nav.classList.toggle('show')">
+        <div></div>
+      </div>
+      <span>
+        <strong *ngIf="authService.getCurrentUser()">
+          {{authService.getCurrentUser().email}}
+        </strong>
+        <strong *ngIf="!authService.getCurrentUser()">
+          Dječiji kutak
+        </strong>
+      </span>
+      <a routerLink="/pocetna">Početna</a>
+      <a routerLink="/videos">Videa</a>
+      <a *showOnlyForPremiumUsers routerLink="/omiljeno">Lista omiljenih</a>
+      <a *showOnlyForPremiumUsers routerLink="/pretplata">Moja pretplata</a>
+      <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
+      <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
+
+    </nav>
   </div>
 </nav>
 
 <div class="container-fluid tm-container-content pt-5">
 
   <div class="row tm-mb-90">
-      <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 mp-0 main-video">
-          <div class="currentVideo" *ngIf="videoService.activeVideo">
-            <iframe class="responsive-iframe" [src]="videoService.activeVideo.iframeUrl" allow='autoplay' allowfullscreen frameborder="0"></iframe>
-            <div *ngIf="showLoader" class="loader">
-              <span>učitavanje..</span>
-            </div>
-          </div>
-
-          <div class="row" style="background: #bbe6f9; margin: 0;">
-              <h2 class="col-12 tm-text-primary" id="main-video-title" *ngIf="videoService.activeVideo">{{videoService.activeVideo.title}}</h2>
-              <button routerLink="/videos" class="btn btn-sm btn-info btn-back">Nazad</button>
-
-              <div class="categories">
-                <input class="form-control tm-search-input static-input" #input2 (input)="searchVideos(input2.value)" type="search" placeholder="Search"
-                aria-label="Search">
-                <div class="languages mobile">
-                  <select (change)="onChangeLanguage($event.target.value)">
-                    <option value="all">svi jezici</option>
-                    <option value="eng">engleski jezik</option>
-                    <option value="bos">bosanski jezik</option>
-                    <option value="arabic">arapski jezik</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 side-videos" style="z-index: 1;">
-        <div class="languages">
-          <select (change)="onChangeLanguage($event.target.value)">
-            <option value="all">svi jezici</option>
-            <option value="eng">engleski jezik</option>
-            <option value="bos">bosanski jezik</option>
-            <option value="arabic">arapski jezik</option>
-          </select>
+    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 mp-0 main-video">
+      <div class="currentVideo" *ngIf="videoService.activeVideo">
+        <iframe class="responsive-iframe" [src]="videoService.activeVideo.iframeUrl" allow='autoplay' allowfullscreen
+          frameborder="0"></iframe>
+        <div *ngIf="showLoader" class="loader">
+          <span>učitavanje..</span>
         </div>
-          <div class="row mb-3 tm-gallery-details" style="padding-bottom: 50px;">
-            <ng-container *ngFor="let video of favoriteVideos; let i = index">
-
-              <ng-container *ngIf="authService.isPremiumUser">
-                <div class="col-12 mb-5 mp" *ngIf="video.id != videoService.activeVideo.id">
-                  <figure class="effect-ming tm-video-item" data-video="mOSnBSVAUCE">
-                    <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
-                      <figcaption class="d-flex align-items-center justify-content-center">
-                          <h2 class="video-title">{{video.title}}</h2>
-                          <a (click)="playVideo(video)">View more</a>
-                      </figcaption>
-                  </figure>
-                  <div class="d-flex justify-content-between tm-text-gray">
-                      <span class="tm-text-gray video-title">{{video.title}}</span>
-                  </div>
-              </div>
-              </ng-container>
-             
-             
-            </ng-container>
-
-          </div>
       </div>
+
+      <div class="row" style="background: #bbe6f9; margin: 0;">
+        <h2 class="col-12 tm-text-primary" id="main-video-title" *ngIf="videoService.activeVideo">
+          {{videoService.activeVideo.title}}</h2>
+        <button routerLink="/videos" class="btn btn-sm btn-info btn-back">Nazad</button>
+
+        <div class="categories">
+          <input class="form-control tm-search-input static-input" #input2 (input)="searchVideos(input2.value)"
+            type="search" placeholder="Search" aria-label="Search">
+          <div class="languages mobile">
+            <select (change)="onChangeLanguage($event.target.value)">
+              <option value="all">svi jezici</option>
+              <option value="eng">engleski jezik</option>
+              <option value="bos">bosanski jezik</option>
+              <option value="arabic">arapski jezik</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 side-videos" style="z-index: 1;">
+      <div class="languages">
+        <select (change)="onChangeLanguage($event.target.value)">
+          <option value="all">svi jezici</option>
+          <option value="eng">engleski jezik</option>
+          <option value="bos">bosanski jezik</option>
+          <option value="arabic">arapski jezik</option>
+        </select>
+      </div>
+      <div class="row mb-3 tm-gallery-details" style="padding-bottom: 50px;">
+        <ng-container *ngFor="let video of favoriteVideos; let i = index">
+
+          <ng-container *showOnlyForPremiumUsers>
+            <div class="col-12 mb-5 mp" *ngIf="video.id != videoService.activeVideo.id">
+              <figure class="effect-ming tm-video-item" data-video="mOSnBSVAUCE">
+                <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
+                <figcaption class="d-flex align-items-center justify-content-center">
+                  <h2 class="video-title">{{video.title}}</h2>
+                  <a (click)="playVideo(video)">View more</a>
+                </figcaption>
+              </figure>
+              <div class="d-flex justify-content-between tm-text-gray">
+                <span class="tm-text-gray video-title">{{video.title}}</span>
+              </div>
+            </div>
+          </ng-container>
+
+
+        </ng-container>
+
+      </div>
+    </div>
   </div>
 
 </div>
