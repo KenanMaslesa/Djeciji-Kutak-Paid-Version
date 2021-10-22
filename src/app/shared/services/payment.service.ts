@@ -189,13 +189,7 @@ export class PaymentService {
       return this.http.get(
         `${environment.firebase.database}/${
           environment.firebase.subscriptions
-        }/${user.uid}.json`,
-        {
-          params: new HttpParams().set(
-            'auth',
-            user.stsTokenManager.accessToken
-          ),
-        }
+        }/${user.uid}.json`
       );
     }
   }
