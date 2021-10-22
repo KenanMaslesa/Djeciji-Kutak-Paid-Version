@@ -28,7 +28,7 @@
 
   <div class="row tm-gallery">
     <!--FREE-->
-    <ng-container *ngIf="videoService.showFreeVideos">
+    <ng-container *ngIf="videoService.showFreeVideos && !authService.isPremiumUser">
       <ng-container *ngFor="let video of videoService.freeVideos">
         <ng-container *ngIf="!authService.isPremiumUser">
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" data-aos="fade-up" data-aos-duration="1200">

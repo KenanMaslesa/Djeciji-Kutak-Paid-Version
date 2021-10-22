@@ -19,6 +19,7 @@ export class VideoService {
   freeVideos: Video[];
   showFreeVideos = true;
   loadMoreIndex = 1;
+  numberOfLoadedVideosOnScroll = 8;
   ytIDs = [];
   favoriteYtIDs = [];
   playlistUrl: string;
@@ -38,10 +39,10 @@ export class VideoService {
     this.showLoader = true;
     this.ytIDs = [];
     this.http
-      .get(`assets/videos.json`)
-      //.get(`${environment.firebase.database}/video.json`)
-      .pipe(
-        map((responseData) => {
+    .get(`assets/videos.json`)
+    //.get(`${environment.firebase.database}/video.json`)
+    .pipe(
+      map((responseData) => {
           const videos = [];
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
@@ -71,7 +72,7 @@ export class VideoService {
             }
           }
         }
-          return this.shuffleArray(videos);
+          return videos;
         })
       )
       .subscribe(
@@ -82,7 +83,7 @@ export class VideoService {
           this.loadMore(0, this.tempVideos);
           this.createPlaylist(this.ytIDs);
           setTimeout(() => {
-            this.showLoadMoreButton = this.videos.length >= 8;
+            this.showLoadMoreButton = this.videos.length >= this.numberOfLoadedVideosOnScroll;
             this.showLoader = false;
           }, 1000);
         },
@@ -453,16 +454,12 @@ export class VideoService {
     return array;
   }
 
-  randomizeVideos() {
-    this.videos = this.shuffleArray(this.videos);
-  }
-
   loadMore(index, array) {
-    var counter = 0;
-    if ((index + 1) * 8 > array.length) {
+    let counter = 0;
+    if ((index + 1) * this.numberOfLoadedVideosOnScroll > array.length) {
       this.showLoadMoreButton = false;
     }
-    for (var i = index * 8; i < array.length; i++) {
+    for (var i = index * this.numberOfLoadedVideosOnScroll; i < array.length; i++) {
       if (this.authService.isPremiumUser) {
         this.videos.push(array[i]);
         counter++;
@@ -473,7 +470,7 @@ export class VideoService {
         }
       }
 
-      if (counter >= 8) {
+      if (counter >= this.numberOfLoadedVideosOnScroll) {
         return;
       }
     }
