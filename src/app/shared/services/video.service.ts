@@ -206,6 +206,9 @@ export class VideoService {
       )
       .subscribe((response) => {
         this.showFreeVideos = false;
+        if(searchTerm == ""){
+          this.showFreeVideos = true;
+        }
         this.showLoadMoreButton = this.videos.length >= this.numberOfLoadedVideosOnScroll;
         this.tempVideos = response;
         this.loadMore(0, this.tempVideos, true);
