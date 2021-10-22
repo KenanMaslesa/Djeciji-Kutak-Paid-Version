@@ -72,7 +72,7 @@ export class VideoService {
             }
           }
         }
-          return videos;
+          return this.shuffleArray(videos);
         })
       )
       .subscribe(
