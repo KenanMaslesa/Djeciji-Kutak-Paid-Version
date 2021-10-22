@@ -174,6 +174,10 @@ export class PaymentService {
           }
           this.checkPaypalSubcription(this.subscriptionID);
         }
+      }, error => {
+        if(error.status == 401){
+          location.reload();
+        }
       });
     }
   }
