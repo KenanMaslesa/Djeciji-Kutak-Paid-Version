@@ -47,7 +47,12 @@ export class PaymentService {
 
     this.authService.authStatusChanged.subscribe((authStatusChanged) => {
       if(authStatusChanged){
-        this.checkIsPremiumUser();
+        if(this.authService.isLoggedIn){
+          this.checkIsPremiumUser();
+        }
+        else{
+          this.subscriptionMessage = null;
+        }
       }
     })
   }
@@ -89,7 +94,7 @@ export class PaymentService {
         if (self.subscriptionDetails.status != 'ACTIVE') {
           self.subscriptionMessage =
             'Vaša pretplata je otkazana, aplikaciju možete koristiti do datuma: ';
-          if (dateNow >= next_billing_time) {
+          if (dateNow > next_billing_time) {
             self.authService.isPremiumUser = false;
             self.authService.premiumStatusChanged.emit(true);
             self.isSubscriptionActive = false;
@@ -159,27 +164,28 @@ export class PaymentService {
   }
 
   checkIsSubcriptionActive() {
-    var user = this.getCurrentUser();
+    var user = this.authService.getCurrentUser();
     if (user) {
       this.getSubscriptionDetails().subscribe((responseData: Payment) => {
         if (responseData != null) {
+          this.authService.isPremiumUser = true;
           for (const key in responseData) {
             this.subscriptionID = responseData[key].subID;
-            this.checkPaypalSubcription(this.subscriptionID);
           }
+          this.checkPaypalSubcription(this.subscriptionID);
         }
       });
     }
   }
 
   getSubscriptionDetails() {
-    var user = this.getCurrentUser();
+    var user = this.authService.getCurrentUser();
 
     if (user) {
       return this.http.get(
         `${environment.firebase.database}/${
           environment.firebase.subscriptions
-        }/${this.getCurrentUser().uid}.json`,
+        }/${user.uid}.json`,
         {
           params: new HttpParams().set(
             'auth',
@@ -191,7 +197,7 @@ export class PaymentService {
   }
 
   removeSubscription() {
-    var user = this.getCurrentUser();
+    var user = this.authService.getCurrentUser();
     if (user) {
       return this.http
         .delete(
@@ -204,6 +210,7 @@ export class PaymentService {
           }
         )
         .subscribe((response) => {
+          alert('izbrisana pretplata')
           this.authService.authStatusChanged.emit(true);
           this.subscriptionID = null;
         });
@@ -211,7 +218,7 @@ export class PaymentService {
   }
 
   checkIsUplatnicaActive() {
-    var user = this.getCurrentUser();
+    var user = this.authService.getCurrentUser();
 
     if (user) {
       return this.http
@@ -253,7 +260,7 @@ export class PaymentService {
   }
 
   saveUserPayment(data) {
-    var user = this.getCurrentUser();
+    var user = this.authService.getCurrentUser();
     if (user) {
       return this.http.post(
         `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`,
@@ -271,7 +278,7 @@ export class PaymentService {
   }
 
   checkIsPremiumUser() {
-    var user = this.getCurrentUser();
+    var user = this.authService.getCurrentUser();
     if (user) {
       this.showPaymentLoader = true;
       return this.http
@@ -294,9 +301,5 @@ export class PaymentService {
           }
         });
     }
-  }
-
-  getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));
   }
 }

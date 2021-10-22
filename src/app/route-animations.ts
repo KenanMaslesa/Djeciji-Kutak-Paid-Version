@@ -220,7 +220,7 @@ export const fade = trigger('routeAnimations', [
       ),
     ]),
   ]),
-  transition('AuthPage => VideoPage', [
+  transition('AuthPage => *', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
