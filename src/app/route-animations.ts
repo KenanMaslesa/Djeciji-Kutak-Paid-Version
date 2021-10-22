@@ -10,7 +10,7 @@ import {
 } from '@angular/animations';
 
 export const fade = trigger('routeAnimations', [
-  transition('HomePage => *', [
+  transition('HomePage => VideoPage', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
