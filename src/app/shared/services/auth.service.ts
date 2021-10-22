@@ -17,6 +17,7 @@ export class AuthService {
   goToPaypalAfterLoginRegistration = false;
   premiumStatusChanged = new EventEmitter<boolean>();
   authStatusChanged = new EventEmitter<boolean>();
+  localStorageUserDataChanged = new EventEmitter<boolean>();
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
@@ -127,6 +128,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      this.authStatusChanged.emit(true);
       this.goToPaypalAfterLoginRegistration = false;
       this.router.navigate(['']);
     });
