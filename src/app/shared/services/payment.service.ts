@@ -107,6 +107,10 @@ export class PaymentService {
           self.showPaymentLoader = false;
         }
       }
+      else if (this.readyState === 4 && this.status !== 200){
+        self.showPaymentLoader = false;
+        self.authService.isPremiumUser = false;
+      }
     };
     xhttp.open(
       'GET',
@@ -175,7 +179,7 @@ export class PaymentService {
           this.checkPaypalSubcription(this.subscriptionID);
         }
       }, error => {
-        if(error.status == 401 || error.status == 501){ //todo
+        if(error.status == 401 || error.status == 501){ //delete
           location.reload();
         }
       });
