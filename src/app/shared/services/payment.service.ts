@@ -199,14 +199,7 @@ export class PaymentService {
     if (user) {
       return this.http
         .delete(
-          `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`,
-          {
-            params: new HttpParams().set(
-              'auth',
-              user.stsTokenManager.accessToken
-            ),
-          }
-        )
+          `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`)
         .subscribe((response) => {
           alert('izbrisana pretplata')
           this.authService.authStatusChanged.emit(true);
@@ -220,12 +213,7 @@ export class PaymentService {
 
     if (user) {
       return this.http
-        .get(`${environment.firebase.database}/uplatnice/${user.uid}.json`, {
-          params: new HttpParams().set(
-            'auth',
-            user.stsTokenManager.accessToken
-          ),
-        })
+        .get(`${environment.firebase.database}/uplatnice/${user.uid}.json`)
         .subscribe((responseData) => {
           this.showPaymentLoader = false;
           if (responseData != null) {
@@ -264,14 +252,8 @@ export class PaymentService {
         `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`,
         {
           subID: data.subscriptionID,
-        },
-        {
-          params: new HttpParams().set(
-            'auth',
-            user.stsTokenManager.accessToken
-          ),
         }
-      );
+        );
     }
   }
 
@@ -281,14 +263,7 @@ export class PaymentService {
       this.showPaymentLoader = true;
       return this.http
         .get(
-          `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`,
-          {
-            params: new HttpParams().set(
-              'auth',
-              user.stsTokenManager.accessToken
-            ),
-          }
-        )
+          `${environment.firebase.database}/${environment.firebase.subscriptions}/${user.uid}.json`)
         .subscribe((responseData) => {
           if (responseData != null) {
             this.checkIsSubcriptionActive();
