@@ -504,38 +504,4 @@ export class VideoService {
     this.favoritePlaylistUrl = url;
   }
 
-  getYtIdsAndCreatePlaylist(){
-    this.ytIDs = [];
-    this.http
-      .get(`assets/videos.json`)
-      //.get(`${environment.firebase.database}/video.json`)
-      .pipe(
-        map((responseData) => {
-          const videos = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              if(this.language == responseData[key].language || this.language == 'all'){
-
-              if (this.authService.isPremiumUser) {
-                this.ytIDs.push(responseData[key].id);
-              } else {
-                if (responseData[key].free) {
-                  this.ytIDs.push(responseData[key].id);
-                }
-              }
-          
-            }
-          }
-        }
-        })
-      )
-      .subscribe(
-        (response) => {         
-          this.createPlaylist(this.ytIDs);
-        },
-        (error) => {
-          alert('Greška pri kreiranju playliste');
-        }
-      );
-  }
 }

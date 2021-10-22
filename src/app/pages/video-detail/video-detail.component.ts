@@ -27,7 +27,6 @@ export class VideoDetailComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     window.scroll(0, 0);
-    this.videoService.getYtIdsAndCreatePlaylist();
 
     this.videoService.videos = [];
     this.videoService.loadMoreIndex = 1;
