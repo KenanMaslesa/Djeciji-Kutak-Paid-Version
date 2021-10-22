@@ -30,12 +30,9 @@ export class VideosComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     window.scroll(0, 0);
     AOS.init();
-
-    if (this.videoService.videos.length == 0) {
-      this.videoService.getVideos();
-    } else {
-      this.videoService.randomizeVideos();
-    }
+    this.videoService.videos = [];
+    this.videoService.loadMoreIndex = 1;
+    this.videoService.getVideos();
 
     if (this.authService.getCurrentUser()) {
       this.getFavoriteVideos();
