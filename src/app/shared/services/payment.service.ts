@@ -175,7 +175,7 @@ export class PaymentService {
           this.checkPaypalSubcription(this.subscriptionID);
         }
       }, error => {
-        if(error.status == 401 || error.status == 501){
+        if(error.status == 401 || error.status == 501){ //todo
           location.reload();
         }
       });

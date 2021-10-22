@@ -50,6 +50,7 @@ export class VideoDetailComponent implements OnInit, AfterViewInit {
   }
 
   searchVideos(searchTerm) {
+    this.videoService.isSearchByTermOrLanguage = true;
     this.videoService.searchVideos(searchTerm);
   }
 
@@ -59,6 +60,9 @@ export class VideoDetailComponent implements OnInit, AfterViewInit {
   }
 
   onChangeLanguage(value) {
+    this.videoService.loadMoreSearchIndex = 1;
+    this.videoService.isSearchByTermOrLanguage = true;
+    
     this.getVideosByLanguage(value);
     setTimeout(() => {
       this.playVideo(this.videoService.activeVideo)

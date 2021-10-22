@@ -58,7 +58,9 @@ export class VideosComponent implements OnInit, AfterViewInit {
 
   loadMore(): void {
     this.videoService.loadMore(
-      this.videoService.loadMoreIndex++,
+      this.videoService.isSearchByTermOrLanguage
+      ? this.videoService.loadMoreSearchIndex++
+      : this.videoService.loadMoreIndex++,
       this.videoService.getTempVideosByCurrentLanguage()
     );
   }
@@ -70,6 +72,7 @@ export class VideosComponent implements OnInit, AfterViewInit {
   }
 
   searchVideos(searchTerm) {
+    this.videoService.isSearchByTermOrLanguage = true;
     this.videoService.searchVideos(searchTerm);
   }
 
@@ -103,8 +106,10 @@ export class VideosComponent implements OnInit, AfterViewInit {
   getVideosByLanguage() {
     this.videoService.getVideosByLanguage();
   }
-
+  
   onChangeLanguage(value) {
+    this.videoService.loadMoreSearchIndex = 1;
+    this.videoService.isSearchByTermOrLanguage = true;
     this.videoService.language = value;
     this.getVideosByLanguage();
   }

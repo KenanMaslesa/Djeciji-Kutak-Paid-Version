@@ -19,6 +19,8 @@ export class VideoService {
   freeVideos: Video[];
   showFreeVideos = true;
   loadMoreIndex = 1;
+  loadMoreSearchIndex = 1;
+  isSearchByTermOrLanguage = false;
   numberOfLoadedVideosOnScroll = 8;
   ytIDs = [];
   favoriteYtIDs = [];
@@ -204,8 +206,9 @@ export class VideoService {
       )
       .subscribe((response) => {
         this.showFreeVideos = false;
-        this.showLoadMoreButton = false;
-        this.videos = response;
+        this.showLoadMoreButton = this.videos.length >= this.numberOfLoadedVideosOnScroll;
+        this.tempVideos = response;
+        this.loadMore(0, this.tempVideos, true);
       });
   }
 
@@ -252,9 +255,10 @@ export class VideoService {
       )
       .subscribe((response) => {
         this.showLoader = false;
+        this.tempVideos = response;
         this.createPlaylist(this.ytIDs);
-        this.videos = response;
-        this.showLoadMoreButton = this.videos.length > 8;
+        this.loadMore(0, this.tempVideos, true);
+        this.showLoadMoreButton = this.videos.length >= this.numberOfLoadedVideosOnScroll;
       });
   }
 
@@ -454,8 +458,12 @@ export class VideoService {
     return array;
   }
 
-  loadMore(index, array) {
+  loadMore(index, array, isSearchQuery?: boolean) {
     let counter = 0;
+    if(isSearchQuery && this.loadMoreSearchIndex == 1){
+      this.videos = [];
+    }
+
     if ((index + 1) * this.numberOfLoadedVideosOnScroll > array.length) {
       this.showLoadMoreButton = false;
     }
