@@ -29,9 +29,9 @@ export class VideoDetailComponent implements OnInit, AfterViewInit {
     window.scroll(0, 0);
     this.videoService.getYtIdsAndCreatePlaylist();
 
-    if(this.videoService.videos.length == 0){
-      this.videoService.getVideos();
-    }
+    this.videoService.videos = [];
+    this.videoService.loadMoreIndex = 1;
+    this.videoService.getVideos();
     this.showLoader = false;
 
     if(this.authService.getCurrentUser()){
