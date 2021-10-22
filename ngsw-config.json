@@ -7,8 +7,7 @@
       "installMode": "lazy",
       "resources": {
         "files": [
-          "/index.html",
-          "/*.css"
+         
         ]
       }
     },
