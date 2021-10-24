@@ -22,7 +22,7 @@ export class PaymentService {
   monthlyName = 'month';
   halfyearlyName = 'halfYear';
   yearlyName = 'year';
-  /*monthlyRegularPriceEUR: number;
+  monthlyRegularPriceEUR: number;
   monthlyDiscountPriceEUR = 1.8;
   monthlyPriceKM = 3.5;
   halfYearlyRegularPriceEUR = 10.8;
@@ -30,17 +30,7 @@ export class PaymentService {
   halfYearlyPriceKM = 17.5;
   yearlyRegularPriceEUR = 21.6;
   yearlyDiscountPriceEUR = 15;
-  yearlyPriceKM = 29.30;*/
-
-  monthlyRegularPriceEUR = 1.8;
-  monthlyDiscountPriceEUR = 1;
-  monthlyPriceKM = 2;
-  halfYearlyRegularPriceEUR = 9;
-  halfYearlyDiscountPriceEUR = 5;
-  halfYearlyPriceKM = 10;
-  yearlyRegularPriceEUR = 17.5;
-  yearlyDiscountPriceEUR = 10;
-  yearlyPriceKM = 20;
+  yearlyPriceKM = 29.30;
 
   constructor(private authService: AuthService, private http: HttpClient) {
     this.activeSubscriptionPlanId = this.monthlyPlanId;
