@@ -20,29 +20,56 @@ import { UplatniceComponent } from './components/admin-components/uplatnice/upla
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent, data: {animation: 'HomePage'} },
-  { path: 'pocetna', component: HomepageComponent, data: {animation: 'HomePage'} },
-  { path: 'auth', component: AuthComponent, data: {animation: 'AuthPage'} },
+  { path: '', component: HomepageComponent, data: { animation: 'HomePage' } },
+  {
+    path: 'pocetna',
+    component: HomepageComponent,
+    data: { animation: 'HomePage' },
+  },
+  { path: 'auth', component: AuthComponent, data: { animation: 'AuthPage' } },
   { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'videos', component: VideosComponent, data: {animation: 'VideoPage'}},
-  { path: 'video/:id', component: VideoDetailComponent, data: {animation: 'VideoDetailPage'} },
+  {
+    path: 'videos',
+    component: VideosComponent,
+    data: { animation: 'VideoPage' },
+  },
+  {
+    path: 'video/:id',
+    component: VideoDetailComponent,
+    data: { animation: 'VideoDetailPage' },
+  },
   { path: 'paypal', component: PaypalComponent },
-  { path: 'omiljeno', component: FavoriteComponent, canActivate: [AuthGuard], data: {animation: 'FavoritePage'} },
+  {
+    path: 'omiljeno',
+    component: FavoriteComponent,
+    canActivate: [AuthGuard],
+    data: { animation: 'FavoritePage' },
+  },
   {
     path: 'omiljeno/:id',
     component: FavoriteVideoDetailComponent,
     canActivate: [AuthGuard],
-    data: {animation: 'FavoriteDetailPage'}
+    data: { animation: 'FavoriteDetailPage' },
   },
-  { path: 'pretplata', component: PretplataComponent, canActivate: [AuthGuard], data: {animation: 'SubscriptionPage'} },
-  
-  { path: 'admin', component: AdminComponent, canActivate: [RoleGuard] },
-  { path: 'admin/uplatnice', component: UplatniceComponent, canActivate: [RoleGuard] },
-  { path: 'admin/videos', component: AdminVideosComponent, canActivate: [RoleGuard] },
-  { path: 'admin/messages', component: ContactMessagesComponent, canActivate: [RoleGuard] },
-  {path: '404', component: NotFoundComponent},
-  {path: '**', redirectTo: '/404'}
+  {
+    path: 'pretplata',
+    component: PretplataComponent,
+    canActivate: [AuthGuard],
+    data: { animation: 'SubscriptionPage' },
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [RoleGuard],
+    children: [
+      { path: 'uplatnice', component: UplatniceComponent },
+      { path: 'videos', component: AdminVideosComponent },
+      { path: 'messages', component: ContactMessagesComponent },
+    ],
+  },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
