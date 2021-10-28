@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <h1 class="logo mr-auto">
-      <a routerLink="/omiljeno">Dječiji kutak<span>.</span></a>
+      <a routerLink="/premium/omiljeno">Dječiji kutak<span>.</span></a>
     </h1>
     <form class="d-flex tm-search-form">
       <input class="form-control tm-search-input" #input (input)="searchVideos(input.value)" type="search"
@@ -24,8 +24,8 @@
       </span>
       <a routerLink="/pocetna">Početna</a>
       <a routerLink="/videos">Videa</a>
-      <a *showOnlyForPremiumUsers routerLink="/omiljeno">Lista omiljenih</a>
-      <a *showOnlyForPremiumUsers routerLink="/pretplata">Moja pretplata</a>
+      <a *showOnlyForPremiumUsers routerLink="/premium/omiljeno">Lista omiljenih</a>
+      <a *showOnlyForPremiumUsers routerLink="/premium/pretplata">Moja pretplata</a>
       <a *ngIf="authService.isLoggedIn" class="btn btn-danger" (click)="authService.SignOut()">Odjavite se</a>
       <a *ngIf="!authService.isLoggedIn" class="btn btn-danger" routerLink="/auth">Prijava/Registracija</a>
 

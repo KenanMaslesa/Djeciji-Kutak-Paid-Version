@@ -23,12 +23,13 @@
 </div>
 
 <div class="container-fluid tm-container-content tm-mt-60">
-  <p class="subscriptionMessage" *ngIf="paymentService.subscriptionMessage">{{paymentService.subscriptionMessage}} {{paymentService.subscriptionDetails.billing_info.next_billing_time | date: 'dd.MM.yyyy.'}}</p>
+  <p class="subscriptionMessage" *ngIf="paymentService.subscriptionMessage">{{paymentService.subscriptionMessage}}
+    {{paymentService.subscriptionDetails.billing_info.next_billing_time | date: 'dd.MM.yyyy.'}}</p>
   <!--<p class="total" *ngIf="videoService.videos && videoService.tempVideos">Prikazano: {{videoService.videos.length}}/{{videoService.tempVideos.length}}</p>-->
 
   <div class="row tm-gallery">
     <!--LOADING-->
-    <ng-container *ngIf="videoService.showLoader">
+    <ng-container *ngIf="videoService.showLoader || paymentService.showPaymentLoader">
       <ng-container *ngFor="let video of [1, 2, 3, 4, 5, 6, 7, 8]">
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" data-aos="fade-up" data-aos-duration="1200">
           <figure class="effect-ming tm-video-item">
@@ -41,11 +42,39 @@
         </div>
       </ng-container>
     </ng-container>
-    <!--LOADING-->
-    <!--FREE-->
-    <ng-container *ngIf="videoService.showFreeVideos && !authService.isPremiumUser">
-      <ng-container *ngFor="let video of videoService.freeVideos">
-        <ng-container *ngIf="!authService.isPremiumUser">
+    <!--LOADING END-->
+
+    <ng-container *ngIf="!videoService.showLoader && !paymentService.showPaymentLoader">
+      <!--FREE-->
+      <ng-container *ngIf="videoService.showFreeVideos && !authService.isPremiumUser">
+        <ng-container *ngFor="let video of videoService.freeVideos">
+          <ng-container *ngIf="!authService.isPremiumUser">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" data-aos="fade-up" data-aos-duration="1200">
+              <figure class="effect-ming tm-video-item">
+                <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
+                <figcaption class="d-flex align-items-center justify-content-center">
+                  <h2 class="video-title"> {{video.title}}</h2>
+                  <a [routerLink]="['/video', video.titleForUrl]" (click)="videoService.activeVideo = video">View
+                    more</a>
+                </figcaption>
+              </figure>
+              <div class="d-flex justify-content-between tm-text-gray">
+                <span> {{video.title}}</span>
+                <ng-container *showOnlyForPremiumUsers>
+                  <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih"
+                    *ngIf="!checkIsFavorite(video)" (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
+                  <img height="40px" *ngIf="checkIsFavorite(video)" class="heart" src="assets/img/favorite-red.svg">
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <!--FREE END-->
+
+      <ng-container *ngFor="let video of videoService.videos">
+
+        <ng-container *showOnlyForPremiumUsers>
           <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" data-aos="fade-up" data-aos-duration="1200">
             <figure class="effect-ming tm-video-item">
               <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
@@ -57,69 +86,47 @@
             <div class="d-flex justify-content-between tm-text-gray">
               <span> {{video.title}}</span>
               <ng-container *showOnlyForPremiumUsers>
-                <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih" *ngIf="!checkIsFavorite(video)"
-                  (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
+                <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih"
+                  *ngIf="!checkIsFavorite(video)" (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
                 <img height="40px" *ngIf="checkIsFavorite(video)" class="heart" src="assets/img/favorite-red.svg">
               </ng-container>
             </div>
           </div>
         </ng-container>
-      </ng-container>
-    </ng-container>
 
-    <!--FREE-->
-    <ng-container *ngFor="let video of videoService.videos">
-
-      <ng-container *showOnlyForPremiumUsers>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" data-aos="fade-up" data-aos-duration="1200">
-          <figure class="effect-ming tm-video-item">
-            <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
-            <figcaption class="d-flex align-items-center justify-content-center">
-              <h2 class="video-title"> {{video.title}}</h2>
-              <a [routerLink]="['/video', video.titleForUrl]" (click)="videoService.activeVideo = video">View more</a>
-            </figcaption>
-          </figure>
-          <div class="d-flex justify-content-between tm-text-gray">
-            <span> {{video.title}}</span>
-            <ng-container *showOnlyForPremiumUsers>
-              <img height="40px" placement="top" ngbTooltip="Dodajte u listu omiljenih" *ngIf="!checkIsFavorite(video)"
-                (click)="markAsFavorite(video)" src="assets/img/favorite-white.svg">
-              <img height="40px" *ngIf="checkIsFavorite(video)" class="heart" src="assets/img/favorite-red.svg">
-            </ng-container>
-          </div>
-        </div>
-      </ng-container>
-
-      <ng-container *ngIf="!authService.isPremiumUser">
-        <ng-container *ngIf="!video.free">
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp" (click)="authService.goToPaypalAfterLoginRegistration = true" routerLink="/paypal"
-            data-aos="fade-up" data-aos-duration="1200">
-            <figure class="effect-ming tm-video-item premium">
-              <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
-              <figcaption class="d-flex align-items-center justify-content-center" (click)="authService.goToPaypalAfterLoginRegistration = true" routerLink="/paypal">
-                <button class="btn btn-danger">Pretplatite se</button>
-              </figcaption>
-            </figure>
-            <div class="d-flex justify-content-between tm-text-gray">
-              <span> {{video.title}}</span>
+        <ng-container *ngIf="!authService.isPremiumUser">
+          <ng-container *ngIf="!video.free">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 mp"
+              (click)="authService.goToPaypalAfterLoginRegistration = true" routerLink="/paypal" data-aos="fade-up"
+              data-aos-duration="1200">
+              <figure class="effect-ming tm-video-item premium">
+                <img src="https://i.ytimg.com/vi/{{video.id}}/hq720.jpg" alt="{{video.title}}" class="img-fluid">
+                <figcaption class="d-flex align-items-center justify-content-center"
+                  (click)="authService.goToPaypalAfterLoginRegistration = true" routerLink="/paypal">
+                  <button class="btn btn-danger">Pretplatite se</button>
+                </figcaption>
+              </figure>
+              <div class="d-flex justify-content-between tm-text-gray">
+                <span> {{video.title}}</span>
+              </div>
             </div>
-          </div>
+          </ng-container>
         </ng-container>
       </ng-container>
+
+      <div class="col-12" style="text-align: center; padding: 25px; cursor: pointer;"
+        *ngIf="videoService.showLoadMoreButton">
+        <button class="btn btn-info" style="border-radius: 10px;" (click)="loadMore()">Učitaj više</button>
+      </div>
     </ng-container>
-
-    <div class="col-12" style="text-align: center; padding: 25px; cursor: pointer;" *ngIf="videoService.showLoadMoreButton">
-      <button class="btn btn-info" style="border-radius: 10px;" (click)="loadMore()">Učitaj više</button>
-    </div>
   </div> <!-- row -->
-
 </div> <!-- container-fluid, tm-container-content -->
 
 <app-footer></app-footer>
 
 
 <app-loader *ngIf="videoService.showLoader">
-   Učitavanje...
+  Učitavanje...
 </app-loader>
 
 <app-loader *ngIf="paymentService.showPaymentLoader && !videoService.showLoader">
