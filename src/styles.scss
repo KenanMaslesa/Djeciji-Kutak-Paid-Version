@@ -4,7 +4,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
-  background-image: url("/assets/img/background.jpg");
+  background-image: url("/assets/img/body-background.webp");
 
   &.fixed {
     background-attachment: fixed;
@@ -614,7 +614,7 @@ figure.effect-ming:hover img {
 #tm-video-container {
   height: 450px;
   overflow: hidden;
-  background: url(/assets/img/background.png) top center no-repeat;
+  background: url(/assets/img/background.webp) top center no-repeat;
   background-size: cover;
   position: relative;
   background-position: center;
