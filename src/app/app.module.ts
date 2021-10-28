@@ -12,30 +12,20 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoaderComponent } from './components/loader/loader.component';
 import { VideosComponent } from './pages/videos/videos.component';
 import { VideoDetailComponent } from './pages/video-detail/video-detail.component';
 import { PaypalComponent } from './pages/paypal/paypal.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { FavoriteComponent } from './pages/favorite/favorite.component';
-import { MobileNavigationComponent } from './components/navigation/mobile-navigation/mobile-navigation.component';
-import { FavoriteVideoDetailComponent } from './pages/favorite-video-detail/favorite-video-detail.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AdminComponent } from './pages/admin/admin.component';
-import { ContactMessagesComponent } from './components/admin-components/contact-messages/contact-messages.component';
-import { AdminVideosComponent } from './components/admin-components/admin-videos/admin-videos.component';
-import { PretplataComponent } from './pages/pretplata/pretplata.component';
-import { DesktopNavComponent } from './components/navigation/desktop-nav/desktop-nav.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { AuthNavComponent } from './components/navigation/auth-nav/auth-nav.component';
-import { UplatniceComponent } from './components/admin-components/uplatnice/uplatnice.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ShowOnlyForPremiumUsersDirective } from './shared/directives/show-only-for-premium-users.directive';
-import { ScrollToAnchorDirective } from './shared/directives/scroll-to-anchor.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { PremiumModule } from './pages/premium/premium.module';
 
 @NgModule({
   declarations: [
@@ -43,25 +33,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthComponent,
     VerifyEmailComponent,
     ForgotPasswordComponent,
-    LoaderComponent,
     VideosComponent,
     VideoDetailComponent,
     PaypalComponent,
     HomepageComponent,
-    FavoriteComponent,
-    MobileNavigationComponent,
-    FavoriteVideoDetailComponent,
-    AdminComponent,
-    ContactMessagesComponent,
-    AdminVideosComponent,
-    PretplataComponent,
-    DesktopNavComponent,
-    FooterComponent,
     AuthNavComponent,
-    UplatniceComponent,
     NotFoundComponent,
-    ShowOnlyForPremiumUsersDirective,
-    ScrollToAnchorDirective
   ],
   imports: [
     BrowserModule,
@@ -73,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
