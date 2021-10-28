@@ -7,7 +7,7 @@
       "installMode": "lazy",
       "resources": {
         "files": [
-         
+
         ]
       }
     },
@@ -27,7 +27,8 @@
     {
       "name": "ytImages",
       "urls": [
-        "https://i.ytimg.com/*"
+        "https://i.ytimg.com/*",
+        "https://www.youtube.com/s/player/9a0939d3/www-player.css"
       ],
       "cacheConfig": {
         "maxSize": 1000,
