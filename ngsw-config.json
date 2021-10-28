@@ -28,7 +28,8 @@
       "name": "ytImages",
       "urls": [
         "https://i.ytimg.com/*",
-        "https://www.youtube.com/s/player/9a0939d3/www-player.css"
+        "https://www.youtube.com/s/player/9a0939d3/www-player.css",
+        "https://www.youtube.com/s/player/9a0939d3/player_ias.vflset/en_US/base.js"
       ],
       "cacheConfig": {
         "maxSize": 1000,

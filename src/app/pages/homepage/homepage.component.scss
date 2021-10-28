@@ -173,11 +173,11 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url(/assets/img/background.png) top center no-repeat;
+  background: url(/assets/img/background.webp) top center no-repeat;
   background-size: cover;
   position: relative;  
   padding-top: 82px;
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -209,7 +209,7 @@ h6 {
 .get-started-btn {
   &.mobile {
     display: none;
-    
+
     @media (max-width: 768px) {
       display: block !important;
       position: absolute;
@@ -760,10 +760,10 @@ section {
   }
 }
 
-/* 
+/*
 ---------------------------------------------
 Pricing
---------------------------------------------- 
+---------------------------------------------
 */
 
 .pricing-tables .tables-left-dec img {
@@ -830,7 +830,7 @@ Pricing
   display: block;
   font-style: normal;
   min-height: 28px;
-  
+
   &:not(.priceKM){
     color: #03a4ed;
     margin-top: 25px;
@@ -874,10 +874,10 @@ Pricing
   background-image: url(/assets/img/third-plan-bg.png);
 }
 
-/* 
+/*
 ---------------------------------------------
 Subscribe
---------------------------------------------- 
+---------------------------------------------
 */
 
 .subscribe {
@@ -1022,10 +1022,10 @@ Subscribe
   background-color: #ff695f;
 }
 
-/* 
+/*
 ---------------------------------------------
 contact
---------------------------------------------- 
+---------------------------------------------
 */
 
 .contact-dec img {
@@ -1116,7 +1116,7 @@ form#contact {
     max-width: 550px;
     margin: 0 auto;
   }
- 
+
 }
 
 form#contact input {
@@ -1189,10 +1189,10 @@ form#contact button:hover {
     margin-top: 20px;
   }
 }
-/* 
+/*
 ---------------------------------------------
 Services Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .our-services .services-left-dec img {
@@ -1281,10 +1281,10 @@ Services Style
   height: 10px;
 }
 
-/* 
+/*
 ---------------------------------------------
 Banner Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .main-banner {
@@ -1384,10 +1384,10 @@ Banner Style
   border-bottom: 3px solid #ff685f;
 }
 
-/* 
+/*
 ---------------------------------------------
 About
---------------------------------------------- 
+---------------------------------------------
 */
 
 .about-us {
@@ -1456,7 +1456,7 @@ About
   @supports (-webkit-touch-callout: none) {
     flex-wrap: wrap;
   }
-  
+
   @media (max-width: 768px) {
     flex-wrap: wrap;
   }
