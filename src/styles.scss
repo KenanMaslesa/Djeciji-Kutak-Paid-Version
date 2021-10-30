@@ -1200,6 +1200,10 @@ select:not([multiple]) {
   filter: hue-rotate(45deg);
 }
 
+.seo {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   ::ng-deep body {
     overflow: auto;
