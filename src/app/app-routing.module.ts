@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   { path: 'paypal', component: PaypalComponent },
   { path: '404', component: NotFoundComponent },
-  //{ path: '**', redirectTo: '/404' },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
