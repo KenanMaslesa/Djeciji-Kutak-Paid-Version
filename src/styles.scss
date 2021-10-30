@@ -1200,7 +1200,7 @@ select:not([multiple]) {
   filter: hue-rotate(45deg);
 }
 
-h1.hide {
+.hidden>* {
   display: none !important;
 }
 
