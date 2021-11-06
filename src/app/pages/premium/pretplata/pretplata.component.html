@@ -57,4 +57,4 @@
     </ng-container>
   </div>
 </div>
-<app-loader *ngIf="paymentService.showPaymentLoader">Učitavanje..</app-loader>
+<app-loader [showOverlay]="true" *ngIf="paymentService.showPaymentLoader">Učitavanje..</app-loader>
