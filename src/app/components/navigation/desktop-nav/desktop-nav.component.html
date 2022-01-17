@@ -11,8 +11,8 @@
             <li><a [routerLinkActive]="['active']" routerLink="/videos">Videa</a></li>
             <li *showOnlyForPremiumUsers><a [routerLinkActive]="['active']" routerLink="/premium/omiljeno">Lista omiljenih</a>
             </li>
-            <li *showOnlyForPremiumUsers><a [routerLinkActive]="['active']" routerLink="/premium/pretplata">Moja pretplata</a>
-            </li>
+            <!-- <li *showOnlyForPremiumUsers><a [routerLinkActive]="['active']" routerLink="/premium/pretplata">Moja pretplata</a> -->
+            <!-- </li> -->
             <li *ngIf="authService.isLoggedIn"><a class="welcome">Dobrodošli,
                 {{authService.getCurrentUser().email.split('@')[0]}}</a></li>
             <li *ngIf="authService.isLoggedIn"><a class="signOut" (click)="authService.SignOut()">Odjavite se</a></li>

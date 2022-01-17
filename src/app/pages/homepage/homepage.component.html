@@ -10,8 +10,8 @@
         <nav class="nav-menu d-none d-lg-block">
           <ul>
             <li><a scrollToAnchor [anchor]="about">O nama</a></li>
-            <li><a scrollToAnchor [anchor]="services">Zašto se pretplatiti?</a></li>
-            <li><a scrollToAnchor [anchor]="pricing">Cijene</a></li>
+            <!-- <li><a scrollToAnchor [anchor]="services">Zašto se pretplatiti?</a></li> -->
+            <!-- <li><a scrollToAnchor [anchor]="pricing">Cijene</a></li> -->
             <li><a scrollToAnchor [anchor]="faq">Najčešća pitanja</a></li>
             <li><a scrollToAnchor [anchor]="contact">Kontakt</a></li>
             <li *ngIf="!authService.isLoggedIn"><a routerLink="/auth">Prijava/Registracija</a></li>
@@ -34,8 +34,8 @@
             </strong>
           </span>
           <a scrollToAnchor [anchor]="about" (click)="removeActiveClassFromNav()">O nama</a>
-          <a scrollToAnchor [anchor]="services" (click)="removeActiveClassFromNav()">Zašto se pretplatiti?</a>
-          <a scrollToAnchor [anchor]="pricing" (click)="removeActiveClassFromNav()">Cijene</a>
+          <!-- <a scrollToAnchor [anchor]="services" (click)="removeActiveClassFromNav()">Zašto se pretplatiti?</a> -->
+          <!-- <a scrollToAnchor [anchor]="pricing" (click)="removeActiveClassFromNav()">Cijene</a> -->
           <a scrollToAnchor [anchor]="faq" (click)="removeActiveClassFromNav()">Najčešća pitanja</a>
           <a scrollToAnchor [anchor]="contact" (click)="removeActiveClassFromNav()">Kontakt</a>
           <a routerLink="/videos">Pogledajte videa</a>
@@ -159,7 +159,7 @@
         <div class="col-lg-6 offset-lg-3" data-aos="fade-down-left" data-aos-duration="1200" data-aos-delay="200">
 
           <div class="section-title">
-            <h2>Zašto se pretplatiti na Dječiji kutak?</h2>
+            <h2>Zašto gledati sadržaj na Dječijem kutaku?</h2>
           </div>
         </div>
       </div>
@@ -231,7 +231,7 @@
 
 
   <!-- ======= Pricing Section ======= -->
-  <div id="pricing" class="pricing-tables" #pricing>
+  <!-- <div id="pricing" class="pricing-tables" #pricing>
     <div class="tables-left-dec">
       <img src="assets/img/tables-left-dec.png" alt="">
     </div>
@@ -288,7 +288,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- ======= Frequently Asked Questions Section ======= -->
   <section id="faq" #faq class="faq" data-aos-delay="300" data-aos="fade-up" data-aos-duration="1200">

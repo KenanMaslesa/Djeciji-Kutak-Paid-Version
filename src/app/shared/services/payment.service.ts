@@ -38,7 +38,7 @@ export class PaymentService {
     this.authService.authStatusChanged.subscribe((authStatusChanged) => {
       if(authStatusChanged){
         if(this.authService.isLoggedIn){
-          this.checkIsPremiumUser();
+          // this.checkIsPremiumUser(); //paid version
         }
         else{
           this.subscriptionMessage = null;

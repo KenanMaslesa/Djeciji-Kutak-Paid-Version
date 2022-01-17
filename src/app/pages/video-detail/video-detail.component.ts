@@ -90,10 +90,17 @@ export class VideoDetailComponent implements OnInit, AfterViewInit {
   }
 
   markAsFavorite(video) {
-    if(!this.checkIsFavorite(video)){
-      this.videoService.markAsFavorite(video).subscribe((response) => {
-        this.getFavoriteVideos();
-      });
+    if(this.authService.isLoggedIn){
+      if(!this.checkIsFavorite(video)){
+        this.videoService.markAsFavorite(video).subscribe((response) => {
+          this.getFavoriteVideos();
+        });
+      }
+    }
+    else {
+      this.authService.loginErrorMessages =
+        'Molimo Vas prvo se registrujte/prijavite.';
+      this.router.navigate(['auth']);
     }
   }
 

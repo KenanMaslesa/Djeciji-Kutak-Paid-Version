@@ -13,7 +13,7 @@ export class AuthService {
   resetPasswordErrorMessages: string;
   resetPasswordSuccessMessages: string;
   showLoader = false;
-  isPremiumUser = false;
+  isPremiumUser = true; // isPremiumUser = false; //paid version
   goToPaypalAfterLoginRegistration = false;
   premiumStatusChanged = new EventEmitter<boolean>();
   authStatusChanged = new EventEmitter<boolean>();
@@ -32,7 +32,7 @@ export class AuthService {
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
-        this.isPremiumUser = false;
+        // this.isPremiumUser = false; //paid version
       }
     });
   }

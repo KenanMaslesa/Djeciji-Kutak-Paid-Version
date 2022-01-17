@@ -22,7 +22,7 @@ export class ShowOnlyForPremiumUsersDirective {
   }
 
   checkIsPremiumUserAndShowOrHideTemplate(){
-    if(this.authService.isLoggedIn && this.authService.isPremiumUser){
+    if(true){ //this.authService.isLoggedIn && this.authService.isPremiumUser
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     }
      else {

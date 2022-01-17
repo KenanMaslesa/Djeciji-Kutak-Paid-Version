@@ -11,6 +11,7 @@ import AOS from 'aos';
 import { Video } from 'src/app/shared/models/video';
 import { DOCUMENT } from '@angular/common';
 import { PaymentService } from 'src/app/shared/services/payment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-videos',
@@ -24,6 +25,7 @@ export class VideosComponent implements OnInit, AfterViewInit {
     public videoService: VideoService,
     public authService: AuthService,
     public paymentService: PaymentService,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -77,10 +79,17 @@ export class VideosComponent implements OnInit, AfterViewInit {
   }
 
   markAsFavorite(video) {
-    if (!this.checkIsFavorite(video)) {
-      this.videoService.markAsFavorite(video).subscribe((response) => {
-        this.getFavoriteVideos();
-      });
+    if(this.authService.isLoggedIn) {
+      if (!this.checkIsFavorite(video)) {
+        this.videoService.markAsFavorite(video).subscribe((response) => {
+          this.getFavoriteVideos();
+        });
+      }
+    }
+    else {
+      this.authService.loginErrorMessages =
+      'Molimo Vas prvo se registrujte/prijavite.';
+    this.router.navigate(['auth']);
     }
   }
 
