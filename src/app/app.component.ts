@@ -14,7 +14,7 @@ import { PaymentService } from './shared/services/payment.service';
 
 export class AppComponent {
   constructor(private paymentService: PaymentService){
-      this.paymentService.checkIsPremiumUser();
+      // this.paymentService.checkIsPremiumUser(); //paid version
   }
 
   prepareRoute(outlet: RouterOutlet) {
