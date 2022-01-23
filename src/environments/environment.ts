@@ -11,7 +11,8 @@ export const environment = {
     storageBucket: "kids-9998d.appspot.com",
     messagingSenderId: "610041963781",
     appId: "1:610041963781:web:85bbc8b8a2b443dc1e036c",
-    database: "https://kids-9998d-default-rtdb.firebaseio.com",
+    // database: "https://kids-9998d-default-rtdb.firebaseio.com",
+    database: 'https://djecijikutak.europe-west1.firebasedatabase.app',
     subscriptions: "subs"
   },
   paypalSubscriptionApi: "https://api.sandbox.paypal.com/v1/billing/subscriptions",

@@ -41,8 +41,8 @@ export class VideoService {
     this.showLoader = true;
     this.ytIDs = [];
     this.http
-    .get(`assets/videos.json`)
-    //.get(`${environment.firebase.database}/video.json`)
+    // .get(`assets/videos.json`)
+    .get(`${environment.firebase.database}/video.json`)
     .pipe(
       map((responseData) => {
           const videos = [];
@@ -107,8 +107,8 @@ export class VideoService {
 
   getVideoById(id) {
     this.http
-      .get(`assets/videos.json`)
-      //.get(`${environment.firebase.database}/video.json`)
+      // .get(`assets/videos.json`)
+      .get(`${environment.firebase.database}/video.json`)
       .pipe(
         map((responseData) => {
           for (const key in responseData) {
@@ -133,8 +133,8 @@ export class VideoService {
 
   getVideoByTitle(title) {
     this.http
-      .get(`assets/videos.json`)
-      //.get(`${environment.firebase.database}/video.json`)
+      // .get(`assets/videos.json`)
+      .get(`${environment.firebase.database}/video.json`)
       .pipe(
         map((responseData) => {
           for (const key in responseData) {
@@ -175,8 +175,8 @@ export class VideoService {
 
   searchVideos(searchTerm) {
     this.http
-      .get(`assets/videos.json`)
-      //.get(`${environment.firebase.database}/video.json`)
+      // .get(`assets/videos.json`)
+      .get(`${environment.firebase.database}/video.json`)
       .pipe(
         map((responseData) => {
           const videos = [];
@@ -219,8 +219,8 @@ export class VideoService {
     this.showLoader = true;
     this.showFreeVideos = this.language == 'all';
     this.http
-      .get(`assets/videos.json`)
-      //.get(`${environment.firebase.database}/video.json`)
+      // .get(`assets/videos.json`)
+      .get(`${environment.firebase.database}/video.json`)
       .pipe(
         map((responseData) => {
           const videos = [];
