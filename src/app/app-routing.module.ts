@@ -13,6 +13,7 @@ import { FavoriteComponent } from './pages/premium/favorite/favorite.component';
 import { FavoriteVideoDetailComponent } from './pages/premium/favorite-video-detail/favorite-video-detail.component';
 import { PretplataComponent } from './pages/premium/pretplata/pretplata.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { YoutubeComponent } from './pages/youtube/youtube.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent, data: { animation: 'HomePage' } },
@@ -37,6 +38,7 @@ const routes: Routes = [
     data: { animation: 'VideoDetailPage' },
   },
   { path: 'paypal', component: PaypalComponent },
+  { path: 'youtube', component: YoutubeComponent },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

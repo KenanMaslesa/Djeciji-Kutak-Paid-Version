@@ -26,6 +26,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { PremiumModule } from './pages/premium/premium.module';
+import { YoutubeComponent } from './pages/youtube/youtube.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PremiumModule } from './pages/premium/premium.module';
     HomepageComponent,
     AuthNavComponent,
     NotFoundComponent,
+    YoutubeComponent,
   ],
   imports: [
     BrowserModule,
