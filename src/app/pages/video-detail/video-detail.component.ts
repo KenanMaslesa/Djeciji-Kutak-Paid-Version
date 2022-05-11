@@ -62,7 +62,7 @@ export class VideoDetailComponent implements OnInit, AfterViewInit {
   onChangeLanguage(value) {
     this.videoService.loadMoreSearchIndex = 1;
     this.videoService.isSearchByTermOrLanguage = true;
-    
+
     this.getVideosByLanguage(value);
     setTimeout(() => {
       this.playVideo(this.videoService.activeVideo)
@@ -73,7 +73,7 @@ export class VideoDetailComponent implements OnInit, AfterViewInit {
       this.favoriteVideos = response;
     });
   }
-  
+
   checkIsFavorite(video) {
     if(this.favoriteVideos == undefined) return false;
 
